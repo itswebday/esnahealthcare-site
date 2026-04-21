@@ -82,14 +82,14 @@ export function Button(props: ButtonProps) {
   const isLink = variant === "link";
 
   /*
-   * Content layout: text + arrow render as flex children, centered as a
-   * single visible group via `justify-center` on the parent. No invisible
-   * spacer — that read as off-axis to the right because the spacer pushed
-   * the visible content past the geometric center.
+   * Content layout: render children directly as flex items so any inline
+   * leading icon (display:block from preflight) lines up beside the text
+   * instead of stacking above it. The button itself carries `leading-none`
+   * + `gap-2` from the cva base, so children inherit and space correctly.
    */
   const content = withArrow ? (
     <>
-      <span className="leading-none">{children}</span>
+      {children}
       <ArrowRight
         size={arrowSize}
         variant="Linear"
@@ -97,7 +97,7 @@ export function Button(props: ButtonProps) {
       />
     </>
   ) : (
-    <span className="leading-none">{children}</span>
+    <>{children}</>
   );
 
   if ("href" in props && props.href) {
