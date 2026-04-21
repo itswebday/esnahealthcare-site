@@ -207,12 +207,23 @@ function HeroRibbon() {
         overflow="visible"
         preserveAspectRatio="xMidYMid slice"
       >
+        {/* Vertical bar + corner arc — full thickness */}
         <path
-          d="M 460 -260 L 460 250 A 100 100 0 0 0 560 350 L 1900 350"
+          d="M 460 -260 L 460 250 A 100 100 0 0 0 560 350"
           stroke="#eef0f5"
           strokeWidth="80"
           strokeLinecap="round"
           strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
+          fill="none"
+        />
+        {/* Horizontal segment — slightly thinner. Starts a few units back
+            into the arc so the round caps overlap and no seam shows. */}
+        <path
+          d="M 545 350 L 1900 350"
+          stroke="#eef0f5"
+          strokeWidth="72"
+          strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
           fill="none"
         />
