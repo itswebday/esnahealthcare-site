@@ -208,11 +208,12 @@ export function Hero() {
 }
 
 /*
- * Single solid-fill light-gray J-hook. One stroked path with a true
- * quarter-circle arc at the corner. `overflow="visible"` lets the rounded
- * stroke caps extend past the SVG box, and the outer div's `overflow-hidden`
- * clips them to the section — so the ribbon appears to enter from off-screen
- * top and exit off-screen right with no visible round caps in the viewport.
+ * Two parallel light-gray J-hooks layered in the background. Each is a
+ * stroked path with a quarter-circle arc at the corner. `overflow="visible"`
+ * lets the rounded stroke caps extend past the SVG box, and the outer div's
+ * `overflow-hidden` clips them to the section — so each ribbon appears to
+ * enter from off-screen top and exit off-screen right with no visible round
+ * caps in the viewport. Two slightly different gray tones add subtle depth.
  */
 function HeroRibbon() {
   return (
@@ -227,10 +228,19 @@ function HeroRibbon() {
         overflow="visible"
         preserveAspectRatio="xMidYMid slice"
       >
+        {/* Outer ribbon — slightly lighter, sits behind */}
         <path
-          d="M 360 -400 L 360 600 A 220 220 0 0 0 580 820 L 1800 820"
-          stroke="#eef0f4"
-          strokeWidth="240"
+          d="M 240 -400 L 240 540 A 220 220 0 0 0 460 760 L 1800 760"
+          stroke="#f1f3f7"
+          strokeWidth="110"
+          strokeLinecap="round"
+          fill="none"
+        />
+        {/* Inner ribbon — slightly darker, parallel rail offset down + right */}
+        <path
+          d="M 440 -400 L 440 660 A 200 200 0 0 0 640 860 L 1800 860"
+          stroke="#e6e9ef"
+          strokeWidth="110"
           strokeLinecap="round"
           fill="none"
         />
