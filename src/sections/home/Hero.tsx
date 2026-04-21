@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "iconsax-react";
+import { ArrowRight, ShieldTick, Verify } from "iconsax-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
@@ -7,9 +7,7 @@ import { SITE } from "@/lib/site";
 
 /*
  * I-SEC-inspired hero. Two columns of text (headline left, body right) over
- * a massive filled light-gray "ribbon" J-hook that anchors the section.
- * No photography, no compliance card, no chips — just type, pills, and the
- * ribbon shape.
+ * a single perfectly smooth filled light-gray ribbon J-hook.
  *
  * Reference: https://www.i-sec.com/
  */
@@ -23,23 +21,29 @@ const SERVICE_PILLS = [
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-white">
-      {/* Abstract light-gray ribbon backdrop */}
+    <section className="relative isolate overflow-hidden bg-white pb-20 sm:pb-28 lg:pb-36">
+      {/* Abstract light-gray ribbon backdrop — single clean stroke, no border */}
       <HeroRibbon />
 
       <Container size="xl" className="relative">
-        <div className="grid gap-14 py-16 sm:py-24 lg:grid-cols-12 lg:gap-16 lg:py-32 xl:py-36">
+        <div className="grid gap-14 pt-16 sm:pt-24 lg:grid-cols-12 lg:gap-16 lg:pt-32 xl:pt-36">
           {/* Left — eyebrow + headline + pills */}
           <div className="flex flex-col gap-8 lg:col-span-7">
             <Reveal direction="up">
-              <div className="text-[1rem] font-medium leading-none text-[var(--color-accent)]">
+              <div className="flex items-center gap-2.5 text-[1rem] font-medium leading-none text-[var(--color-accent)]">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-primary)] opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-primary)]" />
+                </span>
                 We are {SITE.name}
               </div>
             </Reveal>
 
             <Reveal direction="up" delay={0.06}>
               <h1 className="max-w-[14ch] text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.03em] text-[var(--color-foreground)] sm:text-[3.75rem] lg:text-[4.5rem] xl:text-[5.25rem]">
-                Your trusted pharmaceutical wholesaler.
+                Your{" "}
+                <span className="text-[var(--color-primary)]">trusted</span>{" "}
+                pharmaceutical wholesaler.
               </h1>
             </Reveal>
 
@@ -58,7 +62,7 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* Right — body text + CTAs */}
+          {/* Right — body text + CTAs + licence chips */}
           <div className="flex flex-col gap-7 lg:col-span-5 lg:pl-4">
             <Reveal direction="up" delay={0.1}>
               <p className="text-[1.075rem] leading-[1.65] text-[var(--color-muted)]">
@@ -78,26 +82,38 @@ export function Hero() {
               </p>
             </Reveal>
 
-            <Reveal direction="up" delay={0.22}>
-              <p className="text-[1.075rem] leading-[1.65] text-[var(--color-muted)]">
-                Our commitment is straightforward: to supply high-quality medicines
-                through licensed distribution and trusted networks, maintaining the
-                highest standards of quality and compliance.
-              </p>
-            </Reveal>
-
-            <Reveal direction="up" delay={0.3}>
-              <div className="mt-2 flex flex-wrap items-center gap-5">
+            <Reveal direction="up" delay={0.24}>
+              <div className="mt-2 flex flex-wrap items-center gap-3">
+                <Button href="/contact" variant="primary" size="lg" withArrow>
+                  Get in Touch
+                </Button>
                 <Button href="/services" variant="outline" size="lg">
                   View our services
                 </Button>
+              </div>
+            </Reveal>
+
+            <Reveal direction="up" delay={0.32}>
+              <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-[var(--color-border)] pt-5">
+                <LicenceChip
+                  icon={<ShieldTick size={14} variant="Linear" />}
+                  label="WDA"
+                  value={SITE.licences.wda.number}
+                  tone="accent"
+                />
+                <LicenceChip
+                  icon={<Verify size={14} variant="Linear" />}
+                  label="GDP"
+                  value={SITE.licences.gdp.number}
+                  tone="primary"
+                />
                 <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-2 text-[0.95rem] font-medium leading-none text-[var(--color-foreground)] underline underline-offset-4 transition-colors hover:text-[var(--color-accent)]"
+                  href="/compliance"
+                  className="group ml-1 inline-flex items-center gap-1 text-[0.82rem] font-medium leading-none text-[var(--color-subtle)] transition-colors hover:text-[var(--color-foreground)]"
                 >
-                  Get in touch
+                  Verify
                   <ArrowRight
-                    size={14}
+                    size={12}
                     variant="Linear"
                     className="transition-transform group-hover:translate-x-0.5"
                   />
@@ -107,18 +123,13 @@ export function Hero() {
           </div>
         </div>
       </Container>
-
-      {/* Bottom navy strip — connects to next section like I-SEC's "Scroll to explore" band */}
-      <ScrollIndicator />
     </section>
   );
 }
 
 /*
- * The big J-hook ribbon — a thick rounded-corner band drawn as a stroked SVG
- * path. Sized very large so the corners hook off the viewport edges, exactly
- * how I-SEC anchors its hero. Two layers: a wide light-gray fill stroke, and
- * a thin hairline at its outer edge for definition.
+ * Single solid-fill light-gray J-hook. One stroked path with a true
+ * quarter-circle arc at the corner — no hairline border, no overlay.
  */
 function HeroRibbon() {
   return (
@@ -127,64 +138,46 @@ function HeroRibbon() {
       className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
     >
       <svg
-        className="absolute -left-[8%] -top-[10%] h-[140%] w-[110%] sm:-left-[6%] lg:left-[3%] lg:w-[88%]"
+        className="absolute -left-[6%] -top-[8%] h-[130%] w-[110%] sm:-left-[4%] lg:left-[2%] lg:w-[92%]"
         viewBox="0 0 1200 1100"
         fill="none"
         preserveAspectRatio="xMidYMid meet"
       >
-        <defs>
-          <clipPath id="esna-ribbon-clip">
-            <rect x="0" y="0" width="1200" height="1100" />
-          </clipPath>
-        </defs>
-        <g clipPath="url(#esna-ribbon-clip)">
-          {/* Wide light-gray ribbon — main visual mass */}
-          <path
-            d="M 360 -100 L 360 760 Q 360 880 480 880 L 1320 880"
-            stroke="#eef0f4"
-            strokeWidth="180"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
-          {/* Hairline outer edge for definition */}
-          <path
-            d="M 270 -100 L 270 760 Q 270 970 480 970 L 1320 970"
-            stroke="#e3e6ec"
-            strokeWidth="1.5"
-            fill="none"
-          />
-          <path
-            d="M 450 -100 L 450 760 Q 450 790 480 790 L 1320 790"
-            stroke="#e3e6ec"
-            strokeWidth="1.5"
-            fill="none"
-          />
-        </g>
+        <path
+          d="M 360 -120 L 360 700 A 200 200 0 0 0 560 900 L 1320 900"
+          stroke="#eef0f4"
+          strokeWidth="220"
+          strokeLinecap="round"
+          fill="none"
+        />
       </svg>
     </div>
   );
 }
 
-function ScrollIndicator() {
+function LicenceChip({
+  icon,
+  label,
+  value,
+  tone,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  tone: "primary" | "accent";
+}) {
+  const wrapperClass =
+    tone === "primary"
+      ? "border-[var(--color-primary-subtle-strong)] bg-[var(--color-primary-subtle)] text-[var(--color-primary-dark)]"
+      : "border-[var(--color-accent-subtle-strong)] bg-[var(--color-accent-subtle)] text-[var(--color-accent)]";
   return (
-    <div className="relative">
-      <div className="relative bg-[var(--color-surface-invert)] py-6 text-[var(--color-on-invert)]">
-        <Container size="xl">
-          <div className="flex items-center justify-between text-[0.82rem]">
-            <span className="font-mono uppercase tracking-[0.16em] text-[var(--color-on-invert-muted)]">
-              EU Licensed · WDA {SITE.licences.wda.number} · GDP{" "}
-              {SITE.licences.gdp.number}
-            </span>
-            <span className="hidden items-center gap-2 font-mono uppercase tracking-[0.16em] text-[var(--color-on-invert-muted)] sm:inline-flex">
-              Scroll to explore
-              <span aria-hidden="true" className="inline-block animate-bounce">
-                ↓
-              </span>
-            </span>
-          </div>
-        </Container>
-      </div>
-    </div>
+    <span
+      className={`inline-flex h-7 items-center gap-1.5 rounded-full border px-3 text-[0.78rem] font-medium leading-none ${wrapperClass}`}
+    >
+      {icon}
+      <span className="font-mono uppercase tracking-[0.06em]">
+        {label} {value}
+      </span>
+    </span>
   );
 }
