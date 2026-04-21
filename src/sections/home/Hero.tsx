@@ -1,230 +1,216 @@
 import Link from "next/link";
-import {
-  ShieldTick,
-  Verify,
-  ArrowRight,
-  Global,
-  Flag,
-  TickCircle,
-  Location,
-  Scan,
-} from "iconsax-react";
+import { ShieldTick, Verify, ArrowRight } from "iconsax-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { Marquee } from "@/components/ui/Marquee";
 import { SITE } from "@/lib/site";
-import { HeroComplianceCard } from "./HeroComplianceCard";
 
-const TRUST_STRIP = [
-  { icon: Flag, label: "Utrecht · Netherlands" },
-  { icon: Global, label: "EEA sourcing network" },
-  { icon: ShieldTick, label: "WDA 16615 G" },
-  { icon: Verify, label: "GDP NL/G24/2053458" },
-  { icon: Scan, label: "EudraGMDP verifiable" },
-  { icon: Location, label: "IGJ inspected" },
+/*
+ * Text-forward hero with abstract light-gray "ribbon" shapes behind the
+ * content as the visual anchor (no photography, no compliance card).
+ * Reference: I-SEC's hero — an oversized rounded-rectangle outline drawn
+ * in a couple of parallel light strokes that sits softly behind the text.
+ */
+
+const SERVICE_PILLS = [
+  { label: "Pharmaceutical Wholesale", href: "/services#pharmaceutical-wholesale" },
+  { label: "Global Sourcing", href: "/services#global-sourcing" },
+  { label: "International Distribution", href: "/services#international-distribution" },
+  { label: "Temperature-Controlled", href: "/services#temperature-controlled-logistics" },
 ];
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-10 pb-20 sm:pt-14 sm:pb-24 lg:pt-20 lg:pb-28">
-      {/* Base wash — soft radial gradients that evoke silk-wave background without WebGL */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_15%_20%,rgba(46,139,53,0.14)_0%,transparent_60%),radial-gradient(ellipse_60%_50%_at_85%_0%,rgba(13,79,140,0.18)_0%,transparent_55%),radial-gradient(ellipse_70%_50%_at_70%_90%,rgba(46,139,53,0.08)_0%,transparent_55%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-[180px] bg-gradient-to-t from-[var(--color-surface-1)] to-transparent" />
-      </div>
-
-      {/* Dot grid mask */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_25%,transparent_70%)]"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(11,22,40,0.09) 1px, transparent 1px)",
-          backgroundSize: "30px 30px",
-        }}
-      />
+    <section className="relative isolate overflow-hidden border-b border-[var(--color-border)] bg-white">
+      {/* Abstract light-gray ribbon shapes — sit behind everything */}
+      <HeroBackdrop />
 
       <Container size="xl" className="relative">
-        <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10 xl:gap-16">
-          {/* Left column — content */}
-          <div className="flex flex-col gap-7 lg:col-span-7 xl:col-span-7">
-            <Reveal direction="up">
-              <div className="inline-flex h-9 items-center gap-2 self-start rounded-full border border-[var(--color-primary-subtle-strong)] bg-white/70 px-3 leading-none backdrop-blur-sm">
-                <span className="relative flex h-2 w-2 shrink-0">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-primary)] opacity-60" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-primary)]" />
-                </span>
-                <ShieldTick
-                  size={14}
-                  variant="Linear"
-                  className="shrink-0 text-[var(--color-primary-dark)]"
-                />
-                <span className="text-[0.78rem] font-medium leading-none tracking-[-0.005em] text-[var(--color-primary-dark)]">
-                  EU Licensed
-                </span>
-                <span className="h-3 w-px shrink-0 bg-[var(--color-primary-subtle-strong)]" />
-                <Verify
-                  size={14}
-                  variant="Linear"
-                  className="shrink-0 text-[var(--color-accent)]"
-                />
-                <span className="text-[0.78rem] font-medium leading-none tracking-[-0.005em] text-[var(--color-accent)]">
-                  GDP Certified
-                </span>
-              </div>
-            </Reveal>
+        <div className="flex flex-col items-start gap-7 py-16 sm:py-24 lg:gap-9 lg:py-32 xl:py-36">
+          <Reveal direction="up">
+            <div className="flex items-center gap-2 text-[0.78rem] font-medium uppercase leading-none tracking-[0.16em] text-[var(--color-accent)]">
+              <span className="h-px w-8 bg-[var(--color-accent)]" />
+              EU Licensed Pharmaceutical Wholesaler
+            </div>
+          </Reveal>
 
-            <Reveal direction="up" delay={0.06}>
-              <h1 className="text-[2.5rem] font-semibold leading-[1.02] tracking-[var(--tracking-display)] text-[var(--color-foreground)] sm:text-[3.25rem] lg:text-[3.75rem] xl:text-[4.5rem]">
-                Medicine,{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 text-gradient-brand">
-                    delivered
-                  </span>
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 180 12"
-                    className="absolute left-0 right-0 top-full -mt-1 h-2.5 w-full text-[var(--color-primary)]/50"
-                    preserveAspectRatio="none"
-                  >
-                    <path
-                      d="M2 6 Q 45 0 90 6 T 178 6"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </span>{" "}
-                on compliance.
-                <br className="hidden sm:inline" />
-                Sourced across the EEA.
-              </h1>
-            </Reveal>
+          <Reveal direction="up" delay={0.06}>
+            <h1 className="max-w-5xl text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.03em] text-[var(--color-foreground)] sm:text-[3.5rem] lg:text-[4.5rem] xl:text-[5.5rem]">
+              Sourcing the medicines{" "}
+              <br className="hidden sm:inline" />
+              that healthcare needs.
+            </h1>
+          </Reveal>
 
-            <Reveal direction="up" delay={0.12}>
-              <p className="max-w-xl text-lg leading-[1.6] text-[var(--color-muted)] sm:text-[1.175rem]">
-                {SITE.name} is a Dutch EU-licensed pharmaceutical wholesaler.
-                We source branded and generic medicines across Europe and supply
-                qualified distributors, hospitals, and pharmacies worldwide — under a
-                Wholesale Distribution Authorisation for procurement, supply, and
-                export.
-              </p>
-            </Reveal>
+          <Reveal direction="up" delay={0.12}>
+            <p className="max-w-2xl text-[1.075rem] leading-[1.6] text-[var(--color-muted)] sm:text-[1.175rem]">
+              {SITE.name} is a Dutch wholesaler holding a Wholesale Distribution
+              Authorisation and GDP certification. We supply branded and generic
+              medicines to qualified distributors, hospitals, and pharmacies across
+              Europe and beyond — sourced through a trusted partner network.
+            </p>
+          </Reveal>
 
-            <Reveal direction="up" delay={0.18}>
-              <div className="flex flex-wrap items-center gap-3">
-                <Button href="/contact" variant="primary" size="xl" withArrow>
-                  Get in Touch
-                </Button>
-                <Button href="/services" variant="outline" size="xl">
-                  Explore our services
-                </Button>
-              </div>
-            </Reveal>
+          <Reveal direction="up" delay={0.18}>
+            <div className="flex flex-wrap items-center gap-3">
+              <Button href="/contact" variant="primary" size="xl" withArrow>
+                Get in Touch
+              </Button>
+              <Button href="/services" variant="outline" size="xl">
+                Our services
+              </Button>
+            </div>
+          </Reveal>
 
-            <Reveal direction="up" delay={0.26}>
-              <div className="mt-2 flex flex-col gap-3 text-[0.88rem] text-[var(--color-muted)] sm:flex-row sm:items-center sm:gap-5">
-                <div className="flex items-center gap-2.5">
-                  <div className="flex -space-x-1.5">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--color-primary-subtle)] ring-2 ring-white">
-                      <ShieldTick
-                        size={12}
-                        variant="Bold"
-                        className="text-[var(--color-primary-dark)]"
-                      />
-                    </span>
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--color-accent-subtle)] ring-2 ring-white">
-                      <Verify
-                        size={12}
-                        variant="Bold"
-                        className="text-[var(--color-accent)]"
-                      />
-                    </span>
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--color-surface-2)] ring-2 ring-white">
-                      <Scan
-                        size={12}
-                        variant="Linear"
-                        className="text-[var(--color-foreground)]"
-                      />
-                    </span>
-                  </div>
-                  <span className="text-[var(--color-foreground)]">
-                    Licences verifiable in{" "}
-                    <span className="font-mono font-medium">EudraGMDP</span>
-                  </span>
-                </div>
-                <span className="hidden h-4 w-px bg-[var(--color-border-strong)] sm:block" />
-                <div className="flex items-center gap-2">
-                  <TickCircle
-                    size={16}
-                    variant="Bold"
-                    className="text-[var(--color-primary)]"
-                  />
-                  <span>
-                    <span className="font-mono font-medium text-[var(--color-foreground)]">
-                      200+ products
-                    </span>{" "}
-                    across 8 therapeutic areas
-                  </span>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Right column — compliance card */}
-          <div className="lg:col-span-5 xl:col-span-5">
-            <HeroComplianceCard />
-          </div>
-        </div>
-
-        {/* Bottom: supplier / regulator trust marquee */}
-        <Reveal direction="up" delay={0.4}>
-          <div className="mt-20 sm:mt-24">
-            <div className="flex flex-col gap-5">
-              <div className="flex items-center justify-between border-t border-[var(--color-border)] pt-6 text-sm">
-                <span className="text-[var(--color-subtle)]">
-                  Operating under the EU pharmaceutical regulatory framework
-                </span>
+          <Reveal direction="up" delay={0.26} className="mt-2 w-full">
+            <div className="flex flex-wrap gap-2">
+              {SERVICE_PILLS.map((pill) => (
                 <Link
-                  href="/compliance"
-                  className="group hidden items-center gap-1.5 font-medium text-[var(--color-foreground)] transition-colors hover:text-[var(--color-primary-dark)] sm:inline-flex"
+                  key={pill.href}
+                  href={pill.href}
+                  className="group inline-flex h-11 items-center gap-2 rounded-full border border-[var(--color-border)] bg-white px-4 text-[0.88rem] font-medium leading-none text-[var(--color-foreground)] shadow-[var(--shadow-sm)] transition-all duration-[var(--duration-normal)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] hover:shadow-[var(--shadow-card)]"
                 >
-                  Verify our licences
+                  {pill.label}
                   <ArrowRight
                     size={14}
                     variant="Linear"
-                    className="transition-transform group-hover:translate-x-0.5"
+                    className="text-[var(--color-subtle)] transition-all duration-[var(--duration-normal)] group-hover:translate-x-0.5 group-hover:text-[var(--color-accent)]"
                   />
                 </Link>
-              </div>
-              <Marquee
-                speed={55}
-                items={TRUST_STRIP.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <span
-                      key={item.label}
-                      className="inline-flex items-center gap-2 text-[0.95rem] font-medium tracking-[-0.008em] text-[var(--color-muted)]"
-                    >
-                      <Icon
-                        size={18}
-                        variant="Linear"
-                        className="text-[var(--color-primary-dark)]"
-                      />
-                      {item.label}
-                    </span>
-                  );
-                })}
-                separator={
-                  <span className="text-[var(--color-faint)]">·</span>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal direction="up" delay={0.34} className="mt-8 w-full">
+            <div className="flex flex-col gap-5 border-t border-[var(--color-border)] pt-6 sm:flex-row sm:items-start sm:gap-12">
+              <CredentialItem
+                icon={
+                  <ShieldTick
+                    size={18}
+                    variant="Linear"
+                    className="text-[var(--color-accent)]"
+                  />
                 }
+                label="WDA Licence"
+                value={`No. ${SITE.licences.wda.number}`}
+                caption="Procurement · Supply · Export"
+              />
+              <CredentialItem
+                icon={
+                  <Verify
+                    size={18}
+                    variant="Linear"
+                    className="text-[var(--color-primary)]"
+                  />
+                }
+                label="GDP Certified"
+                value={SITE.licences.gdp.number}
+                caption="Issued 04/11/2024 · IGJ"
+              />
+              <CredentialItem
+                icon={
+                  <ShieldTick
+                    size={18}
+                    variant="Linear"
+                    className="text-[var(--color-subtle)]"
+                  />
+                }
+                label="Inspected by"
+                value="IGJ"
+                caption="Dutch Health & Youth Inspectorate"
               />
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </Container>
     </section>
+  );
+}
+
+/*
+ * Two oversized rounded shapes drawn as outline strokes in light-gray.
+ * Sized to span the hero, positioned to flow behind the headline + CTAs.
+ * Decorative only; aria-hidden.
+ */
+function HeroBackdrop() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+    >
+      {/* Right side: large rounded "J/hook" outline */}
+      <svg
+        className="absolute right-[-6%] top-[-6%] h-[140%] w-[80%] sm:right-[-4%]"
+        viewBox="0 0 800 900"
+        fill="none"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <path
+          d="M 220 -40 L 220 720 Q 220 820 320 820 L 800 820"
+          stroke="#eef0f4"
+          strokeWidth="160"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M 220 -40 L 220 720 Q 220 820 320 820 L 800 820"
+          stroke="#e4e7ec"
+          strokeWidth="2"
+          strokeLinecap="round"
+          fill="none"
+        />
+      </svg>
+
+      {/* Left side: secondary thin parallel strip, slightly offset */}
+      <svg
+        className="absolute left-[-12%] top-[10%] hidden h-[120%] w-[60%] lg:block"
+        viewBox="0 0 600 800"
+        fill="none"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <path
+          d="M 80 0 L 80 540 Q 80 620 160 620 L 600 620"
+          stroke="#f4f5f8"
+          strokeWidth="120"
+          strokeLinecap="round"
+          fill="none"
+          opacity="0.7"
+        />
+      </svg>
+
+      {/* Bottom edge wash to soften where strips meet content below */}
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-white/60" />
+    </div>
+  );
+}
+
+function CredentialItem({
+  icon,
+  label,
+  value,
+  caption,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  caption: string;
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--color-surface-1)]">
+        {icon}
+      </span>
+      <div>
+        <div className="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-[var(--color-subtle)]">
+          {label}
+        </div>
+        <div className="mt-0.5 font-mono text-[0.95rem] font-semibold tracking-tight text-[var(--color-foreground)]">
+          {value}
+        </div>
+        <div className="mt-0.5 text-[0.78rem] text-[var(--color-muted)]">
+          {caption}
+        </div>
+      </div>
+    </div>
   );
 }

@@ -22,16 +22,8 @@ export function BlogList() {
           <Reveal direction="up">
             <Link
               href={`/blog/${featured.slug}`}
-              className="group relative flex flex-col gap-10 overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--color-border-invert)] bg-[var(--color-surface-invert)] p-8 text-[var(--color-on-invert)] transition-colors hover:border-[var(--color-border-invert-strong)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)] sm:p-12 lg:flex-row lg:items-end lg:gap-16 lg:p-16"
+              className="group relative flex flex-col gap-10 overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--color-border-invert-strong)] bg-[var(--color-surface-invert)] p-8 text-[var(--color-on-invert)] transition-colors hover:border-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)] sm:p-12 lg:flex-row lg:items-end lg:gap-16 lg:p-16"
             >
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -left-20 -top-20 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,139,53,0.35)_0%,transparent_55%)] blur-3xl"
-              />
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-20 -bottom-20 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle_at_center,rgba(13,79,140,0.38)_0%,transparent_55%)] blur-3xl"
-              />
               <div className="relative flex-1">
                 <div className="flex flex-wrap items-center gap-3 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-on-invert-muted)]">
                   <span className="inline-flex h-6 items-center gap-1.5 rounded-full bg-white/10 px-3 leading-none text-white">
@@ -83,16 +75,12 @@ export function BlogList() {
                 href={`/blog/${post.slug}`}
                 className="group flex h-full flex-col gap-5 overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-white p-6 transition-all duration-[var(--duration-slow)] hover:border-[var(--color-border-strong)] hover:shadow-[var(--shadow-lift)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2"
               >
-                <div className="relative h-44 overflow-hidden rounded-[var(--radius-md)] bg-[var(--color-surface-1)]">
-                  <div
+                <div className="relative flex h-44 items-end overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-1)]">
+                  <span
                     aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary-subtle)] via-white to-[var(--color-accent-subtle)]"
+                    className="absolute left-0 top-0 h-full w-1 bg-[var(--color-primary)]"
                   />
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-surface-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]"
-                  />
-                  <div className="absolute bottom-4 left-5 right-5 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">
+                  <div className="relative px-5 pb-4 font-mono text-[0.72rem] uppercase leading-none tracking-[0.14em] text-[var(--color-primary-dark)]">
                     {post.heroEyebrow}
                   </div>
                 </div>

@@ -44,7 +44,7 @@
   --color-border-invert: #1e3558;
   --color-border-invert-strong: #2b4a78;
 
-  /* — primary (logo-family green) — */
+  /* — primary (logo-family green; CTAs) — */
   --color-primary: #2e8b35;
   --color-primary-hover: #24742a;
   --color-primary-dark: #1b5520;
@@ -52,11 +52,12 @@
   --color-primary-subtle-strong: #d0e8d3;
   --color-primary-foreground: #ffffff;
 
-  /* — trust accent (medical blue) — */
-  --color-accent: #0d4f8c;
-  --color-accent-hover: #0a3f71;
-  --color-accent-subtle: #e8f0fa;
-  --color-accent-subtle-strong: #cfe0f3;
+  /* — accent (CPHI-inspired royal blue; structural elements) — */
+  --color-accent: #0057d9;
+  --color-accent-hover: #0048b5;
+  --color-accent-dark: #003688;
+  --color-accent-subtle: #e8effc;
+  --color-accent-subtle-strong: #c8d8f7;
   --color-accent-foreground: #ffffff;
 
   /* — semantic — */
@@ -66,8 +67,8 @@
   --color-warning-bg: #fef3c7;
   --color-danger: #b42318;
   --color-danger-bg: #fee4e2;
-  --color-info: #0d4f8c;
-  --color-info-bg: #e8f0fa;
+  --color-info: #0057d9;
+  --color-info-bg: #e8effc;
 
   /* — radii — */
   --radius-xs: 4px;
@@ -271,12 +272,7 @@ button[aria-disabled="true"] {
 /* — utility layer extensions — */
 @layer utilities {
   .bg-gradient-brand {
-    background-image: linear-gradient(
-      135deg,
-      var(--color-primary) 0%,
-      #36a73d 50%,
-      var(--color-accent) 100%
-    );
+    background-color: var(--color-primary);
   }
 
   .bg-radial-brand {
@@ -303,15 +299,7 @@ button[aria-disabled="true"] {
   }
 
   .text-gradient-brand {
-    background-image: linear-gradient(
-      135deg,
-      var(--color-primary) 0%,
-      #36a73d 50%,
-      var(--color-accent) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--color-primary);
   }
 
   .ring-brand {
