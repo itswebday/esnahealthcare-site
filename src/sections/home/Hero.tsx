@@ -212,9 +212,9 @@ function HeroRibbon() {
             non-scaling-stroke (the only way to keep thickness constant
             across viewports), so we trade asymmetry for smoothness. */}
         <path
-          d="M 460 -260 L 460 250 A 100 100 0 0 0 560 350 L 1900 350"
+          d="M 460 -260 L 460 290 A 100 100 0 0 0 560 390 L 1900 390"
           stroke="#eef0f5"
-          strokeWidth="88"
+          strokeWidth="120"
           strokeLinecap="round"
           strokeLinejoin="round"
           vectorEffect="non-scaling-stroke"
