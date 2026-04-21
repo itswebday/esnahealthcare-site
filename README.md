@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# esnahealthcare
 
-## Getting Started
+Marketing site for [Esna Care B.V.](https://esnahealthcare.nl) — a Dutch
+EU-licensed pharmaceutical wholesaler operating under WDA No. 16615 G and
+GDP Certificate No. NL/G24/2053458.
 
-First, run the development server:
+Built with Next.js 16 (App Router) + React 19 + Tailwind 4 + Geist.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Theme branches
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The `main` branch carries the active production theme. Three alternative
+theme directions are available as branches for side-by-side comparison:
 
-## Learn More
+| Branch                    | Direction                                              |
+| ------------------------- | ------------------------------------------------------ |
+| `main`                    | I-SEC-inspired ribbon hero, royal-blue + green palette |
+| `theme/cphi-inspired`     | Mirror of `main` (the active theme)                    |
+| `theme/editorial-dossier` | Cream/paper base, hairline rules, no gradients         |
+| `theme/swiss-clinical`    | Crisp white + bold solid color panels for rhythm       |
 
-To learn more about Next.js, take a look at the following resources:
+Switch between them with `git checkout` and reload the dev server.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Auto-deployed to Vercel from `main`. Preview deployments are created for
+every branch push.
