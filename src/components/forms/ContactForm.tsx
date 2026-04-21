@@ -273,23 +273,23 @@ export function ContactForm({
           type="submit"
           disabled={!agree || status === "submitting"}
           className={cn(
-            "group inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-medium leading-none transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)]",
+            "group inline-flex h-14 items-center justify-center gap-2 rounded-[var(--radius-2xl)] border-2 px-8 text-[0.95rem] font-medium leading-none transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)]",
             !agree || status === "submitting"
-              ? "cursor-not-allowed bg-[var(--color-surface-2)] text-[var(--color-subtle)]"
-              : "bg-[var(--color-primary)] text-white shadow-[var(--shadow-cta)] hover:bg-[var(--color-primary-hover)] hover:shadow-[var(--shadow-cta-hover)]",
+              ? "cursor-not-allowed border-[var(--color-border)] bg-[var(--color-surface-2)] text-[var(--color-subtle)]"
+              : "border-[var(--color-primary)] bg-[var(--color-primary)] text-white shadow-[var(--shadow-cta)] hover:border-[var(--color-primary-hover)] hover:bg-[var(--color-primary-hover)] hover:shadow-[var(--shadow-cta-hover)]",
           )}
         >
           {status !== "submitting" && (
             <span
               aria-hidden="true"
               className="invisible shrink-0"
-              style={{ width: 16, height: 16 }}
+              style={{ width: 18, height: 18 }}
             />
           )}
           <span>{status === "submitting" ? "Sending…" : copy.submitLabel}</span>
           {status !== "submitting" && (
             <ArrowRight
-              size={16}
+              size={18}
               variant="Linear"
               className="shrink-0 transition-transform group-hover:translate-x-0.5"
             />

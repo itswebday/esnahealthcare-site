@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   ShieldTick,
   Verify,
@@ -9,6 +8,7 @@ import {
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
+import { Button } from "@/components/ui/Button";
 import { SITE } from "@/lib/site";
 
 export function LicenceCards() {
@@ -87,24 +87,26 @@ export function LicenceCards() {
                 </ul>
 
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <Link
+                  <Button
                     href={SITE.licences.wda.pdf}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--color-foreground)] px-5 text-sm font-medium leading-none text-white shadow-[var(--shadow-card)] transition-colors hover:bg-[#1b2439]"
+                    variant="secondary"
+                    size="md"
                   >
-                    <DocumentDownload size={16} variant="Linear" className="shrink-0" />
+                    <DocumentDownload size={16} variant="Linear" className="mr-1 shrink-0" />
                     Wholesale Licence PDF
-                  </Link>
-                  <Link
+                  </Button>
+                  <Button
                     href={SITE.licences.wda.eudraGmdpPdf}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex h-11 items-center justify-center gap-2 rounded-full border border-[var(--color-primary-dark)]/30 bg-white px-5 text-sm font-medium leading-none text-[var(--color-foreground)] transition-colors hover:border-[var(--color-foreground)]"
+                    variant="outline"
+                    size="md"
                   >
-                    <Export size={16} variant="Linear" className="shrink-0" />
+                    <Export size={16} variant="Linear" className="mr-1 shrink-0" />
                     WDA · EudraGMDP
-                  </Link>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -177,15 +179,16 @@ export function LicenceCards() {
                 </ul>
 
                 <div className="mt-8">
-                  <Link
+                  <Button
                     href={SITE.licences.gdp.pdf}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--color-foreground)] px-5 text-sm font-medium leading-none text-white shadow-[var(--shadow-card)] transition-colors hover:bg-[#1b2439]"
+                    variant="secondary"
+                    size="md"
                   >
-                    <DocumentDownload size={16} variant="Linear" className="shrink-0" />
+                    <DocumentDownload size={16} variant="Linear" className="mr-1 shrink-0" />
                     GDP Certificate PDF
-                  </Link>
+                  </Button>
                 </div>
               </div>
             </div>

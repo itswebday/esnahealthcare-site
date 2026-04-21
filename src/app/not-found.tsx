@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ArrowRight, ArrowLeft2 } from "iconsax-react";
+import { ArrowLeft2 } from "iconsax-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 
@@ -24,13 +23,10 @@ export default function NotFound() {
             documentation.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="/"
-              className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--color-primary)] px-6 text-[0.95rem] font-medium leading-none text-white shadow-[var(--shadow-cta)] transition-colors hover:bg-[var(--color-primary-hover)]"
-            >
-              <ArrowLeft2 size={16} variant="Linear" className="shrink-0" />
+            <Button href="/" variant="primary" size="lg">
+              <ArrowLeft2 size={16} variant="Linear" className="mr-1 shrink-0" />
               Back to home
-            </Link>
+            </Button>
             <Button href="/compliance" variant="outline" size="lg" withArrow>
               View compliance
             </Button>

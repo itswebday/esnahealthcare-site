@@ -45,7 +45,7 @@ export function BlogList() {
                   <Clock size={14} variant="Linear" />
                   {featured.readingMinutes} min read
                 </div>
-                <div className="mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-medium leading-none text-[var(--color-foreground)] shadow-[var(--shadow-lift)]">
+                <div className="mt-6 inline-flex h-14 items-center justify-center gap-2 rounded-[var(--radius-2xl)] border-2 border-white bg-white px-8 text-sm font-medium leading-none text-[var(--color-foreground)] shadow-[var(--shadow-lift)]">
                   <span
                     aria-hidden="true"
                     className="invisible shrink-0"
