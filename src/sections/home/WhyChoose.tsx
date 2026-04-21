@@ -37,10 +37,6 @@ export function WhyChoose() {
 
           <Reveal direction="up" delay={0.12} className="lg:col-span-6">
             <div className="relative overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--color-border)] bg-white p-8 shadow-[var(--shadow-island)] sm:p-10">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-[20%] -top-[20%] h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,139,53,0.14)_0%,transparent_60%)] blur-3xl"
-              />
               <div className="relative">
                 <span className="inline-flex items-center gap-2 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">
                   <span className="h-px w-6 bg-[var(--color-primary)]" />

@@ -27,24 +27,7 @@ const TRUST_STRIP = [
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-10 pb-20 sm:pt-14 sm:pb-24 lg:pt-20 lg:pb-28">
-      {/* Base wash — soft radial gradients that evoke silk-wave background without WebGL */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_15%_20%,rgba(46,139,53,0.14)_0%,transparent_60%),radial-gradient(ellipse_60%_50%_at_85%_0%,rgba(13,79,140,0.18)_0%,transparent_55%),radial-gradient(ellipse_70%_50%_at_70%_90%,rgba(46,139,53,0.08)_0%,transparent_55%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-[180px] bg-gradient-to-t from-[var(--color-surface-1)] to-transparent" />
-      </div>
-
-      {/* Dot grid mask */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_25%,transparent_70%)]"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(11,22,40,0.09) 1px, transparent 1px)",
-          backgroundSize: "30px 30px",
-        }}
-      />
-
+    <section className="relative isolate overflow-hidden border-b border-[var(--color-border)] pt-10 pb-20 sm:pt-14 sm:pb-24 lg:pt-20 lg:pb-28">
       <Container size="xl" className="relative">
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10 xl:gap-16">
           {/* Left column — content */}
@@ -79,7 +62,7 @@ export function Hero() {
               <h1 className="text-[2.5rem] font-semibold leading-[1.02] tracking-[var(--tracking-display)] text-[var(--color-foreground)] sm:text-[3.25rem] lg:text-[3.75rem] xl:text-[4.5rem]">
                 Medicine,{" "}
                 <span className="relative inline-block">
-                  <span className="relative z-10 text-gradient-brand">
+                  <span className="relative z-10 text-[var(--color-primary-dark)]">
                     delivered
                   </span>
                   <svg

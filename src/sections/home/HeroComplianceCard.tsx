@@ -12,14 +12,6 @@ import { SITE } from "@/lib/site";
 export function HeroComplianceCard() {
   return (
     <div className="relative mx-auto w-full max-w-[460px]">
-      {/* Ambient glows behind the card */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -inset-10 -z-10"
-      >
-        <div className="absolute inset-0 rounded-full bg-[radial-gradient(ellipse_at_40%_30%,rgba(46,139,53,0.2)_0%,transparent_60%),radial-gradient(ellipse_at_70%_80%,rgba(13,79,140,0.22)_0%,transparent_60%)] blur-3xl" />
-      </div>
-
       {/* Floating verification chip, offset top-right */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

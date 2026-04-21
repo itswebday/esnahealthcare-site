@@ -24,12 +24,11 @@ export function Marquee({
 }: MarqueeProps) {
   // Render each item twice so the loop tiles seamlessly.
   const doubled = [...items, ...items];
+  void fade; // edge-fade disabled in gradient-free themes; kept for API compat
   return (
     <div
       className={cn(
         "group/marquee relative w-full overflow-hidden",
-        fade &&
-          "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]",
         className,
       )}
     >

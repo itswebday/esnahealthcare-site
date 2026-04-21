@@ -16,14 +16,7 @@ export function BlogPostBody({ post }: { post: BlogPost }) {
   const { previous, next } = getAdjacentPosts(post.slug);
   return (
     <article>
-      <section className="relative overflow-hidden pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-20 lg:pb-20">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10"
-        >
-          <div className="absolute -left-24 top-0 h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,139,53,0.12)_0%,transparent_55%)] blur-3xl" />
-          <div className="absolute -right-24 top-0 h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle_at_center,rgba(13,79,140,0.12)_0%,transparent_55%)] blur-3xl" />
-        </div>
+      <section className="relative overflow-hidden border-b border-[var(--color-border)] pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-20 lg:pb-20">
         <Container size="md">
           <Link
             href="/blog"

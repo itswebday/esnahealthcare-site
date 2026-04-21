@@ -37,21 +37,12 @@ export function PageHero({
   size = "md",
 }: PageHeroProps) {
   return (
-    <section className={cn("relative overflow-hidden", SIZE[size])}>
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[-12%] top-[-8%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,139,53,0.12)_0%,transparent_55%)] blur-3xl" />
-        <div className="absolute right-[-12%] top-[-6%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_center,rgba(13,79,140,0.12)_0%,transparent_55%)] blur-3xl" />
-      </div>
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.35] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(11,22,40,0.08) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
-
+    <section
+      className={cn(
+        "relative overflow-hidden border-b border-[var(--color-border)]",
+        SIZE[size],
+      )}
+    >
       <Container size="xl">
         <div
           className={cn(

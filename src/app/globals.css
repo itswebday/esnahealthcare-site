@@ -22,11 +22,11 @@
   --tracking-normal: 0;
   --tracking-wide: 0.02em;
 
-  /* — surfaces (light) — */
-  --color-background: #ffffff;
-  --color-surface-1: #f7f9fb;
-  --color-surface-2: #eef2f6;
-  --color-surface-3: #e4eaf0;
+  /* — surfaces (Editorial Dossier: cream/paper) — */
+  --color-background: #fafaf7;
+  --color-surface-1: #f4f3ec;
+  --color-surface-2: #ebe9df;
+  --color-surface-3: #dfddd0;
   --color-surface-invert: #0b1f3a;
   --color-surface-invert-2: #0a1a30;
 
@@ -39,8 +39,8 @@
   --color-on-invert-muted: #94a8c5;
 
   /* — borders — */
-  --color-border: #e5e7eb;
-  --color-border-strong: #cbd5e1;
+  --color-border: #d9d6c9;
+  --color-border-strong: #b9b5a4;
   --color-border-invert: #1e3558;
   --color-border-invert-strong: #2b4a78;
 
@@ -268,50 +268,10 @@ button[aria-disabled="true"] {
   }
 }
 
-/* — utility layer extensions — */
+/* — utility layer extensions (Editorial Dossier: gradients removed) — */
 @layer utilities {
-  .bg-gradient-brand {
-    background-image: linear-gradient(
-      135deg,
-      var(--color-primary) 0%,
-      #36a73d 50%,
-      var(--color-accent) 100%
-    );
-  }
-
-  .bg-radial-brand {
-    background-image: radial-gradient(
-      ellipse at 30% 20%,
-      rgba(46, 139, 53, 0.12) 0%,
-      rgba(13, 79, 140, 0.08) 40%,
-      transparent 70%
-    );
-  }
-
-  .bg-surface-grid {
-    background-image:
-      linear-gradient(to right, rgba(11, 22, 40, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(11, 22, 40, 0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
-  .bg-invert-grid {
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 56px 56px;
-  }
-
-  .text-gradient-brand {
-    background-image: linear-gradient(
-      135deg,
-      var(--color-primary) 0%,
-      #36a73d 50%,
-      var(--color-accent) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .text-accent-brand {
+    color: var(--color-primary-dark);
   }
 
   .ring-brand {
@@ -320,14 +280,8 @@ button[aria-disabled="true"] {
       0 0 0 4px rgba(46, 139, 53, 0.08);
   }
 
-  .mask-fade-r {
-    mask-image: linear-gradient(to right, black 70%, transparent);
-    -webkit-mask-image: linear-gradient(to right, black 70%, transparent);
-  }
-
-  .mask-fade-b {
-    mask-image: linear-gradient(to bottom, black 80%, transparent);
-    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
+  .rule-hairline {
+    border-top: 1px solid var(--color-border);
   }
 
   .animate-fade-in {
