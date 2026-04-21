@@ -171,6 +171,24 @@ body {
   color: var(--color-foreground);
 }
 
+/*
+ * iconsax-react + React 19 compat:
+ * iconsax-react 0.0.8 sets default `color="currentColor"` via the deprecated
+ * `defaultProps`, which React 19 strips on function components. The result is
+ * that <path> elements ship without `stroke` / `fill` attrs, so icons render
+ * invisible. This rule re-applies currentColor to its 24×24 icon paths so
+ * they show up again.
+ *  - Linear / Outline / Broken / Bulk / TwoTone variants: stroke-based.
+ *  - Bold variant: fill-based.
+ */
+svg[viewBox="0 0 24 24"] path[stroke-width]:not([stroke]) {
+  stroke: currentColor;
+}
+svg[viewBox="0 0 24 24"]
+  path:not([stroke-width]):not([stroke]):not([fill]) {
+  fill: currentColor;
+}
+
 /* — inputs — */
 input,
 textarea,
