@@ -32,7 +32,7 @@ export function TherapeuticAreasGrid({
   showExamples?: boolean;
 }) {
   return (
-    <section className="bg-[var(--color-surface-1)] py-24 sm:py-28 lg:py-32">
+    <section className="bg-[var(--color-surface-invert)] py-24 text-[var(--color-on-invert)] sm:py-28 lg:py-32">
       <Container size="xl">
         <Reveal direction="up">
           <SectionHeader
@@ -40,6 +40,7 @@ export function TherapeuticAreasGrid({
             title="200+ products across major therapeutic categories."
             description="From oncology and rare diseases to hospital care and biologics — handled under GDP by a dedicated commercial and quality team."
             size="lg"
+            tone="invert"
           />
         </Reveal>
 
@@ -92,7 +93,7 @@ export function TherapeuticAreasGrid({
           <div className="mt-12 flex justify-center">
             <Link
               href="/products"
-              className="group inline-flex items-center gap-2 text-[0.95rem] font-medium text-[var(--color-foreground)] transition-colors hover:text-[var(--color-primary-dark)]"
+              className="group inline-flex items-center gap-2 text-[0.95rem] font-medium text-white transition-colors hover:text-[var(--color-on-invert-muted)]"
             >
               View the complete therapeutic catalog
               <ArrowRight

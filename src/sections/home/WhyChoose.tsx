@@ -8,7 +8,7 @@ import { SITE } from "@/lib/site";
 
 export function WhyChoose() {
   return (
-    <section className="bg-[var(--color-surface-1)] py-24 sm:py-28 lg:py-32">
+    <section className="bg-white py-24 sm:py-28 lg:py-32">
       <Container size="xl">
         <div className="grid items-start gap-14 lg:grid-cols-12 lg:gap-20">
           <Reveal direction="up" className="lg:col-span-6">

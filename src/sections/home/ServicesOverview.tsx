@@ -19,7 +19,7 @@ const ICON_MAP = {
 
 export function ServicesOverview() {
   return (
-    <section className="bg-[var(--color-surface-1)] py-24 sm:py-28 lg:py-32">
+    <section className="bg-[var(--color-primary-subtle)] py-24 sm:py-28 lg:py-32">
       <Container size="xl">
         <Reveal direction="up">
           <SectionHeader

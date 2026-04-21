@@ -22,13 +22,13 @@
   --tracking-normal: 0;
   --tracking-wide: 0.02em;
 
-  /* — surfaces (Editorial Dossier: cream/paper) — */
-  --color-background: #fafaf7;
-  --color-surface-1: #f4f3ec;
-  --color-surface-2: #ebe9df;
-  --color-surface-3: #dfddd0;
-  --color-surface-invert: #0b1f3a;
-  --color-surface-invert-2: #0a1a30;
+  /* — surfaces (Swiss Clinical: crisp white + full-panel accents) — */
+  --color-background: #ffffff;
+  --color-surface-1: #f6f7f9;
+  --color-surface-2: #eceef2;
+  --color-surface-3: #dee1e7;
+  --color-surface-invert: #0a1a30;
+  --color-surface-invert-2: #06122a;
 
   /* — text — */
   --color-foreground: #0b1628;
@@ -39,8 +39,8 @@
   --color-on-invert-muted: #94a8c5;
 
   /* — borders — */
-  --color-border: #d9d6c9;
-  --color-border-strong: #b9b5a4;
+  --color-border: #dde1e7;
+  --color-border-strong: #b5bcc7;
   --color-border-invert: #1e3558;
   --color-border-invert-strong: #2b4a78;
 
