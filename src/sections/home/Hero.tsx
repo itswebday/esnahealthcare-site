@@ -46,10 +46,6 @@ export function Hero() {
                 </span>
                 <span className="h-3 w-px bg-[var(--color-border-strong)]" />
                 <span>Established 2021</span>
-                <span className="h-3 w-px bg-[var(--color-border-strong)]" />
-                <span className="font-mono normal-case tracking-tight text-[var(--color-foreground)]">
-                  KVK {SITE.registrations.kvkCare}
-                </span>
               </div>
             </Reveal>
 
@@ -212,7 +208,7 @@ function HeroRibbon() {
         preserveAspectRatio="xMidYMid slice"
       >
         <path
-          d="M 240 -260 L 240 320 A 100 100 0 0 0 340 420 L 1600 420"
+          d="M 240 -260 L 240 270 A 100 100 0 0 0 340 370 L 1600 370"
           stroke="#eef0f5"
           strokeWidth="80"
           strokeLinecap="round"
