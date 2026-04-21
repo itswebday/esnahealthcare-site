@@ -47,9 +47,8 @@ export function ServicesOverview() {
               >
                 <Link
                   href="/services"
-                  className="group relative flex h-full flex-col gap-5 overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-white p-7 transition-all duration-[var(--duration-slow)] ease-[var(--ease-out)] hover:border-[var(--color-primary-subtle-strong)] hover:shadow-[var(--shadow-lift)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2"
+                  className="group relative flex h-full flex-col gap-5 overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-white p-7 transition-all duration-[var(--duration-slow)] ease-[var(--ease-out)] hover:border-[var(--color-primary)] hover:shadow-[var(--shadow-lift)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2"
                 >
-                  <span className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br from-[var(--color-primary-subtle)] to-transparent opacity-0 transition-opacity duration-[var(--duration-slow)] group-hover:opacity-100" />
                   <div className="relative flex items-start justify-between">
                     <div className="inline-flex h-12 w-12 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary-subtle)] text-[var(--color-primary-dark)]">
                       <Icon size={22} variant="Linear" />

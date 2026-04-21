@@ -6,10 +6,6 @@ import { Button } from "@/components/ui/Button";
 export default function NotFound() {
   return (
     <section className="relative overflow-hidden py-24 sm:py-32 lg:py-40">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[-10%] top-0 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,139,53,0.14)_0%,transparent_55%)] blur-3xl" />
-        <div className="absolute right-[-10%] top-0 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_center,rgba(13,79,140,0.14)_0%,transparent_55%)] blur-3xl" />
-      </div>
       <Container size="md">
         <div className="flex flex-col items-center text-center">
           <span className="font-mono text-[0.78rem] uppercase tracking-[0.2em] text-[var(--color-subtle)]">

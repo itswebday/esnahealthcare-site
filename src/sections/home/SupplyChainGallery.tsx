@@ -51,59 +51,46 @@ export function SupplyChainGallery() {
 
 function WarehouseTile() {
   return (
-    <div className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-[var(--radius-xl)] bg-[var(--color-surface-invert)] p-8 text-[var(--color-on-invert)] lg:col-span-6 lg:row-span-2 lg:p-10">
-      {/* Ambient glows */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-20 -top-24 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,139,53,0.38)_0%,transparent_60%)] blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-28 -bottom-28 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_at_center,rgba(13,79,140,0.42)_0%,transparent_60%)] blur-3xl"
-      />
-
-      {/* Europe-net SVG */}
+    <div className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border-invert-strong)] bg-[var(--color-surface-invert)] p-8 text-[var(--color-on-invert)] lg:col-span-6 lg:row-span-2 lg:p-10">
+      {/* Europe-net SVG (solid nodes, no gradient halos) */}
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-0 h-full w-2/3 opacity-[0.35]"
+        className="pointer-events-none absolute right-0 top-0 h-full w-2/3 opacity-[0.45]"
         viewBox="0 0 600 420"
         preserveAspectRatio="xMidYMid meet"
       >
-        <defs>
-          <radialGradient id="node-grad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#9BD33C" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#9BD33C" stopOpacity="0" />
-          </radialGradient>
-        </defs>
         {[
-          // [x, y, size, dim]
-          [100, 140, 4, 0.6],
-          [180, 100, 6, 1],
-          [220, 170, 3, 0.5],
-          [260, 130, 5, 0.8],
-          [300, 180, 4, 0.6],
-          [340, 110, 4, 0.7],
-          [380, 160, 6, 1],
-          [420, 200, 3, 0.5],
-          [460, 140, 4, 0.7],
-          [500, 170, 4, 0.6],
-          [150, 220, 3, 0.4],
-          [250, 250, 4, 0.6],
-          [320, 230, 3, 0.5],
-          [400, 250, 3, 0.4],
-          [480, 220, 4, 0.6],
-          [200, 280, 3, 0.4],
-          [280, 300, 4, 0.6],
-          [360, 290, 3, 0.5],
-          [440, 300, 3, 0.4],
+          [100, 140, 3, 0.45],
+          [180, 100, 4, 0.8],
+          [220, 170, 2.5, 0.4],
+          [260, 130, 3.5, 0.65],
+          [300, 180, 3, 0.5],
+          [340, 110, 3, 0.55],
+          [380, 160, 4, 0.8],
+          [420, 200, 2.5, 0.4],
+          [460, 140, 3, 0.55],
+          [500, 170, 3, 0.5],
+          [150, 220, 2.5, 0.35],
+          [250, 250, 3, 0.5],
+          [320, 230, 2.5, 0.4],
+          [400, 250, 2.5, 0.35],
+          [480, 220, 3, 0.5],
+          [200, 280, 2.5, 0.35],
+          [280, 300, 3, 0.5],
+          [360, 290, 2.5, 0.4],
+          [440, 300, 2.5, 0.35],
         ].map(([x, y, r, dim], i) => (
-          <g key={i}>
-            <circle cx={x} cy={y} r={r} fill="#9BD33C" fillOpacity={dim} />
-            <circle cx={x} cy={y} r={Number(r) + 6} fill="url(#node-grad)" />
-          </g>
+          <circle
+            key={i}
+            cx={x}
+            cy={y}
+            r={r}
+            fill="#9BD33C"
+            fillOpacity={dim}
+          />
         ))}
         {/* Connecting lines */}
-        <g stroke="#9BD33C" strokeOpacity="0.18" strokeWidth="0.75" fill="none">
+        <g stroke="#9BD33C" strokeOpacity="0.22" strokeWidth="0.75" fill="none">
           <path d="M 180 100 L 260 130 L 340 110 L 420 200 L 500 170" />
           <path d="M 100 140 L 220 170 L 300 180 L 380 160 L 460 140" />
           <path d="M 180 100 L 200 280 L 360 290 L 440 300" />
@@ -162,10 +149,6 @@ function WarehouseTile() {
 function ColdChainTile() {
   return (
     <div className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-primary-subtle-strong)] bg-[var(--color-primary-subtle)] p-6 lg:col-span-3">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white opacity-60 blur-2xl"
-      />
       <div className="relative flex items-start justify-between">
         <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-white text-[var(--color-primary-dark)] shadow-[var(--shadow-sm)]">
           <CloudSnow size={22} variant="Linear" />
@@ -201,10 +184,6 @@ function ColdChainTile() {
 function ExportTile() {
   return (
     <div className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-accent-subtle-strong)] bg-[var(--color-accent-subtle)] p-6 lg:col-span-3">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-white opacity-60 blur-2xl"
-      />
       {/* Route arrow */}
       <svg
         aria-hidden="true"
@@ -256,7 +235,7 @@ function AmbientTile() {
         aria-hidden="true"
         className="pointer-events-none absolute bottom-6 left-6 right-6 h-[2px] rounded-full bg-[var(--color-border)]"
       >
-        <div className="absolute inset-y-0 left-[15%] right-[25%] rounded-full bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-primary)] to-[var(--color-accent)]" />
+        <div className="absolute inset-y-0 left-[15%] right-[25%] rounded-full bg-[var(--color-primary)]" />
         <div className="absolute -top-1.5 left-[15%] h-[10px] w-px bg-[var(--color-primary)]" />
         <div className="absolute -top-1.5 right-[25%] h-[10px] w-px bg-[var(--color-accent)]" />
       </div>

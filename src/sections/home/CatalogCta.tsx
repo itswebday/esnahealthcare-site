@@ -8,21 +8,7 @@ export function CatalogCta() {
     <section className="py-24 sm:py-28 lg:py-32">
       <Container size="xl">
         <Reveal direction="up">
-          <div className="relative overflow-hidden rounded-[var(--radius-2xl)] bg-[var(--color-surface-invert)] p-8 text-[var(--color-on-invert)] sm:p-12 lg:p-16">
-            {/* Ambient gradients */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -left-[20%] -top-[30%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,139,53,0.35)_0%,transparent_55%)] blur-3xl"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-[20%] -bottom-[30%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_center,rgba(13,79,140,0.4)_0%,transparent_55%)] blur-3xl"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-invert-grid opacity-[0.4] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]"
-            />
-
+          <div className="relative overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--color-border-invert-strong)] bg-[var(--color-surface-invert)] p-8 text-[var(--color-on-invert)] sm:p-12 lg:p-16">
             <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-14">
               <div className="lg:col-span-7">
                 <span className="inline-flex items-center gap-2 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-on-invert-muted)]">

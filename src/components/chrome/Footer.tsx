@@ -8,17 +8,7 @@ import { Button } from "../ui/Button";
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative mt-24 overflow-hidden bg-[var(--color-surface-invert)] text-[var(--color-on-invert)]">
-      {/* Ambient brand gradient */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-1/4 top-0 h-[480px] w-[720px] bg-[radial-gradient(ellipse_at_center,rgba(46,139,53,0.28)_0%,transparent_60%)] opacity-70 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-1/3 top-1/3 h-[420px] w-[700px] bg-[radial-gradient(ellipse_at_center,rgba(13,79,140,0.32)_0%,transparent_60%)] opacity-70 blur-3xl"
-      />
-
+    <footer className="relative mt-24 overflow-hidden border-t border-[var(--color-border-invert-strong)] bg-[var(--color-surface-invert)] text-[var(--color-on-invert)]">
       <Container size="xl" className="relative">
         {/* CTA band */}
         <div className="flex flex-col gap-8 border-b border-[var(--color-border-invert)] py-16 lg:flex-row lg:items-end lg:justify-between lg:py-20">
