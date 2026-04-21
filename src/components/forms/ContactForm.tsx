@@ -276,7 +276,7 @@ export function ContactForm({
             "group inline-flex h-14 items-center justify-center gap-2 rounded-[var(--radius-2xl)] border-2 px-8 text-[0.95rem] font-medium leading-none transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)]",
             !agree || status === "submitting"
               ? "cursor-not-allowed border-[var(--color-border)] bg-[var(--color-surface-2)] text-[var(--color-subtle)]"
-              : "border-[var(--color-primary)] bg-[var(--color-primary)] text-white shadow-[var(--shadow-cta)] hover:border-[var(--color-primary-hover)] hover:bg-[var(--color-primary-hover)] hover:shadow-[var(--shadow-cta-hover)]",
+              : "border-[var(--color-primary)] bg-[var(--color-primary)] text-white hover:border-[var(--color-primary-hover)] hover:bg-[var(--color-primary-hover)]",
           )}
         >
           <span>{status === "submitting" ? "Sending…" : copy.submitLabel}</span>

@@ -19,17 +19,17 @@ const button = cva(
     variants: {
       variant: {
         primary:
-          "rounded-[var(--radius-2xl)] border-2 border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)] shadow-[var(--shadow-cta)] hover:border-[var(--color-primary-hover)] hover:bg-[var(--color-primary-hover)] hover:shadow-[var(--shadow-cta-hover)]",
+          "rounded-[var(--radius-2xl)] border-2 border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)] hover:border-[var(--color-primary-hover)] hover:bg-[var(--color-primary-hover)]",
         secondary:
-          "rounded-[var(--radius-2xl)] border-2 border-[var(--color-foreground)] bg-[var(--color-foreground)] text-white shadow-[var(--shadow-card)] hover:border-[#1b2439] hover:bg-[#1b2439]",
+          "rounded-[var(--radius-2xl)] border-2 border-[var(--color-foreground)] bg-[var(--color-foreground)] text-white hover:border-[#1b2439] hover:bg-[#1b2439]",
         accent:
-          "rounded-[var(--radius-2xl)] border-2 border-[var(--color-accent)] bg-[var(--color-accent)] text-white shadow-[var(--shadow-card)] hover:border-[var(--color-accent-hover)] hover:bg-[var(--color-accent-hover)]",
+          "rounded-[var(--radius-2xl)] border-2 border-[var(--color-accent)] bg-[var(--color-accent)] text-white hover:border-[var(--color-accent-hover)] hover:bg-[var(--color-accent-hover)]",
         outline:
           "rounded-[var(--radius-2xl)] border-2 border-[var(--color-foreground)] bg-white text-[var(--color-foreground)] hover:bg-[var(--color-surface-1)]",
         ghost:
           "rounded-[var(--radius-2xl)] border-2 border-transparent text-[var(--color-foreground)] hover:bg-[var(--color-surface-1)]",
         invert:
-          "rounded-[var(--radius-2xl)] border-2 border-white bg-white text-[var(--color-foreground)] shadow-[var(--shadow-lift)] hover:bg-[var(--color-surface-1)] hover:border-[var(--color-surface-1)]",
+          "rounded-[var(--radius-2xl)] border-2 border-white bg-white text-[var(--color-foreground)] hover:bg-[var(--color-surface-1)] hover:border-[var(--color-surface-1)]",
         "invert-outline":
           "rounded-[var(--radius-2xl)] border-2 border-white bg-transparent text-white hover:bg-white hover:text-[var(--color-foreground)]",
         "invert-ghost":
