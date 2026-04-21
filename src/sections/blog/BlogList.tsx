@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock } from "iconsax-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal, Stagger, StaggerChild } from "@/components/ui/Reveal";
 import { BLOG_POSTS } from "@/lib/blog";
+import { IMAGES, type PreviewImage } from "@/lib/images";
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-GB", {
@@ -75,16 +77,30 @@ export function BlogList() {
                 href={`/blog/${post.slug}`}
                 className="group flex h-full flex-col gap-5 overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-white p-6 transition-all duration-[var(--duration-slow)] hover:border-[var(--color-border-strong)] hover:shadow-[var(--shadow-lift)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2"
               >
-                <div className="relative flex h-44 items-end overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-1)]">
+                <div className="relative h-44 overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-1)]">
+                  {(() => {
+                    const img: PreviewImage | undefined =
+                      IMAGES.blog[post.slug as keyof typeof IMAGES.blog];
+                    return img ? (
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover"
+                      />
+                    ) : null;
+                  })()}
                   <span
                     aria-hidden="true"
                     className="absolute left-0 top-0 h-full w-1 bg-[var(--color-primary)]"
                   />
-                  <div className="relative px-5 pb-4 font-mono text-[0.72rem] uppercase leading-none tracking-[0.14em] text-[var(--color-primary-dark)]">
-                    {post.heroEyebrow}
-                  </div>
                 </div>
                 <div className="flex flex-wrap items-center gap-2 text-[0.78rem] text-[var(--color-subtle)]">
+                  <span className="font-mono uppercase tracking-[0.12em] text-[var(--color-primary-dark)]">
+                    {post.heroEyebrow}
+                  </span>
+                  <span className="opacity-60">·</span>
                   <span>{formatDate(post.publishedOn)}</span>
                   <span className="opacity-60">·</span>
                   <span className="inline-flex items-center gap-1.5">

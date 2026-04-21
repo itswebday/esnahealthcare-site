@@ -1,10 +1,13 @@
+import Image from "next/image";
 import { Location, Box, ShieldTick } from "iconsax-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { SITE } from "@/lib/site";
+import { IMAGES } from "@/lib/images";
 
 export function Headquarters() {
+  const hero = IMAGES.about.headquartersHero;
   return (
     <section className="py-20 sm:py-24 lg:py-28">
       <Container size="xl">
@@ -17,8 +20,29 @@ export function Headquarters() {
           />
         </Reveal>
 
-        <div className="mt-14 grid gap-4 lg:grid-cols-3">
-          <Reveal direction="up" delay={0.08}>
+        <Reveal direction="up" delay={0.06}>
+          <figure className="relative mt-12 overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--color-border)] bg-[var(--color-surface-1)]">
+            <div className="relative aspect-[21/9] w-full">
+              <Image
+                src={hero.src}
+                alt={hero.alt}
+                fill
+                sizes="(max-width: 1280px) 100vw, 1280px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-2 text-[0.72rem] font-medium leading-none text-[var(--color-foreground)] shadow-[var(--shadow-card)] backdrop-blur">
+              <Location size={12} variant="Bold" className="text-[var(--color-accent)]" />
+              Utrecht · The Netherlands
+              <span className="font-mono uppercase tracking-[0.12em] text-[var(--color-subtle)]">
+                {"{placeholder}"}
+              </span>
+            </figcaption>
+          </figure>
+        </Reveal>
+
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          <Reveal direction="up" delay={0.12}>
             <div className="flex h-full flex-col gap-4 rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-white p-7">
               <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary-subtle)] text-[var(--color-primary-dark)]">
                 <Location size={20} variant="Linear" />
@@ -42,7 +66,7 @@ export function Headquarters() {
             </div>
           </Reveal>
 
-          <Reveal direction="up" delay={0.16}>
+          <Reveal direction="up" delay={0.18}>
             <div className="flex h-full flex-col gap-4 rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-surface-1)] p-7">
               <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-white text-[var(--color-foreground)]">
                 <Box size={20} variant="Linear" />
