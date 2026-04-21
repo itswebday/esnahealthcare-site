@@ -208,7 +208,7 @@ function HeroRibbon() {
         preserveAspectRatio="xMidYMid slice"
       >
         <path
-          d="M 460 -260 L 460 220 A 100 100 0 0 0 560 320 L 1900 320"
+          d="M 460 -260 L 460 250 A 100 100 0 0 0 560 350 L 1900 350"
           stroke="#eef0f5"
           strokeWidth="80"
           strokeLinecap="round"
