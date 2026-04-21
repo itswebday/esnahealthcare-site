@@ -214,7 +214,7 @@ function HeroRibbon() {
         <path
           d="M 460 -260 L 460 250 A 100 100 0 0 0 560 350 L 1900 350"
           stroke="#eef0f5"
-          strokeWidth="76"
+          strokeWidth="88"
           strokeLinecap="round"
           strokeLinejoin="round"
           vectorEffect="non-scaling-stroke"
