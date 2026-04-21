@@ -1,6 +1,7 @@
 import { Box, ShieldTick } from "iconsax-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Button } from "@/components/ui/Button";
 import { Reveal, Stagger, StaggerChild } from "@/components/ui/Reveal";
 import {
   MEDICAL_DEVICE_BRANDS,
@@ -18,16 +19,25 @@ export function MedicalDevices() {
         <Reveal direction="up">
           <SectionHeader
             eyebrow="Medical devices & diagnostics"
-            title="Beyond pharmaceuticals — a curated range of devices."
-            description="Esna Care is an international pharmaceutical wholesaler specializing in the global distribution of medicinal products. In addition to our core pharmaceutical activities, we provide access to a carefully selected range of medical devices and diagnostic solutions through our trusted global partner network."
+            title="Reliable sourcing of high-quality medical devices through our global network."
             size="md"
           />
         </Reveal>
 
-        <Reveal direction="up" delay={0.08}>
+        <Reveal direction="up" delay={0.06}>
+          <p className="mt-6 max-w-3xl text-[1.05rem] leading-relaxed text-[var(--color-muted)]">
+            Esna Care is an international pharmaceutical wholesaler specializing
+            in the global distribution of medicinal products. In addition to our
+            core pharmaceutical activities, we provide access to a carefully
+            selected range of medical devices and diagnostic solutions through
+            our trusted global partner network.
+          </p>
+        </Reveal>
+
+        <Reveal direction="up" delay={0.12}>
           <div className="mt-14">
             <div className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">
-              Categories
+              Product categories
             </div>
             <Stagger
               as="ul"
@@ -52,11 +62,17 @@ export function MedicalDevices() {
           </div>
         </Reveal>
 
-        <Reveal direction="up" delay={0.16}>
+        <Reveal direction="up" delay={0.18}>
           <div className="mt-14">
             <div className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">
-              Brands we source through partner channels
+              Brands we source from
             </div>
+            <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-[var(--color-muted)]">
+              Through our established global network, Esna Care sources products
+              from leading international manufacturers and brands. We are able
+              to supply products originating from, but not limited to, the
+              following companies:
+            </p>
             <div className="mt-5 grid gap-2 sm:grid-cols-3 lg:grid-cols-5">
               {MEDICAL_DEVICE_BRANDS.map((brand) => (
                 <div
@@ -70,7 +86,7 @@ export function MedicalDevices() {
           </div>
         </Reveal>
 
-        <Reveal direction="up" delay={0.2}>
+        <Reveal direction="up" delay={0.24}>
           <div className="mt-10 flex items-start gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white p-5 text-[0.9rem] leading-relaxed text-[var(--color-muted)]">
             <ShieldTick
               size={20}
@@ -86,7 +102,23 @@ export function MedicalDevices() {
           </div>
         </Reveal>
 
-        <Reveal direction="up" delay={0.26}>
+        <Reveal direction="up" delay={0.3}>
+          <div className="mt-12 flex flex-col items-start gap-4 rounded-[var(--radius-2xl)] border border-[var(--color-border)] bg-white p-8 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-10">
+            <div>
+              <div className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">
+                Looking for a specific product?
+              </div>
+              <h3 className="mt-2 text-[1.4rem] font-semibold leading-[1.15] tracking-[-0.018em] text-[var(--color-foreground)] sm:text-[1.6rem]">
+                Contact our team to discuss your requirements.
+              </h3>
+            </div>
+            <Button href="/contact" variant="primary" size="lg" withArrow>
+              Contact us
+            </Button>
+          </div>
+        </Reveal>
+
+        <Reveal direction="up" delay={0.36}>
           <div className="mt-4 rounded-[var(--radius-lg)] border border-dashed border-[var(--color-border-strong)] bg-[var(--color-surface-2)]/60 p-5 font-mono text-[0.82rem] leading-relaxed text-[var(--color-subtle)]">
             {"{"}note for launch — Esna Care to confirm MDR-compliant distributor
             setup (EU 2017/745) or that devices are supplied only through

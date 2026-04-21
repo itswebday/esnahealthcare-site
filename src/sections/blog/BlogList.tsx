@@ -48,11 +48,6 @@ export function BlogList() {
                   {featured.readingMinutes} min read
                 </div>
                 <div className="mt-6 inline-flex h-14 items-center justify-center gap-2 rounded-[var(--radius-2xl)] border-2 border-white bg-white px-8 text-sm font-medium leading-none text-[var(--color-foreground)] shadow-[var(--shadow-lift)]">
-                  <span
-                    aria-hidden="true"
-                    className="invisible shrink-0"
-                    style={{ width: 16, height: 16 }}
-                  />
                   Read the article
                   <ArrowRight
                     size={16}

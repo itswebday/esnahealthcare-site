@@ -279,13 +279,6 @@ export function ContactForm({
               : "border-[var(--color-primary)] bg-[var(--color-primary)] text-white shadow-[var(--shadow-cta)] hover:border-[var(--color-primary-hover)] hover:bg-[var(--color-primary-hover)] hover:shadow-[var(--shadow-cta-hover)]",
           )}
         >
-          {status !== "submitting" && (
-            <span
-              aria-hidden="true"
-              className="invisible shrink-0"
-              style={{ width: 18, height: 18 }}
-            />
-          )}
           <span>{status === "submitting" ? "Sending…" : copy.submitLabel}</span>
           {status !== "submitting" && (
             <ArrowRight

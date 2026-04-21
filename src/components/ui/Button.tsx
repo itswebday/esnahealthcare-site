@@ -82,38 +82,23 @@ export function Button(props: ButtonProps) {
   const isLink = variant === "link";
 
   /*
-   * Content layout note: when `withArrow` is true on a non-link variant we
-   * render an invisible spacer of the same width as the arrow on the left.
-   * Combined with `justify-center`, that guarantees the *text* is visually
-   * centered in the pill — not the text+arrow group.
+   * Content layout: text + arrow render as flex children, centered as a
+   * single visible group via `justify-center` on the parent. No invisible
+   * spacer — that read as off-axis to the right because the spacer pushed
+   * the visible content past the geometric center.
    */
-  const content =
-    withArrow && !isLink ? (
-      <>
-        <span
-          aria-hidden="true"
-          className="invisible shrink-0"
-          style={{ width: arrowSize, height: arrowSize }}
-        />
-        <span className="leading-none">{children}</span>
-        <ArrowRight
-          size={arrowSize}
-          variant="Linear"
-          className="shrink-0 transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out)] group-hover:translate-x-0.5"
-        />
-      </>
-    ) : withArrow && isLink ? (
-      <>
-        <span className="leading-none">{children}</span>
-        <ArrowRight
-          size={arrowSize}
-          variant="Linear"
-          className="shrink-0 transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out)] group-hover:translate-x-0.5"
-        />
-      </>
-    ) : (
+  const content = withArrow ? (
+    <>
       <span className="leading-none">{children}</span>
-    );
+      <ArrowRight
+        size={arrowSize}
+        variant="Linear"
+        className="shrink-0 transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out)] group-hover:translate-x-0.5"
+      />
+    </>
+  ) : (
+    <span className="leading-none">{children}</span>
+  );
 
   if ("href" in props && props.href) {
     return (
