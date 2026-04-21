@@ -208,10 +208,11 @@ function HeroRibbon() {
         preserveAspectRatio="xMidYMid slice"
       >
         <path
-          d="M 360 -260 L 360 270 A 100 100 0 0 0 460 370 L 1700 370"
+          d="M 600 -260 L 600 270 A 100 100 0 0 0 700 370 L 1900 370"
           stroke="#eef0f5"
-          strokeWidth="80"
+          strokeWidth="60"
           strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
           fill="none"
         />
       </svg>
