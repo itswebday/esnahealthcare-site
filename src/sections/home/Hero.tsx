@@ -1,13 +1,5 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  ShieldTick,
-  Verify,
-  Location,
-  Box,
-  Microscope,
-  CloudSnow,
-} from "iconsax-react";
+import { ArrowRight, Location } from "iconsax-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
@@ -23,10 +15,10 @@ import { SITE } from "@/lib/site";
  */
 
 const SERVICE_PILLS = [
-  { label: "Pharmaceutical Wholesale", href: "/services#pharmaceutical-wholesale", icon: Box },
-  { label: "Global Sourcing", href: "/services#global-sourcing", icon: Microscope },
-  { label: "International Distribution", href: "/services#international-distribution", icon: ShieldTick },
-  { label: "Cold-chain Logistics", href: "/services#temperature-controlled-logistics", icon: CloudSnow },
+  { label: "Pharmaceutical Wholesale", href: "/services#pharmaceutical-wholesale" },
+  { label: "Global Sourcing", href: "/services#global-sourcing" },
+  { label: "International Distribution", href: "/services#international-distribution" },
+  { label: "Cold-chain Logistics", href: "/services#temperature-controlled-logistics" },
 ] as const;
 
 const STATS = [
@@ -100,19 +92,15 @@ export function Hero() {
 
             <Reveal direction="up" delay={0.2} className="mt-2">
               <div className="flex flex-wrap gap-2.5">
-                {SERVICE_PILLS.map((pill) => {
-                  const Icon = pill.icon;
-                  return (
-                    <Link
-                      key={pill.href}
-                      href={pill.href}
-                      className="group inline-flex h-11 items-center gap-2 rounded-full border-2 border-[var(--color-border)] bg-white px-4 text-[0.92rem] font-medium leading-none text-[var(--color-foreground)] transition-all duration-[var(--duration-normal)] hover:border-[var(--color-foreground)] hover:bg-[var(--color-foreground)] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2"
-                    >
-                      <Icon size={14} variant="Linear" className="text-[var(--color-accent)] transition-colors duration-[var(--duration-normal)] group-hover:text-white" />
-                      {pill.label}
-                    </Link>
-                  );
-                })}
+                {SERVICE_PILLS.map((pill) => (
+                  <Link
+                    key={pill.href}
+                    href={pill.href}
+                    className="group inline-flex h-11 items-center justify-center rounded-full border-2 border-[var(--color-border)] bg-white px-5 text-center text-[0.92rem] font-medium leading-none text-[var(--color-foreground)] transition-all duration-[var(--duration-normal)] hover:border-[var(--color-foreground)] hover:bg-[var(--color-foreground)] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2"
+                  >
+                    {pill.label}
+                  </Link>
+                ))}
               </div>
             </Reveal>
           </div>
@@ -154,13 +142,11 @@ export function Hero() {
             <Reveal direction="up" delay={0.36}>
               <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-[var(--color-border)] pt-5">
                 <LicenceChip
-                  icon={<ShieldTick size={14} variant="Linear" />}
                   label="WDA"
                   value={SITE.licences.wda.number}
                   tone="accent"
                 />
                 <LicenceChip
-                  icon={<Verify size={14} variant="Linear" />}
                   label="GDP"
                   value={SITE.licences.gdp.number}
                   tone="primary"
@@ -208,11 +194,9 @@ export function Hero() {
 }
 
 /*
- * Two thin counter-flowing rails that bracket the hero. The TOP rail hooks
- * down-then-RIGHT high in the section; the BOTTOM rail hooks down-then-LEFT
- * far below it. Together they read as opposing brackets — modern, asymmetric,
- * geometric. Both extend off-canvas via overflow="visible" + parent overflow-
- * hidden, so no rounded caps appear inside the viewport.
+ * Single light-gray rail that hooks down-then-RIGHT, sitting around the
+ * mid-section of the hero. Extends off-canvas via overflow="visible" + the
+ * parent's overflow-hidden, so no rounded caps appear inside the viewport.
  */
 function HeroRibbon() {
   return (
@@ -227,19 +211,10 @@ function HeroRibbon() {
         overflow="visible"
         preserveAspectRatio="xMidYMid slice"
       >
-        {/* TOP rail — hooks down-then-RIGHT, sits high in the hero */}
         <path
-          d="M 240 -260 L 240 180 A 100 100 0 0 0 340 280 L 1600 280"
+          d="M 240 -260 L 240 380 A 100 100 0 0 0 340 480 L 1600 480"
           stroke="#eef0f5"
           strokeWidth="80"
-          strokeLinecap="round"
-          fill="none"
-        />
-        {/* BOTTOM rail — hooks down-then-LEFT, sits far below */}
-        <path
-          d="M 1080 -260 L 1080 600 A 110 110 0 0 1 970 710 L -400 710"
-          stroke="#e4e7ed"
-          strokeWidth="90"
           strokeLinecap="round"
           fill="none"
         />
@@ -249,12 +224,10 @@ function HeroRibbon() {
 }
 
 function LicenceChip({
-  icon,
   label,
   value,
   tone,
 }: {
-  icon: React.ReactNode;
   label: string;
   value: string;
   tone: "primary" | "accent";
@@ -265,12 +238,9 @@ function LicenceChip({
       : "border-[var(--color-accent-subtle-strong)] bg-[var(--color-accent-subtle)] text-[var(--color-accent)]";
   return (
     <span
-      className={`inline-flex h-7 items-center gap-1.5 rounded-full border px-3 text-[0.78rem] font-medium leading-none ${wrapperClass}`}
+      className={`inline-flex h-7 items-center justify-center rounded-full border px-3 text-center font-mono text-[0.78rem] font-medium uppercase leading-none tracking-[0.06em] ${wrapperClass}`}
     >
-      {icon}
-      <span className="font-mono uppercase tracking-[0.06em]">
-        {label} {value}
-      </span>
+      {label} {value}
     </span>
   );
 }
