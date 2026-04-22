@@ -339,10 +339,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             >
               {/* Primary links */}
               <ul className="flex flex-col gap-1">
-                {NAV_LINKS.map((link, index) => (
+                {NAV_LINKS.map((link) => (
                   <li key={link.href}>
                     <MobileNavItem
-                      delayIndex={index}
                       link={link}
                       pathname={pathname}
                       onNavigate={onNavigate}
@@ -358,7 +357,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               <ul className="flex flex-col gap-1">
                 <li>
                   <MobileNavLink
-                    delayIndex={NAV_LINKS.length}
                     href="/we-buy-medicines"
                     isActive={pathname.startsWith("/we-buy-medicines")}
                     isSecondary
@@ -368,7 +366,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                 </li>
                 <li>
                   <MobileNavLink
-                    delayIndex={NAV_LINKS.length + 1}
                     href="/faq"
                     isActive={pathname.startsWith("/faq")}
                     isSecondary
@@ -378,7 +375,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                 </li>
                 <li>
                   <MobileNavLink
-                    delayIndex={NAV_LINKS.length + 2}
                     href="/contact"
                     isActive={pathname.startsWith("/contact")}
                     isSecondary
@@ -390,16 +386,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             </nav>
 
             {/* Footer — locale + CTA sticks at bottom of column */}
-            <motion.div
-              className="border-border flex flex-col gap-3 border-t py-6"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.35,
-                delay: 0.1 + (NAV_LINKS.length + 3) * 0.04,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-            >
+            <div className="border-border flex flex-col gap-3 border-t py-6">
               <LocaleToggle
                 className="self-start"
                 locale={locale}
@@ -414,7 +401,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               >
                 Get in Touch
               </Button>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
       )}
@@ -423,14 +410,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 };
 
 type MobileNavItemProps = {
-  delayIndex: number;
   link: NavLink;
   pathname: string;
   onNavigate: () => void;
 };
 
 const MobileNavItem: React.FC<MobileNavItemProps> = ({
-  delayIndex,
   link,
   pathname,
   onNavigate,
@@ -440,19 +425,8 @@ const MobileNavItem: React.FC<MobileNavItemProps> = ({
   const hasSubLinks = (link.subLinks?.length ?? 0) > 0;
 
   return (
-    <motion.div
-      className="flex flex-col"
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.35,
-        delay: 0.08 + delayIndex * 0.05,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-    >
+    <div className="flex flex-col">
       <MobileNavLink
-        delayIndex={delayIndex}
-        disableMotion
         href={link.href}
         isActive={isActive}
         label={link.label}
@@ -461,11 +435,10 @@ const MobileNavItem: React.FC<MobileNavItemProps> = ({
 
       {/* Sublinks (indented) */}
       {hasSubLinks && (
-        <ul className="border-primary/25 mt-1 mb-2 flex flex-col gap-0.5 border-l-2 pl-4">
-          {link.subLinks!.map((sub, subIndex) => (
+        <ul className="border-border mt-0.5 mb-1 flex flex-col gap-0.5 border-l pl-4">
+          {link.subLinks!.map((sub) => (
             <li key={sub.href}>
               <MobileSubLink
-                delayIndex={delayIndex + (subIndex + 1) * 0.3}
                 href={sub.href}
                 label={sub.label}
                 onNavigate={onNavigate}
@@ -474,13 +447,11 @@ const MobileNavItem: React.FC<MobileNavItemProps> = ({
           ))}
         </ul>
       )}
-    </motion.div>
+    </div>
   );
 };
 
 type MobileNavLinkProps = {
-  delayIndex: number;
-  disableMotion?: boolean;
   href: string;
   isActive: boolean;
   isSecondary?: boolean;
@@ -489,8 +460,6 @@ type MobileNavLinkProps = {
 };
 
 const MobileNavLink: React.FC<MobileNavLinkProps> = ({
-  delayIndex,
-  disableMotion = false,
   href,
   isActive,
   isSecondary = false,
@@ -500,11 +469,11 @@ const MobileNavLink: React.FC<MobileNavLinkProps> = ({
   const pathname = usePathname() ?? "";
   const handleClick = createLinkClickHandler(href, pathname, { onNavigate });
 
-  const linkContent = (
+  return (
     <Link
       className={cn(
-        "group duration-slow relative flex items-center justify-between rounded-xl px-4 py-3.5 font-medium transition-colors ease-out",
-        isSecondary ? "text-[16px]" : "text-[22px]",
+        "duration-normal block rounded-xl px-4 py-3 font-medium transition-colors",
+        isSecondary ? "text-[16px]" : "text-[18px]",
         isActive
           ? "bg-primary-subtle text-primary-dark"
           : isSecondary
@@ -514,55 +483,18 @@ const MobileNavLink: React.FC<MobileNavLinkProps> = ({
       href={href}
       onClick={handleClick}
     >
-      <span className="inline-flex items-center gap-3">
-        {isActive && !isSecondary && (
-          <span
-            aria-hidden="true"
-            className="bg-primary h-6 w-[3px] rounded-full"
-          />
-        )}
-        {label}
-      </span>
-
-      <span
-        aria-hidden="true"
-        className={cn(
-          "duration-normal inline-block rounded-full transition-all",
-          isSecondary ? "h-1 w-1" : "h-1.5 w-1.5",
-          isActive ? "bg-primary" : "bg-border group-hover:bg-border-strong",
-        )}
-      />
+      {label}
     </Link>
-  );
-
-  if (disableMotion) {
-    return linkContent;
-  }
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.35,
-        delay: 0.08 + delayIndex * 0.05,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-    >
-      {linkContent}
-    </motion.div>
   );
 };
 
 type MobileSubLinkProps = {
-  delayIndex: number;
   href: string;
   label: string;
   onNavigate: () => void;
 };
 
 const MobileSubLink: React.FC<MobileSubLinkProps> = ({
-  delayIndex,
   href,
   label,
   onNavigate,
@@ -571,27 +503,13 @@ const MobileSubLink: React.FC<MobileSubLinkProps> = ({
   const handleClick = createLinkClickHandler(href, pathname, { onNavigate });
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.3,
-        delay: 0.08 + delayIndex * 0.05,
-        ease: [0.16, 1, 0.3, 1],
-      }}
+    <Link
+      className="text-muted hover:bg-surface-1 hover:text-foreground duration-normal block rounded-lg px-3.5 py-2 text-[15px] font-medium transition-colors"
+      href={href}
+      onClick={handleClick}
     >
-      <Link
-        className="group text-muted duration-normal hover:bg-surface-1 hover:text-foreground flex items-center justify-between rounded-lg px-3.5 py-2.5 text-[14px] font-medium transition-colors ease-out"
-        href={href}
-        onClick={handleClick}
-      >
-        <span>{label}</span>
-        <span
-          aria-hidden="true"
-          className="bg-border duration-normal group-hover:bg-primary inline-block h-1 w-1 rounded-full transition-colors"
-        />
-      </Link>
-    </motion.div>
+      {label}
+    </Link>
   );
 };
 

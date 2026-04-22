@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
   return (
     <section className="relative bg-white pt-10 pb-8 sm:pt-14 sm:pb-10 lg:pt-16 lg:pb-14">
       <Container className="max-w-[1520px] px-0 sm:px-8 lg:px-10" size="xl">
-        <div className="bg-surface-2 relative isolate overflow-hidden rounded-3xl px-6 py-16 sm:rounded-[48px] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
+        <div className="bg-surface-2 relative overflow-hidden rounded-3xl px-6 py-16 sm:isolate sm:rounded-[48px] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute top-10 right-10 hidden -rotate-[6deg] lg:block"
@@ -32,17 +32,17 @@ const Hero: React.FC = () => {
           </div>
           <div
             aria-hidden="true"
-            className="bg-primary/15 pointer-events-none absolute -bottom-32 -left-24 -z-10 h-[440px] w-[440px] rounded-full blur-[140px]"
+            className="bg-primary/15 pointer-events-none absolute -bottom-32 -left-24 -z-10 hidden h-[440px] w-[440px] rounded-full blur-[140px] sm:block"
           />
           <div
             aria-hidden="true"
-            className="bg-accent/12 pointer-events-none absolute top-[30%] right-[-12%] -z-10 h-[380px] w-[380px] rounded-full blur-[120px]"
+            className="bg-accent/12 pointer-events-none absolute top-[30%] right-[-12%] -z-10 hidden h-[380px] w-[380px] rounded-full blur-[120px] sm:block"
           />
 
           {/* Accent blue fade — top-left corner */}
           <div
             aria-hidden="true"
-            className="bg-accent/10 pointer-events-none absolute -top-40 -left-32 -z-10 h-[520px] w-[520px] rounded-full blur-[150px]"
+            className="bg-accent/10 pointer-events-none absolute -top-40 -left-32 -z-10 hidden h-[520px] w-[520px] rounded-full blur-[150px] sm:block"
           />
 
           {/* Network node constellation — subtle institutional overlay */}
@@ -279,7 +279,7 @@ const HeroNetworkPattern: React.FC = () => {
   return (
     <svg
       aria-hidden="true"
-      className="pointer-events-none absolute top-[-20px] right-[-30px] -z-10 h-[420px] w-[640px] opacity-[0.3] sm:top-[-30px] sm:right-[-40px] sm:h-[560px] sm:w-[860px] lg:top-[-40px] lg:right-[-60px] lg:h-[720px] lg:w-[1100px]"
+      className="pointer-events-none absolute -z-10 hidden opacity-[0.3] sm:top-[-30px] sm:right-[-40px] sm:block sm:h-[560px] sm:w-[860px] lg:top-[-40px] lg:right-[-60px] lg:h-[720px] lg:w-[1100px]"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 600 420"
     >
