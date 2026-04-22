@@ -1,14 +1,17 @@
-"use client";
-
-import { motion, type Variants } from "motion/react";
 import { cn } from "@/lib/cn";
 
-type StaggerChildProps = {
-  children: React.ReactNode;
-  className?: string;
-  direction?: "up" | "down" | "left" | "right" | "none";
-  as?: "div" | "li" | "span" | "article";
-};
+/*
+  Reveal was previously a framer-motion wrapper that started children at
+  opacity:0 and faded them in via IntersectionObserver. On mobile that
+  caused blank sections whenever hydration or the observer was slow —
+  content stayed invisible until the JS-driven animation fired.
+
+  It's now a plain pass-through that renders children at their final state.
+  Same API, same JSX tree depth, so all call sites work unchanged. The
+  `direction`, `delay`, `once`, `amount` props are accepted and ignored.
+*/
+
+type ElementTag = "div" | "li" | "span" | "section" | "article" | "ul" | "ol";
 
 type RevealProps = {
   children: React.ReactNode;
@@ -20,58 +23,11 @@ type RevealProps = {
   amount?: number;
 };
 
-const offsetFor = (direction: RevealProps["direction"]) => {
-  switch (direction) {
-    case "up":
-      return { x: 0, y: 18 };
-    case "down":
-      return { x: 0, y: -18 };
-    case "left":
-      return { x: 18, y: 0 };
-    case "right":
-      return { x: -18, y: 0 };
-    case "none":
-    default:
-      return { x: 0, y: 0 };
-  }
-};
-
-const Reveal: React.FC<RevealProps> = ({
-  children,
-  className,
-  delay = 0,
-  direction = "up",
-  as = "div",
-  once = true,
-  amount = 0.1,
-}) => {
-  const offset = offsetFor(direction);
-  const variants: Variants = {
-    hidden: { opacity: 0, ...offset },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-  };
-
-  const MotionTag = motion[as] as typeof motion.div;
-
+const Reveal: React.FC<RevealProps> = ({ children, className, as = "div" }) => {
   return (
-    <MotionTag
-      className={cn(className)}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once, amount }}
-      variants={variants}
-    >
+    <Tag as={as} className={className}>
       {children}
-    </MotionTag>
+    </Tag>
   );
 };
 
@@ -88,55 +44,60 @@ type StaggerProps = {
 export const Stagger: React.FC<StaggerProps> = ({
   children,
   className,
-  delayChildren = 0,
-  staggerChildren = 0.08,
-  once = true,
-  amount = 0.1,
   as = "div",
 }) => {
-  const MotionTag = motion[as] as typeof motion.div;
   return (
-    <MotionTag
-      className={cn(className)}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once, amount }}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: { delayChildren, staggerChildren },
-        },
-      }}
-    >
+    <Tag as={as} className={className}>
       {children}
-    </MotionTag>
+    </Tag>
   );
+};
+
+type StaggerChildProps = {
+  children: React.ReactNode;
+  className?: string;
+  direction?: "up" | "down" | "left" | "right" | "none";
+  as?: "div" | "li" | "span" | "article";
 };
 
 export const StaggerChild: React.FC<StaggerChildProps> = ({
   children,
   className,
-  direction = "up",
   as = "div",
 }) => {
-  const offset = offsetFor(direction);
-  const MotionTag = motion[as] as typeof motion.div;
   return (
-    <MotionTag
-      className={cn(className)}
-      variants={{
-        hidden: { opacity: 0, ...offset },
-        visible: {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-        },
-      }}
-    >
+    <Tag as={as} className={className}>
       {children}
-    </MotionTag>
+    </Tag>
   );
+};
+
+type TagProps = {
+  as: ElementTag;
+  children: React.ReactNode;
+  className?: string;
+};
+
+const Tag: React.FC<TagProps> = ({ as, children, className }) => {
+  const merged = cn(className);
+
+  switch (as) {
+    case "li":
+      return <li className={merged}>{children}</li>;
+    case "span":
+      return <span className={merged}>{children}</span>;
+    case "section":
+      return <section className={merged}>{children}</section>;
+    case "article":
+      return <article className={merged}>{children}</article>;
+    case "ul":
+      return <ul className={merged}>{children}</ul>;
+    case "ol":
+      return <ol className={merged}>{children}</ol>;
+    case "div":
+    default:
+      return <div className={merged}>{children}</div>;
+  }
 };
 
 export default Reveal;
