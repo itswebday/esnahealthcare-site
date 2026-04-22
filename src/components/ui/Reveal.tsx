@@ -1,17 +1,11 @@
-import { cn } from "@/lib/cn";
+import { createElement } from "react";
 
 /*
-  Reveal was previously a framer-motion wrapper that started children at
-  opacity:0 and faded them in via IntersectionObserver. On mobile that
-  caused blank sections whenever hydration or the observer was slow —
-  content stayed invisible until the JS-driven animation fired.
-
-  It's now a plain pass-through that renders children at their final state.
-  Same API, same JSX tree depth, so all call sites work unchanged. The
-  `direction`, `delay`, `once`, `amount` props are accepted and ignored.
+  Pass-through wrappers. Previously used framer-motion + IntersectionObserver
+  to fade in content — which left sections invisible on mobile when the
+  observer fired late. Now just renders the element; all animation props
+  are accepted and ignored so call sites stay unchanged.
 */
-
-type ElementTag = "div" | "li" | "span" | "section" | "article" | "ul" | "ol";
 
 type RevealProps = {
   children: React.ReactNode;
@@ -24,11 +18,7 @@ type RevealProps = {
 };
 
 const Reveal: React.FC<RevealProps> = ({ children, className, as = "div" }) => {
-  return (
-    <Tag as={as} className={className}>
-      {children}
-    </Tag>
-  );
+  return createElement(as, { className }, children);
 };
 
 type StaggerProps = {
@@ -46,11 +36,7 @@ export const Stagger: React.FC<StaggerProps> = ({
   className,
   as = "div",
 }) => {
-  return (
-    <Tag as={as} className={className}>
-      {children}
-    </Tag>
-  );
+  return createElement(as, { className }, children);
 };
 
 type StaggerChildProps = {
@@ -65,39 +51,7 @@ export const StaggerChild: React.FC<StaggerChildProps> = ({
   className,
   as = "div",
 }) => {
-  return (
-    <Tag as={as} className={className}>
-      {children}
-    </Tag>
-  );
-};
-
-type TagProps = {
-  as: ElementTag;
-  children: React.ReactNode;
-  className?: string;
-};
-
-const Tag: React.FC<TagProps> = ({ as, children, className }) => {
-  const merged = cn(className);
-
-  switch (as) {
-    case "li":
-      return <li className={merged}>{children}</li>;
-    case "span":
-      return <span className={merged}>{children}</span>;
-    case "section":
-      return <section className={merged}>{children}</section>;
-    case "article":
-      return <article className={merged}>{children}</article>;
-    case "ul":
-      return <ul className={merged}>{children}</ul>;
-    case "ol":
-      return <ol className={merged}>{children}</ol>;
-    case "div":
-    default:
-      return <div className={merged}>{children}</div>;
-  }
+  return createElement(as, { className }, children);
 };
 
 export default Reveal;

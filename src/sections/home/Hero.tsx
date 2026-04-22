@@ -279,7 +279,7 @@ const HeroNetworkPattern: React.FC = () => {
   return (
     <svg
       aria-hidden="true"
-      className="pointer-events-none absolute top-[-40px] right-[-60px] -z-10 h-[720px] w-[1100px] opacity-[0.32]"
+      className="pointer-events-none absolute top-[-20px] right-[-30px] -z-10 h-[420px] w-[640px] opacity-[0.3] sm:top-[-30px] sm:right-[-40px] sm:h-[560px] sm:w-[860px] lg:top-[-40px] lg:right-[-60px] lg:h-[720px] lg:w-[1100px]"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 600 420"
     >
