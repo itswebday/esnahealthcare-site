@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
   return (
     <section className="relative bg-white pt-10 pb-8 sm:pt-14 sm:pb-10 lg:pt-16 lg:pb-14">
       <Container className="max-w-[1520px] px-0 sm:px-8 lg:px-10" size="xl">
-        <div className="bg-surface-2 relative isolate overflow-hidden rounded-none px-6 py-16 sm:rounded-[48px] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
+        <div className="bg-surface-2 relative isolate overflow-hidden rounded-3xl px-6 py-16 sm:rounded-[48px] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute top-10 right-10 hidden -rotate-[6deg] lg:block"
@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
           {/* Accent blue fade — top-left corner */}
           <div
             aria-hidden="true"
-            className="bg-accent/18 pointer-events-none absolute -top-40 -left-32 -z-10 h-[520px] w-[520px] rounded-full blur-[150px]"
+            className="bg-accent/10 pointer-events-none absolute -top-40 -left-32 -z-10 h-[520px] w-[520px] rounded-full blur-[150px]"
           />
 
           {/* Network node constellation — subtle institutional overlay */}
