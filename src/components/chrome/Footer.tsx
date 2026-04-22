@@ -1,39 +1,40 @@
+import { ArrowRight, Call, Location, Sms } from "iconsax-react";
 import Link from "next/link";
-import { Location, Sms, Call, ArrowRight } from "iconsax-react";
-import { SITE, NAV_LINKS, FOOTER_SECONDARY_LINKS } from "@/lib/site";
-import { Container } from "../ui/Container";
-import { Logo } from "../ui/Logo";
-import { Button } from "../ui/Button";
+import { FOOTER_SECONDARY_LINKS, NAV_LINKS, SITE } from "@/lib/site";
+import Button from "../ui/Button";
+import Container from "../ui/Container";
+import Logo from "../ui/Logo";
 
-export function Footer() {
+const Footer: React.FC = () => {
   const year = new Date().getFullYear();
+
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-[var(--color-border-invert-strong)] bg-[var(--color-surface-invert)] text-[var(--color-on-invert)]">
-      <Container size="xl" className="relative">
+    <footer className="border-border-invert-strong bg-surface-invert text-on-invert relative mt-24 overflow-hidden rounded-t-3xl border-t">
+      <Container className="relative" size="xl">
         {/* CTA band */}
-        <div className="flex flex-col gap-8 border-b border-[var(--color-border-invert)] py-16 lg:flex-row lg:items-end lg:justify-between lg:py-20">
+        <div className="border-border-invert flex flex-col gap-8 border-b py-16 lg:flex-row lg:items-end lg:justify-between lg:py-20">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-on-invert-muted)]">
-              <span className="h-px w-6 bg-white/30" />
+            <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-1 text-[12px] font-medium tracking-[0.14em] text-white uppercase ring-1 ring-white/20 backdrop-blur">
+              <span className="bg-primary h-1.5 w-1.5 rounded-full" />
               Ready to work together
             </span>
-            <h2 className="mt-5 text-[2.4rem] font-semibold leading-[1.08] tracking-[var(--tracking-display)] text-white sm:text-[3rem] lg:text-[3.4rem]">
+            <h2 className="mt-5 text-[38px] leading-[1.08] font-semibold tracking-[var(--tracking-display)] text-white sm:text-[48px] lg:text-[54px]">
               Let&rsquo;s move your next shipment — on compliance, on time.
             </h2>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-[var(--color-on-invert-muted)]">
-              Whether you need to source a specialty treatment, qualify as a supplier,
-              or request our full product catalog, our commercial team replies within
-              one business day.
+            <p className="text-on-invert-muted mt-5 max-w-xl text-[18px] leading-relaxed">
+              Whether you need to source a specialty treatment, qualify as a
+              supplier, or request our full product catalog, our commercial team
+              replies within one business day.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button href="/contact" variant="primary" size="lg" withArrow>
+            <Button href="/contact" size="lg" variant="primary" withArrow>
               Get in Touch
             </Button>
             <Button
               href="/we-buy-medicines"
-              variant="invert-ghost"
               size="lg"
+              variant="invert-ghost"
               withArrow
             >
               Offer Your Stock
@@ -43,34 +44,36 @@ export function Footer() {
 
         {/* Main footer grid */}
         <div className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-10">
+          {/* Brand column */}
           <div className="lg:col-span-5">
             <Logo variant="white" width={148} withLink={false} />
-            <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-[var(--color-on-invert-muted)]">
+            <p className="text-on-invert-muted mt-5 max-w-sm text-[15px] leading-relaxed">
               {SITE.tagline}
             </p>
             <Link
+              className="hover:text-on-invert-muted group mt-6 inline-flex items-center gap-2 text-[14px] leading-none font-medium text-white transition-colors"
               href="/compliance"
-              className="group mt-6 inline-flex items-center gap-2 text-sm font-medium leading-none text-white transition-colors hover:text-[var(--color-on-invert-muted)]"
             >
               Compliance &amp; Certifications
               <ArrowRight
+                className="transition-transform group-hover:translate-x-0.5"
                 size={14}
                 variant="Linear"
-                className="transition-transform group-hover:translate-x-0.5"
               />
             </Link>
           </div>
 
+          {/* Navigate links */}
           <div className="lg:col-span-3">
-            <h3 className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-on-invert-muted)]">
+            <h3 className="text-on-invert-muted text-[12px] font-medium tracking-[0.14em] uppercase">
               Navigate
             </h3>
             <ul className="mt-5 space-y-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
+                    className="text-[15px] text-white/80 transition-colors hover:text-white"
                     href={link.href}
-                    className="text-[0.95rem] text-white/80 transition-colors hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -78,8 +81,8 @@ export function Footer() {
               ))}
               <li>
                 <Link
+                  className="text-[15px] text-white/80 transition-colors hover:text-white"
                   href="/we-buy-medicines"
-                  className="text-[0.95rem] text-white/80 transition-colors hover:text-white"
                 >
                   We Buy Medicines
                 </Link>
@@ -87,18 +90,19 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Contact and registration */}
           <div className="lg:col-span-4">
-            <h3 className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-on-invert-muted)]">
+            <h3 className="text-on-invert-muted text-[12px] font-medium tracking-[0.14em] uppercase">
               Contact &amp; Registration
             </h3>
-            <ul className="mt-5 space-y-4 text-[0.95rem]">
+            <ul className="mt-5 space-y-4 text-[15px]">
               <li className="flex items-start gap-3">
                 <Location
+                  className="text-on-invert-muted mt-0.5 shrink-0"
                   size={18}
                   variant="Linear"
-                  className="mt-0.5 shrink-0 text-[var(--color-on-invert-muted)]"
                 />
-                <span className="text-white/85 leading-relaxed">
+                <span className="leading-relaxed text-white/85">
                   {SITE.contact.officeAddress.line1}
                   <br />
                   {SITE.contact.officeAddress.line2}
@@ -108,32 +112,34 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Sms
+                  className="text-on-invert-muted mt-0.5 shrink-0"
                   size={18}
                   variant="Linear"
-                  className="mt-0.5 shrink-0 text-[var(--color-on-invert-muted)]"
                 />
                 <Link
-                  href={`mailto:${SITE.contact.email}`}
                   className="text-white/85 transition-colors hover:text-white"
+                  href={`mailto:${SITE.contact.email}`}
                 >
                   {SITE.contact.email}
                 </Link>
               </li>
               <li className="flex items-start gap-3">
                 <Call
+                  className="text-on-invert-muted mt-0.5 shrink-0"
                   size={18}
                   variant="Linear"
-                  className="mt-0.5 shrink-0 text-[var(--color-on-invert-muted)]"
                 />
                 <Link
-                  href={SITE.contact.phoneHref}
                   className="font-mono text-white/85 transition-colors hover:text-white"
+                  href={SITE.contact.phoneHref}
                 >
                   {SITE.contact.phone}
                 </Link>
               </li>
             </ul>
-            <div className="mt-6 rounded-[var(--radius-md)] border border-[var(--color-border-invert)] bg-white/5 p-4 text-[0.82rem] leading-relaxed text-[var(--color-on-invert-muted)] backdrop-blur">
+
+            {/* Registrations callout */}
+            <div className="border-border-invert text-on-invert-muted mt-6 rounded-md border bg-white/5 p-4 text-[13px] leading-relaxed backdrop-blur">
               <div>
                 {SITE.legalNameHolding} (KVK {SITE.registrations.kvkHealthcare})
               </div>
@@ -149,16 +155,16 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-4 border-t border-[var(--color-border-invert)] py-8 md:flex-row md:items-center md:justify-between">
-          <p className="text-sm text-[var(--color-on-invert-muted)]">
+        <div className="border-border-invert flex flex-col gap-4 border-t py-8 md:flex-row md:items-center md:justify-between">
+          <p className="text-on-invert-muted text-[14px]">
             © {year} {SITE.name} — All rights reserved.
           </p>
-          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[14px]">
             {FOOTER_SECONDARY_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
+                  className="text-on-invert-muted transition-colors hover:text-white"
                   href={link.href}
-                  className="text-[var(--color-on-invert-muted)] transition-colors hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -169,4 +175,6 @@ export function Footer() {
       </Container>
     </footer>
   );
-}
+};
+
+export default Footer;

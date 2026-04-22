@@ -72,22 +72,39 @@ export const SITE = {
     },
     {
       title: "Customer Qualification SOP",
-      description: "Standard operating procedure for the qualification of customers.",
+      description:
+        "Standard operating procedure for the qualification of customers.",
       href: "/Esna Healthcare/03-Qualifications Forms/Esna Care SOP   Qualification of customers v 4.0  April 2025 -External.docx",
       type: "DOCX",
     },
   ],
 } as const;
 
-export const NAV_LINKS = [
+export type NavSubLink = {
+  label: string;
+  href: string;
+};
+
+export type NavLink = {
+  label: string;
+  href: string;
+  subLinks?: readonly NavSubLink[];
+};
+
+export const NAV_LINKS: readonly NavLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Products", href: "/products" },
+  {
+    label: "Products",
+    href: "/products",
+    subLinks: [
+      { label: "Medicines", href: "/products#medicines" },
+      { label: "Medical Devices", href: "/products#medical-devices" },
+    ],
+  },
   { label: "Compliance", href: "/compliance" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
-] as const;
+];
 
 export const FOOTER_SECONDARY_LINKS = [
   { label: "Privacy Policy", href: "/privacy" },

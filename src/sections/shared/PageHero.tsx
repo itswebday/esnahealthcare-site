@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { ArrowRight } from "iconsax-react";
-import { Container } from "@/components/ui/Container";
-import { Badge } from "@/components/ui/Badge";
-import { Reveal } from "@/components/ui/Reveal";
+import Badge from "@/components/ui/Badge";
+import Container from "@/components/ui/Container";
+import Reveal from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 
 type PageHeroProps = {
-  eyebrow?: string;
-  title: React.ReactNode;
-  description?: React.ReactNode;
+  align?: "left" | "center";
   badge?: { label: string; icon?: React.ReactNode };
   breadcrumbs?: { label: string; href?: string }[];
-  align?: "left" | "center";
+  description?: React.ReactNode;
+  eyebrow?: string;
   size?: "sm" | "md" | "lg";
+  title: React.ReactNode;
 };
 
 const SIZE: Record<NonNullable<PageHeroProps["size"]>, string> = {
@@ -22,37 +22,25 @@ const SIZE: Record<NonNullable<PageHeroProps["size"]>, string> = {
 };
 
 const TITLE: Record<NonNullable<PageHeroProps["size"]>, string> = {
-  sm: "text-[2.2rem] sm:text-[2.75rem] lg:text-[3.25rem]",
-  md: "text-[2.5rem] sm:text-[3.25rem] lg:text-[3.75rem]",
-  lg: "text-[2.75rem] sm:text-[3.75rem] lg:text-[4.5rem]",
+  sm: "text-[36px] sm:text-[44px] lg:text-[52px]",
+  md: "text-[40px] sm:text-[52px] lg:text-[60px]",
+  lg: "text-[44px] sm:text-[60px] lg:text-[72px]",
 };
 
-export function PageHero({
-  eyebrow,
-  title,
-  description,
+const PageHero: React.FC<PageHeroProps> = ({
+  align = "left",
   badge,
   breadcrumbs,
-  align = "left",
+  description,
+  eyebrow,
   size = "md",
-}: PageHeroProps) {
+  title,
+}) => {
   return (
-    <section className={cn("relative overflow-hidden", SIZE[size])}>
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[-12%] top-[-8%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,139,53,0.12)_0%,transparent_55%)] blur-3xl" />
-        <div className="absolute right-[-12%] top-[-6%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_center,rgba(13,79,140,0.12)_0%,transparent_55%)] blur-3xl" />
-      </div>
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.35] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(11,22,40,0.08) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
+    <section className={cn("relative overflow-hidden bg-white", SIZE[size])}>
+      <PageHeroBackdrop />
 
-      <Container size="xl">
+      <Container className="relative" size="xl">
         <div
           className={cn(
             "flex flex-col gap-6",
@@ -63,25 +51,25 @@ export function PageHero({
             <Reveal direction="up">
               <nav
                 aria-label="Breadcrumb"
-                className="flex flex-wrap items-center gap-1.5 text-sm text-[var(--color-subtle)]"
+                className="text-subtle flex flex-wrap items-center gap-1.5 text-[14px]"
               >
                 {breadcrumbs.map((c, i) => (
                   <span key={i} className="inline-flex items-center gap-1.5">
                     {c.href ? (
                       <Link
+                        className="hover:text-foreground transition-colors"
                         href={c.href}
-                        className="transition-colors hover:text-[var(--color-foreground)]"
                       >
                         {c.label}
                       </Link>
                     ) : (
-                      <span className="text-[var(--color-muted)]">{c.label}</span>
+                      <span className="text-muted">{c.label}</span>
                     )}
                     {i < breadcrumbs.length - 1 && (
                       <ArrowRight
+                        className="text-faint"
                         size={12}
                         variant="Linear"
-                        className="text-[var(--color-faint)]"
                       />
                     )}
                   </span>
@@ -90,24 +78,24 @@ export function PageHero({
             </Reveal>
           )}
           {(eyebrow || badge) && (
-            <Reveal direction="up" delay={0.04}>
+            <Reveal delay={0.04} direction="up">
               {badge ? (
-                <Badge variant="primary" size="lg" withDot>
+                <Badge size="lg" variant="primary" withDot>
                   {badge.icon}
                   {badge.label}
                 </Badge>
               ) : (
-                <span className="inline-flex items-center gap-2 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">
-                  <span className="h-px w-6 bg-[var(--color-primary)]" />
+                <span className="border-primary/40 bg-primary-subtle text-primary-dark inline-flex items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
+                  <span className="bg-primary h-1.5 w-1.5 rounded-full" />
                   {eyebrow}
                 </span>
               )}
             </Reveal>
           )}
-          <Reveal direction="up" delay={0.08}>
+          <Reveal delay={0.08} direction="up">
             <h1
               className={cn(
-                "max-w-4xl font-semibold leading-[1.04] tracking-[var(--tracking-display)] text-[var(--color-foreground)]",
+                "tracking-display text-foreground max-w-4xl leading-[1.04] font-semibold",
                 TITLE[size],
                 align === "center" && "mx-auto",
               )}
@@ -116,10 +104,10 @@ export function PageHero({
             </h1>
           </Reveal>
           {description && (
-            <Reveal direction="up" delay={0.14}>
+            <Reveal delay={0.14} direction="up">
               <p
                 className={cn(
-                  "max-w-2xl text-lg leading-[1.6] text-[var(--color-muted)] sm:text-xl",
+                  "text-muted max-w-2xl text-[18px] leading-[1.6] sm:text-[20px]",
                   align === "center" && "mx-auto",
                 )}
               >
@@ -131,4 +119,18 @@ export function PageHero({
       </Container>
     </section>
   );
-}
+};
+
+const PageHeroBackdrop: React.FC = () => {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
+      <div className="bg-primary/15 absolute top-[20%] left-[30%] h-[520px] w-[520px] rounded-full blur-[110px]" />
+      <div className="bg-accent/10 absolute top-[10%] right-[10%] h-[420px] w-[420px] rounded-full blur-[100px]" />
+    </div>
+  );
+};
+
+export default PageHero;

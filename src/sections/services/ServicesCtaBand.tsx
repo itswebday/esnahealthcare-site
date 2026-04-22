@@ -1,73 +1,79 @@
 import Link from "next/link";
 import { ArrowRight, Box, Global } from "iconsax-react";
-import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
+import Container from "@/components/ui/Container";
+import Reveal from "@/components/ui/Reveal";
 
-export function ServicesCtaBand() {
+const ServicesCtaBand: React.FC = () => {
   return (
-    <section className="py-20 sm:py-24 lg:py-28">
-      <Container size="xl">
+    <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
+      <ServicesCtaBackdrop />
+
+      <Container className="relative" size="xl">
         <Reveal direction="up">
-          <div className="grid gap-4 lg:grid-cols-2">
+          <div className="grid gap-5 lg:grid-cols-2">
             <Link
+              className="group duration-slow border-border shadow-hint hover:border-primary/40 hover:shadow-primary/10 relative overflow-hidden rounded-3xl border bg-white p-10 transition-all hover:shadow-xl"
               href="/products#medical-devices"
-              className="group relative overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--color-border)] bg-white p-10 transition-all duration-[var(--duration-slow)] hover:border-[var(--color-border-strong)] hover:shadow-[var(--shadow-lift)]"
             >
-              <div
+              <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[var(--color-primary-subtle)] opacity-70 blur-3xl"
+                className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 h-24 w-24 rounded-bl-3xl bg-linear-to-br"
               />
-              <div className="relative">
-                <Box
-                  size={28}
-                  variant="Linear"
-                  className="text-[var(--color-primary-dark)]"
-                />
-                <h3 className="mt-6 text-[1.6rem] font-semibold tracking-[-0.016em] text-[var(--color-foreground)]">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute top-6 right-6 text-white"
+              >
+                <Box size={26} variant="Bold" />
+              </span>
+
+              <div className="relative mt-16">
+                <h3 className="tracking-display text-foreground text-[26px] leading-tight font-semibold">
                   Medical devices &amp; diagnostics
                 </h3>
-                <p className="mt-3 max-w-md text-[1rem] leading-relaxed text-[var(--color-muted)]">
+                <p className="text-muted mt-3 max-w-md text-[15px] leading-relaxed">
                   Beyond pharmaceuticals: a curated range of medical devices and
                   diagnostics supplied through registered distribution partners.
                 </p>
-                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-primary-dark)]">
+                <span className="text-primary-dark mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium">
                   Explore devices
                   <ArrowRight
+                    className="duration-normal transition-transform group-hover:translate-x-0.5"
                     size={14}
                     variant="Linear"
-                    className="transition-transform group-hover:translate-x-0.5"
                   />
                 </span>
               </div>
             </Link>
 
             <Link
+              className="group duration-slow bg-surface-invert text-on-invert hover:shadow-primary/20 relative overflow-hidden rounded-3xl p-10 transition-all hover:shadow-xl"
               href="/we-buy-medicines"
-              className="group relative overflow-hidden rounded-[var(--radius-2xl)] bg-[var(--color-surface-invert)] p-10 text-[var(--color-on-invert)] transition-all duration-[var(--duration-slow)] hover:shadow-[var(--shadow-lift)]"
             >
-              <div
+              <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[var(--color-accent)] opacity-25 blur-3xl"
+                className="bg-accent pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full opacity-25 blur-3xl"
               />
-              <div
+              <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -left-20 -bottom-20 h-72 w-72 rounded-full bg-[var(--color-primary)] opacity-20 blur-3xl"
+                className="bg-primary pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full opacity-20 blur-3xl"
               />
               <div className="relative">
-                <Global size={28} variant="Linear" className="text-white/80" />
-                <h3 className="mt-6 text-[1.6rem] font-semibold tracking-[-0.016em] text-white">
+                <div className="bg-primary/15 text-primary ring-primary/30 relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl ring-1">
+                  <Global size={26} variant="Bold" />
+                </div>
+                <h3 className="tracking-display mt-6 text-[26px] leading-tight font-semibold text-white">
                   We buy medicines
                 </h3>
-                <p className="mt-3 max-w-md text-[1rem] leading-relaxed text-[var(--color-on-invert-muted)]">
+                <p className="text-on-invert-muted mt-3 max-w-md text-[15px] leading-relaxed">
                   Suppliers with EU-sourced stock, full documentation, and
                   appropriate shelf life are invited to submit an offer.
                 </p>
-                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-white">
+                <span className="mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-white">
                   Submit an offer
                   <ArrowRight
+                    className="duration-normal transition-transform group-hover:translate-x-0.5"
                     size={14}
                     variant="Linear"
-                    className="transition-transform group-hover:translate-x-0.5"
                   />
                 </span>
               </div>
@@ -77,4 +83,17 @@ export function ServicesCtaBand() {
       </Container>
     </section>
   );
-}
+};
+
+const ServicesCtaBackdrop: React.FC = () => {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
+      <div className="bg-primary/10 absolute top-[30%] right-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
+    </div>
+  );
+};
+
+export default ServicesCtaBand;

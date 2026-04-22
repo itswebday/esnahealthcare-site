@@ -1,7 +1,8 @@
-import { Box, Global, Truck, TickCircle, ArrowRight } from "iconsax-react";
+import { ArrowRight, Box, Global, TickCircle, Truck } from "iconsax-react";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
+import Container from "@/components/ui/Container";
+import Reveal from "@/components/ui/Reveal";
+import { cn } from "@/lib/cn";
 import { SERVICES, type Service } from "@/lib/services";
 
 const ICON_MAP: Record<Service["icon"], typeof Box> = {
@@ -11,40 +12,63 @@ const ICON_MAP: Record<Service["icon"], typeof Box> = {
   "temperature-controlled": Box,
 };
 
-export function ServicesDetail() {
+const ServicesDetail: React.FC = () => {
   return (
-    <section className="py-20 sm:py-24 lg:py-28">
-      <Container size="xl">
+    <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
+      <ServicesDetailBackdrop />
+
+      <Container className="relative" size="xl">
         <div className="flex flex-col gap-20 lg:gap-28">
           {SERVICES.map((service, idx) => {
             const Icon = ICON_MAP[service.icon] ?? Box;
-            const reverse = idx % 2 === 1;
+            const isReversed = idx % 2 === 1;
+            const isAccent = idx % 2 === 1;
+            const cornerClass = isAccent
+              ? "bg-linear-to-br from-accent to-accent-dark"
+              : "bg-linear-to-br from-primary to-primary-dark";
+            const labelColor = isAccent ? "text-accent" : "text-primary-dark";
+            const checkColor = isAccent ? "text-accent" : "text-primary";
+
             return (
               <Reveal key={service.slug} direction="up">
                 <article
                   id={service.slug}
-                  className="grid items-start gap-10 scroll-mt-28 lg:grid-cols-12 lg:gap-16"
+                  className="grid scroll-mt-28 items-start gap-10 lg:grid-cols-12 lg:gap-16"
                 >
                   <div
-                    className={`lg:col-span-5 ${reverse ? "lg:order-2" : ""}`}
+                    className={cn("lg:col-span-5", isReversed && "lg:order-2")}
                   >
-                    <div className="relative overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--color-border)] bg-[var(--color-surface-1)] p-10">
+                    <div className="border-border shadow-card relative overflow-hidden rounded-3xl border bg-white p-10">
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "pointer-events-none absolute top-0 right-0",
+                          "h-28 w-28 rounded-bl-3xl",
+                          cornerClass,
+                        )}
+                      />
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute top-8 right-8 text-white"
+                      >
+                        <Icon size={28} variant="Bold" />
+                      </span>
                       <div
                         aria-hidden="true"
-                        className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[var(--color-primary-subtle)] blur-3xl"
+                        className="bg-primary/10 pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full blur-3xl"
                       />
-                      <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute -left-16 bottom-[-6rem] h-72 w-72 rounded-full bg-[var(--color-accent-subtle)] blur-3xl"
-                      />
-                      <div className="relative">
-                        <div className="inline-flex h-14 w-14 items-center justify-center rounded-[var(--radius-lg)] bg-white text-[var(--color-primary-dark)] shadow-[var(--shadow-card)]">
-                          <Icon size={26} variant="Linear" />
-                        </div>
-                        <div className="mt-8 font-mono text-sm text-[var(--color-subtle)]">
+
+                      <div className="relative mt-28">
+                        <div className="text-subtle font-mono text-[13px]">
                           0{idx + 1} / 0{SERVICES.length}
                         </div>
-                        <div className="mt-2 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">
+                        <div
+                          className={cn(
+                            "mt-2 font-mono text-[11px] font-semibold",
+                            "tracking-[0.18em] uppercase",
+                            labelColor,
+                          )}
+                        >
                           Service
                         </div>
                       </div>
@@ -52,38 +76,38 @@ export function ServicesDetail() {
                   </div>
 
                   <div
-                    className={`lg:col-span-7 ${reverse ? "lg:order-1" : ""}`}
+                    className={cn("lg:col-span-7", isReversed && "lg:order-1")}
                   >
-                    <h2 className="text-[2rem] font-semibold leading-[1.1] tracking-[var(--tracking-display)] text-[var(--color-foreground)] sm:text-[2.4rem]">
+                    <h2 className="tracking-display text-foreground text-[32px] leading-[1.1] font-semibold sm:text-[38px]">
                       {service.title}
                     </h2>
-                    <p className="mt-4 text-[1.1rem] leading-[1.6] text-[var(--color-muted)]">
+                    <p className="text-muted mt-4 text-[17px] leading-[1.6]">
                       {service.description}
                     </p>
                     <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                       {service.bullets.map((bullet) => (
                         <li
                           key={bullet}
-                          className="flex items-start gap-3 text-[0.98rem] leading-snug text-[var(--color-foreground)]"
+                          className="text-foreground flex items-start gap-3 text-[15px] leading-snug"
                         >
                           <TickCircle
+                            className={cn("mt-0.5 shrink-0", checkColor)}
                             size={20}
                             variant="Bold"
-                            className="mt-0.5 shrink-0 text-[var(--color-primary)]"
                           />
                           {bullet}
                         </li>
                       ))}
                     </ul>
                     <Link
+                      className="group text-foreground hover:text-primary-dark mt-8 inline-flex items-center gap-2 text-[15px] font-medium transition-colors"
                       href="/contact"
-                      className="group mt-8 inline-flex items-center gap-2 text-[0.95rem] font-medium text-[var(--color-foreground)] transition-colors hover:text-[var(--color-primary-dark)]"
                     >
                       Request a quote for {service.title.toLowerCase()}
                       <ArrowRight
+                        className="duration-normal transition-transform group-hover:translate-x-0.5"
                         size={16}
                         variant="Linear"
-                        className="transition-transform group-hover:translate-x-0.5"
                       />
                     </Link>
                   </div>
@@ -95,4 +119,18 @@ export function ServicesDetail() {
       </Container>
     </section>
   );
-}
+};
+
+const ServicesDetailBackdrop: React.FC = () => {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
+      <div className="bg-primary/10 absolute top-[10%] left-[-8%] h-[420px] w-[420px] rounded-full blur-[110px]" />
+      <div className="bg-accent/10 absolute right-[-8%] bottom-[10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
+    </div>
+  );
+};
+
+export default ServicesDetail;

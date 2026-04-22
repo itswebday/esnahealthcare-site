@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { ShieldTick } from "iconsax-react";
-import { PageHero } from "@/sections/shared/PageHero";
-import { LicenceCards } from "@/sections/compliance/LicenceCards";
-import { CorporateRegistration } from "@/sections/compliance/CorporateRegistration";
-import { RegulatoryFramework } from "@/sections/compliance/RegulatoryFramework";
-import { QualificationForms } from "@/sections/compliance/QualificationForms";
-import { QualityCommitment } from "@/sections/compliance/QualityCommitment";
+import PageHero from "@/sections/shared/PageHero";
+import LicenceCards from "@/sections/compliance/LicenceCards";
+import CorporateRegistration from "@/sections/compliance/CorporateRegistration";
+import RegulatoryFramework from "@/sections/compliance/RegulatoryFramework";
+import QualificationForms from "@/sections/compliance/QualificationForms";
+import QualityCommitment from "@/sections/compliance/QualityCommitment";
 
 export const metadata: Metadata = {
   title: "Compliance",
@@ -14,19 +14,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/compliance" },
 };
 
-export default function CompliancePage() {
+const CompliancePage: React.FC = () => {
   return (
     <>
       <PageHero
         badge={{
           label: "EU Licensed · GDP Certified",
-          icon: (
-            <ShieldTick size={14} variant="Linear" className="mr-0.5" />
-          ),
+          icon: <ShieldTick size={14} variant="Linear" className="mr-0.5" />,
         }}
-        title="Verifiable compliance, by the document."
-        description="Every licence, certification, and qualification SOP is listed — with downloadable PDFs. What you'd check in any due diligence, already on the page."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Compliance" }]}
+        description="Every licence, certification, and qualification SOP is listed — with downloadable PDFs. What you'd check in any due diligence, already on the page."
+        size="sm"
+        title="Verifiable compliance, by the document."
       />
       <LicenceCards />
       <CorporateRegistration />
@@ -35,4 +34,6 @@ export default function CompliancePage() {
       <QualityCommitment />
     </>
   );
-}
+};
+
+export default CompliancePage;

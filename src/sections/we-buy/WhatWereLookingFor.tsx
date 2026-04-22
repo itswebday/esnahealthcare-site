@@ -1,14 +1,15 @@
 import Link from "next/link";
 import {
-  TickCircle,
-  DocumentText,
+  ArrowRight,
   Box,
   Clock,
-  ArrowRight,
+  DocumentText,
+  TickCircle,
 } from "iconsax-react";
-import { Container } from "@/components/ui/Container";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Reveal } from "@/components/ui/Reveal";
+import Container from "@/components/ui/Container";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { cn } from "@/lib/cn";
 import { SITE } from "@/lib/site";
 
 const CRITERIA = [
@@ -27,94 +28,112 @@ const WELCOME = [
   { icon: TickCircle, label: "Branded & generic medicines" },
 ];
 
-export function WhatWereLookingFor() {
+const WhatWereLookingFor: React.FC = () => {
   return (
-    <section className="bg-[var(--color-surface-1)] py-20 sm:py-24 lg:py-28">
+    <section className="bg-surface-1 relative overflow-hidden rounded-[48px] py-20 sm:py-24 lg:py-28">
       <Container size="xl">
+        <WhatWereLookingForBackdrop />
+
         <Reveal direction="up">
           <SectionHeader
-            eyebrow="What we're looking for"
-            title="Stock we can qualify, documented to GDP."
             description="A clear picture of what typically passes our qualification bar — so suppliers know whether it's worth submitting before doing the paperwork."
+            eyebrow="What we're looking for"
             size="md"
+            title="Stock we can qualify, documented to GDP."
           />
         </Reveal>
 
-        <div className="mt-14 grid gap-4 lg:grid-cols-12">
-          <Reveal direction="up" delay={0.08} className="lg:col-span-7">
-            <div className="rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-white p-8">
-              <h3 className="text-[1.1rem] font-semibold tracking-[-0.012em] text-[var(--color-foreground)]">
-                Qualification criteria
-              </h3>
-              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                {CRITERIA.map((c) => (
-                  <li
-                    key={c}
-                    className="flex items-start gap-2.5 text-[0.95rem] leading-snug text-[var(--color-foreground)]"
-                  >
-                    <TickCircle
-                      size={18}
-                      variant="Bold"
-                      className="mt-0.5 shrink-0 text-[var(--color-primary)]"
-                    />
-                    {c}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6 flex items-start gap-3 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface-1)] p-4 text-[0.88rem] text-[var(--color-muted)]">
-                <DocumentText
-                  size={18}
-                  variant="Linear"
-                  className="mt-0.5 shrink-0 text-[var(--color-accent)]"
-                />
-                <p>
-                  All suppliers are qualified against our{" "}
-                  <Link
-                    href={SITE.qualificationSops[0].href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-[var(--color-accent)] underline underline-offset-2 hover:text-[var(--color-accent-hover)]"
-                  >
-                    Supplier Qualification SOP
-                  </Link>{" "}
-                  before the first transaction.
-                </p>
+        <div className="relative mt-14 grid gap-5 lg:grid-cols-12">
+          <Reveal className="lg:col-span-7" delay={0.08} direction="up">
+            <div className="border-border shadow-hint relative overflow-hidden rounded-3xl border bg-white p-8">
+              <span
+                aria-hidden="true"
+                className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
+              />
+              <div className="relative mt-10">
+                <h3 className="text-foreground text-[18px] font-semibold tracking-tight">
+                  Qualification criteria
+                </h3>
+                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {CRITERIA.map((c) => (
+                    <li
+                      key={c}
+                      className="text-foreground flex items-start gap-2.5 text-[14px] leading-snug"
+                    >
+                      <TickCircle
+                        className="text-primary mt-0.5 shrink-0"
+                        size={18}
+                        variant="Bold"
+                      />
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+                <div className="border-border bg-surface-1 text-muted mt-6 flex items-start gap-3 rounded-2xl border p-4 text-[13px]">
+                  <DocumentText
+                    className="text-accent mt-0.5 shrink-0"
+                    size={18}
+                    variant="Bold"
+                  />
+                  <p>
+                    All suppliers are qualified against our{" "}
+                    <Link
+                      className="text-accent hover:text-accent-hover font-medium underline underline-offset-2 transition-colors"
+                      href={SITE.qualificationSops[0].href}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      Supplier Qualification SOP
+                    </Link>{" "}
+                    before the first transaction.
+                  </p>
+                </div>
               </div>
             </div>
           </Reveal>
 
-          <Reveal direction="up" delay={0.16} className="lg:col-span-5">
-            <div className="flex h-full flex-col gap-4 rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-white p-8">
-              <h3 className="text-[1.1rem] font-semibold tracking-[-0.012em] text-[var(--color-foreground)]">
+          <Reveal className="lg:col-span-5" delay={0.16} direction="up">
+            <div className="border-border shadow-hint relative flex h-full flex-col gap-4 overflow-hidden rounded-3xl border bg-white p-8">
+              <span
+                aria-hidden="true"
+                className="from-accent to-accent-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
+              />
+              <h3 className="text-foreground mt-10 text-[18px] font-semibold tracking-tight">
                 Especially welcome
               </h3>
               <ul className="flex flex-col gap-2.5">
-                {WELCOME.map((w) => {
+                {WELCOME.map((w, idx) => {
                   const Icon = w.icon;
+                  const isPrimary = idx % 2 === 0;
                   return (
                     <li
                       key={w.label}
-                      className="flex items-center gap-3 rounded-[var(--radius-md)] bg-[var(--color-primary-subtle)] px-4 py-3 text-[0.95rem] font-medium text-[var(--color-foreground)]"
+                      className="bg-surface-1 text-foreground flex items-center gap-3 rounded-2xl px-4 py-3 text-[14px] font-medium"
                     >
-                      <Icon
-                        size={18}
-                        variant="Linear"
-                        className="text-[var(--color-primary-dark)]"
-                      />
+                      <span
+                        className={cn(
+                          "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ring-1",
+                          isPrimary
+                            ? "bg-primary/15 text-primary ring-primary/30"
+                            : "bg-accent/20 text-accent ring-accent/40",
+                        )}
+                      >
+                        <Icon size={16} variant="Bold" />
+                      </span>
                       {w.label}
                     </li>
                   );
                 })}
               </ul>
               <Link
+                className="group text-primary-dark hover:text-primary-hover mt-auto inline-flex items-center gap-2 text-[15px] font-medium transition-colors"
                 href="#offer-form"
-                className="group mt-auto inline-flex items-center gap-2 text-[0.95rem] font-medium text-[var(--color-primary-dark)] hover:text-[var(--color-primary-hover)]"
               >
                 Submit your offer
                 <ArrowRight
+                  className="duration-normal transition-transform group-hover:translate-x-0.5"
                   size={16}
                   variant="Linear"
-                  className="transition-transform group-hover:translate-x-0.5"
                 />
               </Link>
             </div>
@@ -123,4 +142,18 @@ export function WhatWereLookingFor() {
       </Container>
     </section>
   );
-}
+};
+
+const WhatWereLookingForBackdrop: React.FC = () => {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
+      <div className="bg-primary/10 absolute top-[20%] right-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
+      <div className="bg-accent/10 absolute bottom-[10%] left-[-10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
+    </div>
+  );
+};
+
+export default WhatWereLookingFor;

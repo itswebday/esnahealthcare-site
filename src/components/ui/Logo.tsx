@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/cn";
 
 type LogoProps = {
@@ -16,33 +16,39 @@ const SRC = {
   white: "/logos/esna-white.svg",
 };
 
-export function Logo({
+const Logo: React.FC<LogoProps> = ({
   variant = "color",
   width = 132,
   className,
   href = "/",
   withLink = true,
-}: LogoProps) {
+}) => {
   const height = Math.round(width * (876.99 / 3172.08));
   const img = (
     <Image
+      className={cn("h-auto w-auto select-none", className)}
       src={SRC[variant]}
       alt="Esna Care"
       width={width}
       height={height}
       priority
-      className={cn("h-auto w-auto select-none", className)}
       style={{ width: `${width}px` }}
     />
   );
-  if (!withLink) return img;
+
+  if (!withLink) {
+    return img;
+  }
+
   return (
     <Link
+      className="focus-visible:ring-primary inline-flex items-center rounded-md focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
       href={href}
       aria-label="Esna Care — home"
-      className="inline-flex items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2"
     >
       {img}
     </Link>
   );
-}
+};
+
+export default Logo;

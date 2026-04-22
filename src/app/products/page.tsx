@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/sections/shared/PageHero";
-import { ProductCategoriesDetail } from "@/sections/products/ProductCategoriesDetail";
-import { TherapeuticAreasGrid } from "@/sections/home/TherapeuticAreasGrid";
-import { MedicalDevices } from "@/sections/products/MedicalDevices";
-import { CatalogCta } from "@/sections/home/CatalogCta";
+import PageHero from "@/sections/shared/PageHero";
+import ProductCategoriesDetail from "@/sections/products/ProductCategoriesDetail";
+import TherapeuticAreasGrid from "@/sections/home/TherapeuticAreasGrid";
+import MedicalDevices from "@/sections/products/MedicalDevices";
+import CatalogCta from "@/sections/home/CatalogCta";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/products" },
 };
 
-export default function ProductsPage() {
+const ProductsPage: React.FC = () => {
   return (
     <>
       <PageHero
@@ -27,4 +27,6 @@ export default function ProductsPage() {
       <CatalogCta />
     </>
   );
-}
+};
+
+export default ProductsPage;

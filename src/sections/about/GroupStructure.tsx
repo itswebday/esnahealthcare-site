@@ -1,107 +1,142 @@
 import { Building4, ShieldTick } from "iconsax-react";
-import { Container } from "@/components/ui/Container";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Reveal } from "@/components/ui/Reveal";
+import Container from "@/components/ui/Container";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { cn } from "@/lib/cn";
 import { SITE } from "@/lib/site";
 
-export function GroupStructure() {
+const GroupStructure: React.FC = () => {
   return (
-    <section className="bg-[var(--color-surface-1)] py-20 sm:py-24 lg:py-28">
+    <section className="bg-surface-1 relative overflow-hidden rounded-[48px] py-20 sm:py-24 lg:py-28">
       <Container size="xl">
+        <GroupStructureBackdrop />
+
         <Reveal direction="up">
           <SectionHeader
-            eyebrow="Group structure"
-            title="Two entities, one operation."
             description="A clean separation between the holding company and the operational entity — designed so regulatory responsibility and commercial relationships are always unambiguous."
+            eyebrow="Group structure"
             size="md"
+            title="Two entities, one operation."
           />
         </Reveal>
 
-        <div className="mt-14 grid gap-4 lg:grid-cols-2">
-          <Reveal direction="up" delay={0.08}>
-            <div className="relative h-full overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-white p-8">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[var(--color-accent-subtle)] opacity-80 blur-2xl"
-              />
-              <div className="relative">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-accent-subtle)] text-[var(--color-accent)]">
-                  <Building4 size={22} variant="Linear" />
-                </div>
-                <div className="mt-6 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">
-                  Holding
-                </div>
-                <h3 className="mt-2 text-[1.5rem] font-semibold tracking-[-0.018em] text-[var(--color-foreground)]">
-                  {SITE.legalNameHolding}
-                </h3>
-                <p className="mt-3 text-[1rem] leading-relaxed text-[var(--color-muted)]">
-                  The parent entity. Holds the group&rsquo;s ownership structure and
-                  overarching corporate governance.
-                </p>
-                <dl className="mt-6 space-y-3 border-t border-[var(--color-border)] pt-5 text-sm">
-                  <div className="flex items-center justify-between">
-                    <dt className="text-[var(--color-subtle)]">KVK number</dt>
-                    <dd className="font-mono font-medium text-[var(--color-foreground)]">
-                      {SITE.registrations.kvkHealthcare}
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
+        <div className="relative mt-14 grid gap-5 lg:grid-cols-2">
+          <Reveal delay={0.08} direction="up">
+            <EntityCard
+              body="The parent entity. Holds the group’s ownership structure and overarching corporate governance."
+              icon={<Building4 size={22} variant="Bold" />}
+              label="Holding"
+              rows={[
+                {
+                  label: "KVK number",
+                  value: SITE.registrations.kvkHealthcare,
+                },
+              ]}
+              title={SITE.legalNameHolding}
+              tone="accent"
+            />
           </Reveal>
 
-          <Reveal direction="up" delay={0.16}>
-            <div className="relative h-full overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-primary-subtle-strong)] bg-[var(--color-primary-subtle)] p-8">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[var(--color-primary)] opacity-20 blur-2xl"
-              />
-              <div className="relative">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-[var(--radius-md)] bg-white text-[var(--color-primary-dark)]">
-                  <ShieldTick size={22} variant="Linear" />
-                </div>
-                <div className="mt-6 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">
-                  Operational · licence holder
-                </div>
-                <h3 className="mt-2 text-[1.5rem] font-semibold tracking-[-0.018em] text-[var(--color-foreground)]">
-                  {SITE.legalNameOperational}
-                </h3>
-                <p className="mt-3 text-[1rem] leading-relaxed text-[var(--color-muted)]">
-                  The operational entity. Holds the WDA and GDP certification, signs
-                  all customer and supplier contracts, and handles day-to-day pharma
-                  trading.
-                </p>
-                <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-[var(--color-primary-subtle-strong)] pt-5 text-sm">
-                  <div>
-                    <dt className="text-[var(--color-subtle)]">KVK number</dt>
-                    <dd className="mt-1 font-mono font-medium text-[var(--color-foreground)]">
-                      {SITE.registrations.kvkCare}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-[var(--color-subtle)]">VAT</dt>
-                    <dd className="mt-1 font-mono font-medium text-[var(--color-foreground)]">
-                      {SITE.registrations.vat}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-[var(--color-subtle)]">WDA No.</dt>
-                    <dd className="mt-1 font-mono font-medium text-[var(--color-foreground)]">
-                      {SITE.licences.wda.number}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-[var(--color-subtle)]">GDP No.</dt>
-                    <dd className="mt-1 font-mono font-medium text-[var(--color-foreground)]">
-                      {SITE.licences.gdp.number}
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
+          <Reveal delay={0.16} direction="up">
+            <EntityCard
+              body="The operational entity. Holds the WDA and GDP certification, signs all customer and supplier contracts, and handles day-to-day pharma trading."
+              icon={<ShieldTick size={22} variant="Bold" />}
+              label="Operational · licence holder"
+              rows={[
+                { label: "KVK number", value: SITE.registrations.kvkCare },
+                { label: "VAT", value: SITE.registrations.vat },
+                { label: "WDA No.", value: SITE.licences.wda.number },
+                { label: "GDP No.", value: SITE.licences.gdp.number },
+              ]}
+              title={SITE.legalNameOperational}
+              tone="primary"
+            />
           </Reveal>
         </div>
       </Container>
     </section>
   );
-}
+};
+
+type EntityCardProps = {
+  body: string;
+  icon: React.ReactNode;
+  label: string;
+  rows: { label: string; value: string }[];
+  title: string;
+  tone: "primary" | "accent";
+};
+
+const EntityCard: React.FC<EntityCardProps> = ({
+  body,
+  icon,
+  label,
+  rows,
+  title,
+  tone,
+}) => {
+  const cornerClass =
+    tone === "primary"
+      ? "bg-linear-to-br from-primary to-primary-dark"
+      : "bg-linear-to-br from-accent to-accent-dark";
+  const labelColor = tone === "primary" ? "text-primary-dark" : "text-accent";
+
+  return (
+    <div className="group duration-slow border-border shadow-hint hover:border-primary/40 hover:shadow-primary/10 relative h-full overflow-hidden rounded-3xl border bg-white p-8 transition-all hover:shadow-lg">
+      <span
+        aria-hidden="true"
+        className={cn(
+          "pointer-events-none absolute top-0 right-0",
+          "h-24 w-24 rounded-bl-3xl",
+          cornerClass,
+        )}
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute top-6 right-6 text-white"
+      >
+        {icon}
+      </span>
+
+      <div className="relative mt-16">
+        <div
+          className={cn(
+            "font-mono text-[10px] font-semibold",
+            "tracking-[0.18em] uppercase",
+            labelColor,
+          )}
+        >
+          {label}
+        </div>
+        <h3 className="text-foreground mt-2 text-[22px] leading-tight font-semibold tracking-tight">
+          {title}
+        </h3>
+        <p className="text-muted mt-3 text-[15px] leading-relaxed">{body}</p>
+        <dl className="border-border mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t pt-5 text-[14px]">
+          {rows.map((row) => (
+            <div key={row.label}>
+              <dt className="text-subtle">{row.label}</dt>
+              <dd className="text-foreground mt-1 font-mono font-medium">
+                {row.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  );
+};
+
+const GroupStructureBackdrop: React.FC = () => {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
+      <div className="bg-primary/10 absolute top-[20%] left-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
+      <div className="bg-accent/10 absolute right-[-8%] bottom-[10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
+    </div>
+  );
+};
+
+export default GroupStructure;

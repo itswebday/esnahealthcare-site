@@ -12,7 +12,7 @@ type MarqueeProps = {
   separator?: React.ReactNode;
 };
 
-export function Marquee({
+const Marquee: React.FC<MarqueeProps> = ({
   items,
   speed = 40,
   direction = "left",
@@ -21,7 +21,7 @@ export function Marquee({
   itemClassName,
   fade = true,
   separator,
-}: MarqueeProps) {
+}) => {
   // Render each item twice so the loop tiles seamlessly.
   const doubled = [...items, ...items];
   return (
@@ -66,4 +66,6 @@ export function Marquee({
       `}</style>
     </div>
   );
-}
+};
+
+export default Marquee;

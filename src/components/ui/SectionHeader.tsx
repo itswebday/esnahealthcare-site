@@ -1,36 +1,36 @@
 import { cn } from "@/lib/cn";
 
 type SectionHeaderProps = {
-  eyebrow?: string;
-  title: React.ReactNode;
-  description?: React.ReactNode;
   align?: "left" | "center";
-  tone?: "light" | "invert";
-  size?: "md" | "lg" | "xl";
   className?: string;
+  description?: React.ReactNode;
+  eyebrow?: string;
+  size?: "md" | "lg" | "xl";
+  title: React.ReactNode;
+  tone?: "light" | "invert";
 };
 
 const TITLE_SIZE = {
-  md: "text-[2rem] sm:text-[2.4rem] lg:text-[2.75rem]",
-  lg: "text-[2.4rem] sm:text-[3rem] lg:text-[3.5rem]",
-  xl: "text-[2.75rem] sm:text-[3.5rem] lg:text-[4.25rem]",
+  md: "text-[32px] sm:text-[38px] lg:text-[42px]",
+  lg: "text-[32px] sm:text-[42px] lg:text-[48px]",
+  xl: "text-[40px] sm:text-[52px] lg:text-[60px]",
 };
 
-export function SectionHeader({
-  eyebrow,
-  title,
-  description,
+const SectionHeader: React.FC<SectionHeaderProps> = ({
   align = "left",
-  tone = "light",
-  size = "lg",
   className,
-}: SectionHeaderProps) {
+  description,
+  eyebrow,
+  size = "lg",
+  title,
+  tone = "light",
+}) => {
   const isInvert = tone === "invert";
   return (
     <div
       className={cn(
         "flex flex-col gap-5",
-        align === "center" && "items-center text-center mx-auto max-w-3xl",
+        align === "center" && "mx-auto max-w-3xl items-center text-center",
         align === "left" && "max-w-3xl",
         className,
       )}
@@ -38,16 +38,16 @@ export function SectionHeader({
       {eyebrow && (
         <span
           className={cn(
-            "inline-flex items-center gap-2 text-[0.78rem] font-medium uppercase tracking-[0.14em]",
+            "inline-flex w-fit items-center gap-2 rounded-xl px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase",
             isInvert
-              ? "text-[var(--color-on-invert-muted)]"
-              : "text-[var(--color-primary-dark)]",
+              ? "bg-white/10 text-white ring-1 ring-white/20 backdrop-blur"
+              : "border-primary/40 bg-primary-subtle text-primary-dark border",
           )}
         >
           <span
             className={cn(
-              "h-px w-6",
-              isInvert ? "bg-white/30" : "bg-[var(--color-primary)]",
+              "h-1.5 w-1.5 rounded-full",
+              isInvert ? "bg-primary" : "bg-primary",
             )}
           />
           {eyebrow}
@@ -55,9 +55,9 @@ export function SectionHeader({
       )}
       <h2
         className={cn(
-          "font-semibold leading-[var(--leading-heading)] tracking-[var(--tracking-display)]",
+          "tracking-display leading-[1.1] font-semibold",
           TITLE_SIZE[size],
-          isInvert ? "text-white" : "text-[var(--color-foreground)]",
+          isInvert ? "text-white" : "text-foreground",
         )}
       >
         {title}
@@ -65,11 +65,9 @@ export function SectionHeader({
       {description && (
         <p
           className={cn(
-            "text-lg leading-relaxed max-w-2xl",
+            "max-w-2xl text-[16px] leading-relaxed sm:text-[18px]",
             align === "center" && "mx-auto",
-            isInvert
-              ? "text-[var(--color-on-invert-muted)]"
-              : "text-[var(--color-muted)]",
+            isInvert ? "text-on-invert-muted" : "text-muted",
           )}
         >
           {description}
@@ -77,4 +75,6 @@ export function SectionHeader({
       )}
     </div>
   );
-}
+};
+
+export default SectionHeader;

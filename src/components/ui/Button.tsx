@@ -1,64 +1,80 @@
 import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/cn";
 import { ArrowRight } from "iconsax-react";
+import { cn } from "@/lib/cn";
 
 /*
- * Button design ported from i-sec.com:
- *  - Generous rounded-rectangle corners (28-32px), readable as a soft pill.
- *  - 2px solid border on every variant. Solid CTAs use a same-color border so
- *    they read as filled; outline variants use a contrasting 2px border.
- *  - Roomy vertical padding so the click target feels institutional, not snug.
- *  - Link variant is a pure text-with-thick-underline pattern, matching
- *    I-SEC's "View our locations"-style secondary action.
- */
+  V5 "Corner Frame" button:
+    - rounded-xl (soft, not pill)
+    - 2px solid border on every non-link variant
+    - Two L-bracket decorations (top-left + bottom-right) that grow on hover
+    - Arrow slides right on hover when withArrow is set
+    - Link variant stays as pure inline text with thick underline
+*/
 
 const button = cva(
-  "inline-flex items-center justify-center gap-2 font-medium whitespace-nowrap leading-none transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-background)] disabled:opacity-50 disabled:pointer-events-none",
+  "group relative inline-flex items-center justify-center gap-2 font-medium whitespace-nowrap leading-none transition-all duration-normal ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
         primary:
-          "rounded-[var(--radius-2xl)] border-2 border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)] hover:border-[var(--color-primary-hover)] hover:bg-[var(--color-primary-hover)]",
+          "rounded-xl border-2 border-primary bg-primary text-primary-foreground hover:border-primary-hover hover:bg-primary-hover",
         secondary:
-          "rounded-[var(--radius-2xl)] border-2 border-[var(--color-foreground)] bg-[var(--color-foreground)] text-white hover:border-[#1b2439] hover:bg-[#1b2439]",
+          "rounded-xl border-2 border-foreground bg-foreground text-white hover:border-[#1b2439] hover:bg-[#1b2439]",
         accent:
-          "rounded-[var(--radius-2xl)] border-2 border-[var(--color-accent)] bg-[var(--color-accent)] text-white hover:border-[var(--color-accent-hover)] hover:bg-[var(--color-accent-hover)]",
+          "rounded-xl border-2 border-accent bg-accent text-white hover:border-accent-hover hover:bg-accent-hover",
         outline:
-          "rounded-[var(--radius-2xl)] border-2 border-[var(--color-foreground)] bg-white text-[var(--color-foreground)] hover:bg-[var(--color-surface-1)]",
+          "rounded-xl border-2 border-foreground bg-white text-foreground hover:bg-foreground hover:text-white",
         ghost:
-          "rounded-[var(--radius-2xl)] border-2 border-transparent text-[var(--color-foreground)] hover:bg-[var(--color-surface-1)]",
+          "rounded-xl border-2 border-transparent text-foreground hover:bg-surface-1",
         invert:
-          "rounded-[var(--radius-2xl)] border-2 border-white bg-white text-[var(--color-foreground)] hover:bg-[var(--color-surface-1)] hover:border-[var(--color-surface-1)]",
+          "rounded-xl border-2 border-white bg-white text-foreground hover:bg-surface-1 hover:border-surface-1",
         "invert-outline":
-          "rounded-[var(--radius-2xl)] border-2 border-white bg-transparent text-white hover:bg-white hover:text-[var(--color-foreground)]",
+          "rounded-xl border-2 border-white bg-transparent text-white hover:bg-white hover:text-foreground",
         "invert-ghost":
-          "rounded-[var(--radius-2xl)] border-2 border-white/30 bg-transparent text-white backdrop-blur hover:border-white/60 hover:bg-white/10",
-        link:
-          "border-0 px-0 text-[var(--color-foreground)] underline decoration-2 underline-offset-[6px] hover:text-[var(--color-accent)] hover:decoration-[var(--color-accent)]",
+          "rounded-xl border-2 border-white/30 bg-transparent text-white backdrop-blur hover:border-white/60 hover:bg-white/10",
+        link: "border-0 px-0 text-foreground underline decoration-2 underline-offset-[6px] hover:text-accent hover:decoration-accent",
       },
       size: {
-        sm: "h-10 px-5 text-[0.88rem]",
-        md: "h-12 px-6 text-[0.92rem]",
-        lg: "h-14 px-8 text-[0.95rem]",
-        xl: "h-16 px-10 text-[1rem]",
+        sm: "h-10 px-5 text-[14px]",
+        md: "h-12 px-6 text-[15px]",
+        lg: "h-14 px-8 text-[15px]",
+        xl: "h-16 px-10 text-[16px]",
       },
     },
     compoundVariants: [
-      // Link variant ignores size padding/height — it's pure inline text.
-      { variant: "link", size: "sm", class: "h-auto px-0" },
-      { variant: "link", size: "md", class: "h-auto px-0" },
-      { variant: "link", size: "lg", class: "h-auto px-0" },
-      { variant: "link", size: "xl", class: "h-auto px-0" },
+      {
+        variant: "link",
+        size: "sm",
+        class: "h-auto px-0",
+      },
+      {
+        variant: "link",
+        size: "md",
+        class: "h-auto px-0",
+      },
+      {
+        variant: "link",
+        size: "lg",
+        class: "h-auto px-0",
+      },
+      {
+        variant: "link",
+        size: "xl",
+        class: "h-auto px-0",
+      },
     ],
-    defaultVariants: { variant: "primary", size: "md" },
+    defaultVariants: {
+      variant: "primary",
+      size: "md",
+    },
   },
 );
 
 type ButtonBaseProps = VariantProps<typeof button> & {
+  children: React.ReactNode;
   className?: string;
   withArrow?: boolean;
-  children: React.ReactNode;
 };
 
 type ButtonAsButton = ButtonBaseProps &
@@ -73,37 +89,55 @@ type ButtonAsLink = ButtonBaseProps &
 
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
-const ARROW_SIZE_MAP = { sm: 14, md: 16, lg: 18, xl: 20 } as const;
+const ARROW_SIZE_MAP = {
+  sm: 14,
+  md: 16,
+  lg: 18,
+  xl: 20,
+} as const;
 
-export function Button(props: ButtonProps) {
+const Button: React.FC<ButtonProps> = (props) => {
   const { variant, size, className, withArrow, children, ...rest } = props;
   const classes = cn(button({ variant, size }), className);
   const arrowSize = ARROW_SIZE_MAP[size ?? "md"];
-  const isLink = variant === "link";
+  const isLinkVariant = variant === "link";
 
-  /*
-   * Content layout: render children directly as flex items so any inline
-   * leading icon (display:block from preflight) lines up beside the text
-   * instead of stacking above it. The button itself carries `leading-none`
-   * + `gap-2` from the cva base, so children inherit and space correctly.
-   */
-  const content = withArrow ? (
+  const content = (
     <>
-      {children}
-      <ArrowRight
-        size={arrowSize}
-        variant="Linear"
-        className="shrink-0 transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out)] group-hover:translate-x-0.5"
-      />
+      {/* L-bracket decorations (skip on link variant) */}
+      {!isLinkVariant && (
+        <>
+          <span
+            aria-hidden="true"
+            className="duration-normal pointer-events-none absolute top-1.5 left-1.5 h-2 w-2 border-t-2 border-l-2 border-current opacity-90 transition-all group-hover:h-2.5 group-hover:w-2.5"
+          />
+          <span
+            aria-hidden="true"
+            className="duration-normal pointer-events-none absolute right-1.5 bottom-1.5 h-2 w-2 border-r-2 border-b-2 border-current opacity-90 transition-all group-hover:h-2.5 group-hover:w-2.5"
+          />
+        </>
+      )}
+
+      {/* Label */}
+      <span className="relative inline-flex items-center gap-1.5">
+        {children}
+      </span>
+
+      {/* Trailing arrow */}
+      {withArrow && !isLinkVariant && (
+        <ArrowRight
+          className="duration-normal relative shrink-0 transition-transform ease-out group-hover:translate-x-0.5"
+          size={arrowSize}
+          variant="Linear"
+        />
+      )}
     </>
-  ) : (
-    <>{children}</>
   );
 
   if ("href" in props && props.href) {
     return (
       <Link
-        className={cn("group", classes)}
+        className={classes}
         {...(rest as React.ComponentProps<typeof Link>)}
       >
         {content}
@@ -113,10 +147,12 @@ export function Button(props: ButtonProps) {
 
   return (
     <button
-      className={cn("group", classes)}
+      className={classes}
       {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {content}
     </button>
   );
-}
+};
+
+export default Button;

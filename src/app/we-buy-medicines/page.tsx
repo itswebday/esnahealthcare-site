@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/sections/shared/PageHero";
-import { HowItWorks } from "@/sections/we-buy/HowItWorks";
-import { WhatWereLookingFor } from "@/sections/we-buy/WhatWereLookingFor";
-import { OfferForm } from "@/sections/we-buy/OfferForm";
+import PageHero from "@/sections/shared/PageHero";
+import HowItWorks from "@/sections/we-buy/HowItWorks";
+import WhatWereLookingFor from "@/sections/we-buy/WhatWereLookingFor";
+import OfferForm from "@/sections/we-buy/OfferForm";
 
 export const metadata: Metadata = {
   title: "We Buy Medicines",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/we-buy-medicines" },
 };
 
-export default function WeBuyMedicinesPage() {
+const WeBuyMedicinesPage: React.FC = () => {
   return (
     <>
       <PageHero
@@ -28,4 +28,6 @@ export default function WeBuyMedicinesPage() {
       <OfferForm />
     </>
   );
-}
+};
+
+export default WeBuyMedicinesPage;

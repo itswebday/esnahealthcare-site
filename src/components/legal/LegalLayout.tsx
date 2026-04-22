@@ -1,4 +1,4 @@
-import { Container } from "@/components/ui/Container";
+import Container from "@/components/ui/Container";
 
 type LegalLayoutProps = {
   title: string;
@@ -7,29 +7,29 @@ type LegalLayoutProps = {
   children: React.ReactNode;
 };
 
-export function LegalLayout({
+const LegalLayout: React.FC<LegalLayoutProps> = ({
   title,
   lastUpdated,
   draftNote,
   children,
-}: LegalLayoutProps) {
+}) => {
   return (
     <section className="pt-12 pb-24 sm:pt-16 sm:pb-28 lg:pt-20 lg:pb-32">
       <Container size="md">
-        <header className="border-b border-[var(--color-border)] pb-8">
-          <span className="inline-flex items-center gap-2 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">
-            <span className="h-px w-6 bg-[var(--color-primary)]" />
+        <header className="border-border border-b pb-8">
+          <span className="text-primary-dark inline-flex items-center gap-2 text-[12.5px] font-medium tracking-[0.14em] uppercase">
+            <span className="bg-primary h-px w-6" />
             Legal
           </span>
-          <h1 className="mt-4 text-[2.5rem] font-semibold leading-[1.08] tracking-[var(--tracking-display)] text-[var(--color-foreground)] sm:text-[3rem]">
+          <h1 className="text-foreground mt-4 text-[40px] leading-[1.08] font-semibold tracking-[var(--tracking-display)] sm:text-[48px]">
             {title}
           </h1>
-          <p className="mt-3 text-sm text-[var(--color-subtle)]">
+          <p className="text-subtle mt-3 text-[14px]">
             Last updated: <span className="font-mono">{lastUpdated}</span>
           </p>
         </header>
         {draftNote && (
-          <div className="mt-8 rounded-[var(--radius-md)] border border-dashed border-[var(--color-border-strong)] bg-[var(--color-surface-2)]/60 p-4 font-mono text-[0.82rem] leading-relaxed text-[var(--color-subtle)]">
+          <div className="border-border-strong bg-surface-2/60 text-subtle mt-8 rounded-md border border-dashed p-4 font-mono text-[13px] leading-relaxed">
             {"{"} {draftNote} {"}"}
           </div>
         )}
@@ -37,4 +37,6 @@ export function LegalLayout({
       </Container>
     </section>
   );
-}
+};
+
+export default LegalLayout;

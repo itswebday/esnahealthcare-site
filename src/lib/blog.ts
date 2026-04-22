@@ -19,7 +19,8 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "gdp-in-practice-what-a-wholesaler-does-every-day",
-    title: "GDP in practice: what a licensed wholesaler actually does every day",
+    title:
+      "GDP in practice: what a licensed wholesaler actually does every day",
     summary:
       "Good Distribution Practice isn't a binder on a shelf — it's a daily operating discipline. A plain-language tour of what it looks like inside a licensed EU wholesaler.",
     category: "Compliance",
@@ -204,15 +205,19 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 ];
 
-export function getPostBySlug(slug: string): BlogPost | undefined {
+export const getPostBySlug = (slug: string): BlogPost | undefined => {
   return BLOG_POSTS.find((p) => p.slug === slug);
-}
+};
 
-export function getAdjacentPosts(slug: string) {
+export const getAdjacentPosts = (slug: string) => {
   const idx = BLOG_POSTS.findIndex((p) => p.slug === slug);
-  if (idx === -1) return { previous: undefined, next: undefined };
+
+  if (idx === -1) {
+    return { previous: undefined, next: undefined };
+  }
+
   return {
     previous: BLOG_POSTS[idx + 1],
     next: BLOG_POSTS[idx - 1],
   };
-}
+};

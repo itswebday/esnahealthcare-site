@@ -1,46 +1,46 @@
+import { ArrowRight, ShieldTick, Verify } from "iconsax-react";
 import Link from "next/link";
-import { ShieldTick, Verify, ArrowRight } from "iconsax-react";
 import { SITE } from "@/lib/site";
-import { Container } from "./Container";
+import Container from "./Container";
 
-export function LicenceStrip({ tone = "light" }: { tone?: "light" | "invert" }) {
+type LicenceStripProps = { tone?: "light" | "invert" };
+
+const LicenceStrip: React.FC<LicenceStripProps> = ({ tone = "light" }) => {
   const isInvert = tone === "invert";
+
   return (
     <div
       className={
         isInvert
-          ? "border-y border-[var(--color-border-invert)] bg-[var(--color-surface-invert)] text-[var(--color-on-invert)]"
-          : "border-y border-[var(--color-border)] bg-[var(--color-surface-1)] text-[var(--color-foreground)]"
+          ? "border-border-invert bg-surface-invert text-on-invert border-y"
+          : "border-border bg-surface-1 text-foreground border-y"
       }
     >
       <Container size="xl">
         <div className="flex flex-col items-start gap-4 py-5 md:flex-row md:items-center md:justify-between md:gap-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 sm:gap-y-3">
+            {/* WDA licence link */}
             <Link
-              href={SITE.licences.wda.pdf}
-              target="_blank"
-              rel="noopener noreferrer"
               className={
                 isInvert
-                  ? "group inline-flex items-center gap-3 text-sm transition-colors hover:text-white"
-                  : "group inline-flex items-center gap-3 text-sm transition-colors hover:text-[var(--color-primary-dark)]"
+                  ? "group inline-flex items-center gap-3 text-[14px] transition-colors hover:text-white"
+                  : "group hover:text-primary-dark inline-flex items-center gap-3 text-[14px] transition-colors"
               }
+              href={SITE.licences.wda.pdf}
+              rel="noopener noreferrer"
+              target="_blank"
             >
               <ShieldTick
+                className={isInvert ? "text-on-invert-muted" : "text-primary"}
                 size={20}
                 variant="Linear"
-                className={
-                  isInvert
-                    ? "text-[var(--color-on-invert-muted)]"
-                    : "text-[var(--color-primary)]"
-                }
               />
               <span>
                 <span
                   className={
                     isInvert
-                      ? "mr-1.5 text-[var(--color-on-invert-muted)]"
-                      : "mr-1.5 text-[var(--color-subtle)]"
+                      ? "text-on-invert-muted mr-1.5"
+                      : "text-subtle mr-1.5"
                   }
                 >
                   WDA Licence
@@ -50,43 +50,41 @@ export function LicenceStrip({ tone = "light" }: { tone?: "light" | "invert" }) 
                 </span>
               </span>
               <ArrowRight
+                className="duration-normal opacity-0 transition-all ease-[var(--ease-out)] group-hover:opacity-100"
                 size={14}
                 variant="Linear"
-                className="opacity-0 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)] group-hover:opacity-100"
               />
             </Link>
             <span
               className={
                 isInvert
-                  ? "hidden h-4 w-px bg-[var(--color-border-invert)] sm:inline"
-                  : "hidden h-4 w-px bg-[var(--color-border)] sm:inline"
+                  ? "bg-border-invert hidden h-4 w-px sm:inline"
+                  : "bg-border hidden h-4 w-px sm:inline"
               }
             />
+
+            {/* GDP licence link */}
             <Link
-              href={SITE.licences.gdp.pdf}
-              target="_blank"
-              rel="noopener noreferrer"
               className={
                 isInvert
-                  ? "group inline-flex items-center gap-3 text-sm transition-colors hover:text-white"
-                  : "group inline-flex items-center gap-3 text-sm transition-colors hover:text-[var(--color-primary-dark)]"
+                  ? "group inline-flex items-center gap-3 text-[14px] transition-colors hover:text-white"
+                  : "group hover:text-primary-dark inline-flex items-center gap-3 text-[14px] transition-colors"
               }
+              href={SITE.licences.gdp.pdf}
+              rel="noopener noreferrer"
+              target="_blank"
             >
               <Verify
+                className={isInvert ? "text-on-invert-muted" : "text-primary"}
                 size={20}
                 variant="Linear"
-                className={
-                  isInvert
-                    ? "text-[var(--color-on-invert-muted)]"
-                    : "text-[var(--color-primary)]"
-                }
               />
               <span>
                 <span
                   className={
                     isInvert
-                      ? "mr-1.5 text-[var(--color-on-invert-muted)]"
-                      : "mr-1.5 text-[var(--color-subtle)]"
+                      ? "text-on-invert-muted mr-1.5"
+                      : "text-subtle mr-1.5"
                   }
                 >
                   GDP Licence
@@ -96,29 +94,33 @@ export function LicenceStrip({ tone = "light" }: { tone?: "light" | "invert" }) 
                 </span>
               </span>
               <ArrowRight
+                className="duration-normal opacity-0 transition-all ease-[var(--ease-out)] group-hover:opacity-100"
                 size={14}
                 variant="Linear"
-                className="opacity-0 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out)] group-hover:opacity-100"
               />
             </Link>
           </div>
+
+          {/* View-all link */}
           <Link
-            href="/compliance"
             className={
               isInvert
-                ? "group inline-flex items-center gap-2 text-sm font-medium text-white transition-colors"
-                : "group inline-flex items-center gap-2 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:text-[var(--color-primary-dark)]"
+                ? "group inline-flex items-center gap-2 text-[14px] font-medium text-white transition-colors"
+                : "group text-foreground hover:text-primary-dark inline-flex items-center gap-2 text-[14px] font-medium transition-colors"
             }
+            href="/compliance"
           >
             View all compliance documents
             <ArrowRight
+              className="duration-normal transition-transform ease-[var(--ease-out)] group-hover:translate-x-0.5"
               size={14}
               variant="Linear"
-              className="transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out)] group-hover:translate-x-0.5"
             />
           </Link>
         </div>
       </Container>
     </div>
   );
-}
+};
+
+export default LicenceStrip;

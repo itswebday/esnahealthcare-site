@@ -1,82 +1,94 @@
 import {
   Box,
-  Truck,
   CloudSnow,
-  ShieldTick,
   Location,
-  TickCircle,
   Scan,
+  ShieldTick,
+  TickCircle,
+  Truck,
 } from "iconsax-react";
-import { Container } from "@/components/ui/Container";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Reveal } from "@/components/ui/Reveal";
+import Container from "@/components/ui/Container";
+import Reveal from "@/components/ui/Reveal";
 
 /*
  * Capability bento. Each tile is a different visual treatment so the section
- * isn't a stack of identical cards. The brief's "From Our Supply Chain" photo
- * gallery is deferred until production photography arrives (brief §9).
+ * isn't a stack of identical cards. Now wrapped in the V5 backdrop (corner
+ * brackets + floating outlined boxes + soft radial glows).
  */
 
-export function SupplyChainGallery() {
+const SupplyChainGallery: React.FC = () => {
   return (
-    <section className="py-24 sm:py-28 lg:py-32">
-      <Container size="xl">
+    <section className="relative overflow-hidden pt-24 pb-14 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20">
+      <GalleryBackdrop />
+
+      <Container className="relative" size="xl">
         <Reveal direction="up">
-          <SectionHeader
-            eyebrow="Inside the operation"
-            title="Where compliance meets logistics."
-            description="The documented, monitored, and qualified facilities that sit behind every shipment — from intake to dispatch to export."
-            size="lg"
-          />
+          <div className="flex max-w-3xl flex-col gap-5">
+            <span className="border-primary/40 bg-primary-subtle text-primary-dark inline-flex w-fit items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
+              <span className="bg-primary h-1.5 w-1.5 rounded-full" />
+              Inside the operation
+            </span>
+            <h2 className="tracking-display text-foreground text-[32px] leading-[1.1] font-semibold sm:text-[42px] lg:text-[48px]">
+              Where compliance meets logistics.
+            </h2>
+            <p className="text-muted max-w-2xl text-[16px] leading-relaxed">
+              The documented, monitored, and qualified facilities that sit
+              behind every shipment — from intake to dispatch to export.
+            </p>
+          </div>
         </Reveal>
 
-        <Reveal direction="up" delay={0.1}>
+        <Reveal delay={0.1} direction="up">
           <div className="mt-14 grid gap-4 lg:grid-cols-6 lg:grid-rows-2">
-            {/* Large hero tile — warehousing */}
             <WarehouseTile />
-            {/* Cold-chain */}
             <ColdChainTile />
-            {/* Export */}
             <ExportTile />
-            {/* Ambient */}
             <AmbientTile />
-            {/* Office */}
             <OfficeTile />
           </div>
         </Reveal>
       </Container>
     </section>
   );
-}
+};
 
-function WarehouseTile() {
+const GalleryBackdrop: React.FC = () => {
   return (
-    <div className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-[var(--radius-xl)] bg-[var(--color-surface-invert)] p-8 text-[var(--color-on-invert)] lg:col-span-6 lg:row-span-2 lg:p-10">
-      {/* Ambient glows */}
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
+      <div className="bg-primary/10 absolute top-[10%] left-[-8%] h-[480px] w-[480px] rounded-full blur-[120px]" />
+      <div className="bg-accent/10 absolute right-[-8%] bottom-[10%] h-[420px] w-[420px] rounded-full blur-[120px]" />
+    </div>
+  );
+};
+
+const WarehouseTile: React.FC = () => {
+  return (
+    <div className="group bg-surface-invert text-on-invert relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-3xl p-8 lg:col-span-6 lg:row-span-2 lg:p-10">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-20 -top-24 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,139,53,0.38)_0%,transparent_60%)] blur-3xl"
+        className="bg-primary/30 pointer-events-none absolute -top-24 -left-20 h-[360px] w-[360px] rounded-full blur-3xl"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-28 -bottom-28 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_at_center,rgba(13,79,140,0.42)_0%,transparent_60%)] blur-3xl"
+        className="bg-accent/30 pointer-events-none absolute -right-28 -bottom-28 h-[400px] w-[400px] rounded-full blur-3xl"
       />
 
-      {/* Europe-net SVG */}
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-0 h-full w-2/3 opacity-[0.35]"
-        viewBox="0 0 600 420"
+        className="pointer-events-none absolute top-0 right-0 h-full w-2/3 opacity-[0.35]"
         preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 600 420"
       >
         <defs>
-          <radialGradient id="node-grad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#9BD33C" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#9BD33C" stopOpacity="0" />
+          <radialGradient cx="50%" cy="50%" id="node-grad" r="50%">
+            <stop offset="0%" stopColor="#2e8b35" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#2e8b35" stopOpacity="0" />
           </radialGradient>
         </defs>
         {[
-          // [x, y, size, dim]
           [100, 140, 4, 0.6],
           [180, 100, 6, 1],
           [220, 170, 3, 0.5],
@@ -98,12 +110,11 @@ function WarehouseTile() {
           [440, 300, 3, 0.4],
         ].map(([x, y, r, dim], i) => (
           <g key={i}>
-            <circle cx={x} cy={y} r={r} fill="#9BD33C" fillOpacity={dim} />
-            <circle cx={x} cy={y} r={Number(r) + 6} fill="url(#node-grad)" />
+            <circle cx={x} cy={y} fill="#2e8b35" fillOpacity={dim} r={r} />
+            <circle cx={x} cy={y} fill="url(#node-grad)" r={Number(r) + 6} />
           </g>
         ))}
-        {/* Connecting lines */}
-        <g stroke="#9BD33C" strokeOpacity="0.18" strokeWidth="0.75" fill="none">
+        <g fill="none" stroke="#2e8b35" strokeOpacity="0.18" strokeWidth="0.75">
           <path d="M 180 100 L 260 130 L 340 110 L 420 200 L 500 170" />
           <path d="M 100 140 L 220 170 L 300 180 L 380 160 L 460 140" />
           <path d="M 180 100 L 200 280 L 360 290 L 440 300" />
@@ -111,33 +122,32 @@ function WarehouseTile() {
         </g>
       </svg>
 
-      {/* Content */}
       <div className="relative z-10 flex items-start justify-between">
-        <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-white/10 text-white backdrop-blur">
-          <Box size={22} variant="Linear" />
+        <div className="bg-primary shadow-primary/30 inline-flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-lg">
+          <Box size={26} variant="Bold" />
         </div>
-        <span className="inline-flex h-7 items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 font-mono text-[0.72rem] uppercase leading-none tracking-[0.14em] text-white/80 backdrop-blur">
+        <span className="inline-flex h-7 items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-3 font-mono text-[11px] leading-none tracking-[0.14em] text-white/80 uppercase backdrop-blur">
           <span className="relative flex h-1.5 w-1.5 shrink-0">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-primary)] opacity-70" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]" />
+            <span className="bg-primary absolute inline-flex h-full w-full animate-ping rounded-full opacity-70" />
+            <span className="bg-primary relative inline-flex h-1.5 w-1.5 rounded-full" />
           </span>
           GDP · Qualified
         </span>
       </div>
 
       <div className="relative z-10 max-w-lg">
-        <div className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-on-invert-muted)]">
+        <div className="text-on-invert-muted font-mono text-[11px] font-semibold tracking-[0.18em] uppercase">
           Warehousing partner · Nieuw-Vennep, NL
         </div>
-        <h3 className="mt-3 text-[1.75rem] font-semibold tracking-[-0.018em] text-white sm:text-[2rem]">
+        <h3 className="mt-3 text-[28px] leading-tight font-semibold tracking-tight text-white sm:text-[32px]">
           A qualified, IGJ-aware warehouse operation.
         </h3>
-        <p className="mt-3 max-w-md text-[1rem] leading-relaxed text-[var(--color-on-invert-muted)]">
-          Validated cold-chain and controlled-ambient zones, continuous temperature
-          monitoring, and documented deviation handling — operated in line with EU
-          GDP Guidelines.
+        <p className="text-on-invert-muted mt-3 max-w-md text-[16px] leading-relaxed">
+          Validated cold-chain and controlled-ambient zones, continuous
+          temperature monitoring, and documented deviation handling — operated
+          in line with EU GDP Guidelines.
         </p>
-        <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[0.85rem] text-white/80">
+        <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[13px] text-white/80">
           {[
             "Continuous monitoring",
             "Validated excursion tolerances",
@@ -145,11 +155,7 @@ function WarehouseTile() {
             "Annual requalification",
           ].map((item) => (
             <li key={item} className="inline-flex items-center gap-1.5">
-              <TickCircle
-                size={14}
-                variant="Bold"
-                className="text-[var(--color-primary)]"
-              />
+              <TickCircle className="text-primary" size={14} variant="Bold" />
               {item}
             </li>
           ))}
@@ -157,165 +163,171 @@ function WarehouseTile() {
       </div>
     </div>
   );
-}
+};
 
-function ColdChainTile() {
+const ColdChainTile: React.FC = () => {
   return (
-    <div className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-primary-subtle-strong)] bg-[var(--color-primary-subtle)] p-6 lg:col-span-3">
-      <div
+    <div className="group duration-slow border-border shadow-hint hover:border-primary/40 hover:shadow-primary/10 relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 transition-all hover:shadow-lg lg:col-span-3">
+      <span
         aria-hidden="true"
-        className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white opacity-60 blur-2xl"
+        className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
       />
       <div className="relative flex items-start justify-between">
-        <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-white text-[var(--color-primary-dark)] shadow-[var(--shadow-sm)]">
-          <CloudSnow size={22} variant="Linear" />
+        <div className="bg-primary shadow-primary/30 inline-flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-lg">
+          <CloudSnow size={22} variant="Bold" />
         </div>
-        {/* Temperature gauge */}
-        <div className="inline-flex h-7 items-center gap-2 rounded-full border border-[var(--color-primary-subtle-strong)] bg-white/70 px-2.5 leading-none backdrop-blur-sm">
-          <span className="font-mono text-[0.78rem] font-semibold leading-none text-[var(--color-primary-dark)]">
+        <div className="border-primary/30 bg-primary-subtle mt-1 inline-flex h-7 items-center gap-2 rounded-xl border px-2.5 leading-none">
+          <span className="text-primary-dark font-mono text-[12px] leading-none font-semibold">
             4.2°C
           </span>
           <TickCircle
+            className="text-primary shrink-0"
             size={12}
             variant="Bold"
-            className="shrink-0 text-[var(--color-primary)]"
           />
         </div>
       </div>
-      <div className="relative">
-        <div className="text-[0.72rem] font-medium uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">
+      <div className="relative mt-10">
+        <div className="text-primary-dark font-mono text-[10px] font-semibold tracking-[0.18em] uppercase">
           Cold-chain
         </div>
-        <h3 className="mt-1 text-[1.35rem] font-semibold tracking-[-0.015em] text-[var(--color-foreground)]">
+        <h3 className="text-foreground mt-1 text-[20px] leading-tight font-semibold tracking-tight">
           2–8 °C validated lanes
         </h3>
-        <p className="mt-2 text-[0.88rem] leading-relaxed text-[var(--color-muted)]">
-          Biologics and thermolabile products — monitored end-to-end from intake to
-          delivery.
+        <p className="text-muted mt-2 text-[13px] leading-relaxed">
+          Biologics and thermolabile products — monitored end-to-end from intake
+          to delivery.
         </p>
       </div>
     </div>
   );
-}
+};
 
-function ExportTile() {
+const ExportTile: React.FC = () => {
   return (
-    <div className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-accent-subtle-strong)] bg-[var(--color-accent-subtle)] p-6 lg:col-span-3">
-      <div
+    <div className="group duration-slow border-border shadow-hint hover:border-accent/40 hover:shadow-accent/10 relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 transition-all hover:shadow-lg lg:col-span-3">
+      <span
         aria-hidden="true"
-        className="pointer-events-none absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-white opacity-60 blur-2xl"
+        className="from-accent to-accent-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
       />
-      {/* Route arrow */}
       <svg
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full"
-        viewBox="0 0 400 260"
         preserveAspectRatio="none"
+        viewBox="0 0 400 260"
       >
         <path
           d="M -20 140 Q 80 60 180 140 T 420 140"
           fill="none"
-          stroke="#0D4F8C"
+          stroke="#0057d9"
+          strokeDasharray="4 6"
           strokeOpacity="0.18"
           strokeWidth="2"
-          strokeDasharray="4 6"
         />
-        <circle cx="180" cy="140" r="3.5" fill="#0D4F8C" opacity="0.5" />
-        <circle cx="340" cy="138" r="3.5" fill="#0D4F8C" opacity="0.3" />
+        <circle cx="180" cy="140" fill="#0057d9" opacity="0.5" r="3.5" />
+        <circle cx="340" cy="138" fill="#0057d9" opacity="0.3" r="3.5" />
       </svg>
       <div className="relative flex items-start justify-between">
-        <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-white text-[var(--color-accent)] shadow-[var(--shadow-sm)]">
-          <Truck size={22} variant="Linear" />
+        <div className="bg-accent shadow-accent/30 inline-flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-lg">
+          <Truck size={22} variant="Bold" />
         </div>
-        <span className="inline-flex h-6 items-center gap-1 rounded-full bg-white px-2.5 font-mono text-[0.68rem] font-medium leading-none text-[var(--color-accent)] ring-1 ring-inset ring-[var(--color-accent-subtle-strong)]">
-          <Scan size={11} variant="Linear" className="shrink-0" />
+        <span className="border-accent/30 bg-accent-subtle text-accent inline-flex h-6 items-center gap-1 rounded-lg border px-2.5 font-mono text-[10px] leading-none font-semibold">
+          <Scan className="shrink-0" size={11} variant="Linear" />
           Export ready
         </span>
       </div>
-      <div className="relative">
-        <div className="text-[0.72rem] font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">
+      <div className="relative mt-10">
+        <div className="text-accent font-mono text-[10px] font-semibold tracking-[0.18em] uppercase">
           International distribution
         </div>
-        <h3 className="mt-1 text-[1.35rem] font-semibold tracking-[-0.015em] text-[var(--color-foreground)]">
+        <h3 className="text-foreground mt-1 text-[20px] leading-tight font-semibold tracking-tight">
           Export to EEA &amp; beyond
         </h3>
-        <p className="mt-2 text-[0.88rem] leading-relaxed text-[var(--color-muted)]">
+        <p className="text-muted mt-2 text-[13px] leading-relaxed">
           WDA-authorised export with full customs documentation and temperature
           assurance in transit.
         </p>
       </div>
     </div>
   );
-}
+};
 
-function AmbientTile() {
+const AmbientTile: React.FC = () => {
   return (
-    <div className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-white p-6 lg:col-span-3">
-      {/* Horizontal gauge */}
+    <div className="group duration-slow border-border shadow-hint hover:border-primary/40 hover:shadow-primary/10 relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 transition-all hover:shadow-lg lg:col-span-3">
+      <span
+        aria-hidden="true"
+        className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
+      />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-6 left-6 right-6 h-[2px] rounded-full bg-[var(--color-border)]"
+        className="bg-border pointer-events-none absolute right-6 bottom-6 left-6 h-[2px] rounded-full"
       >
-        <div className="absolute inset-y-0 left-[15%] right-[25%] rounded-full bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-primary)] to-[var(--color-accent)]" />
-        <div className="absolute -top-1.5 left-[15%] h-[10px] w-px bg-[var(--color-primary)]" />
-        <div className="absolute -top-1.5 right-[25%] h-[10px] w-px bg-[var(--color-accent)]" />
+        <div className="from-primary via-primary to-accent absolute inset-y-0 right-[25%] left-[15%] rounded-full bg-linear-to-r" />
+        <div className="bg-primary absolute -top-1.5 left-[15%] h-[10px] w-px" />
+        <div className="bg-accent absolute -top-1.5 right-[25%] h-[10px] w-px" />
       </div>
       <div className="relative flex items-start justify-between">
-        <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary-subtle)] text-[var(--color-primary-dark)]">
-          <ShieldTick size={22} variant="Linear" />
+        <div className="bg-primary shadow-primary/30 inline-flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-lg">
+          <ShieldTick size={22} variant="Bold" />
         </div>
-        <span className="font-mono text-[0.75rem] font-semibold text-[var(--color-foreground)]">
+        <span className="border-primary/30 bg-primary-subtle text-primary-dark mt-1 inline-flex h-7 items-center rounded-xl border px-2.5 font-mono text-[12px] leading-none font-semibold">
           15–25 °C
         </span>
       </div>
-      <div className="relative pb-6">
-        <div className="text-[0.72rem] font-medium uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">
+      <div className="relative mt-10 pb-6">
+        <div className="text-primary-dark font-mono text-[10px] font-semibold tracking-[0.18em] uppercase">
           Controlled ambient
         </div>
-        <h3 className="mt-1 text-[1.35rem] font-semibold tracking-[-0.015em] text-[var(--color-foreground)]">
+        <h3 className="text-foreground mt-1 text-[20px] leading-tight font-semibold tracking-tight">
           Room-temperature lanes
         </h3>
-        <p className="mt-2 text-[0.88rem] leading-relaxed text-[var(--color-muted)]">
-          Validated storage conditions for the broader product portfolio, continuously
-          logged.
+        <p className="text-muted mt-2 text-[13px] leading-relaxed">
+          Validated storage conditions for the broader product portfolio,
+          continuously logged.
         </p>
       </div>
     </div>
   );
-}
+};
 
-function OfficeTile() {
+const OfficeTile: React.FC = () => {
   return (
-    <div className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-surface-1)] p-6 lg:col-span-3">
-      {/* Map pin treatment */}
+    <div className="group duration-slow border-border bg-surface-1 shadow-hint hover:border-accent/40 hover:shadow-accent/10 relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border p-6 transition-all hover:shadow-lg lg:col-span-3">
+      <span
+        aria-hidden="true"
+        className="from-accent to-accent-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
+      />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-10 -bottom-10 flex h-48 w-48 items-center justify-center"
       >
-        <div className="absolute h-24 w-24 rounded-full border border-[var(--color-primary)] opacity-20" />
-        <div className="absolute h-36 w-36 rounded-full border border-[var(--color-primary)] opacity-[0.12]" />
-        <div className="absolute h-48 w-48 rounded-full border border-[var(--color-primary)] opacity-[0.07]" />
-        <div className="relative inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow-[var(--shadow-cta)]">
+        <div className="border-primary absolute h-24 w-24 rounded-full border opacity-20" />
+        <div className="border-primary absolute h-36 w-36 rounded-full border opacity-[0.12]" />
+        <div className="border-primary absolute h-48 w-48 rounded-full border opacity-[0.07]" />
+        <div className="bg-primary shadow-primary/30 relative inline-flex h-10 w-10 items-center justify-center rounded-full text-white shadow-lg">
           <Location size={18} variant="Bold" />
         </div>
       </div>
       <div className="relative flex items-start justify-between">
-        <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-white text-[var(--color-foreground)]">
-          <Location size={22} variant="Linear" />
+        <div className="bg-accent shadow-accent/30 inline-flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-lg">
+          <Location size={22} variant="Bold" />
         </div>
       </div>
-      <div className="relative max-w-[60%]">
-        <div className="text-[0.72rem] font-medium uppercase tracking-[0.14em] text-[var(--color-subtle)]">
+      <div className="relative mt-10 max-w-[60%]">
+        <div className="text-subtle font-mono text-[10px] font-semibold tracking-[0.18em] uppercase">
           Head office
         </div>
-        <h3 className="mt-1 text-[1.35rem] font-semibold tracking-[-0.015em] text-[var(--color-foreground)]">
+        <h3 className="text-foreground mt-1 text-[20px] leading-tight font-semibold tracking-tight">
           Utrecht &middot; Netherlands
         </h3>
-        <p className="mt-2 text-[0.88rem] leading-relaxed text-[var(--color-muted)]">
+        <p className="text-muted mt-2 text-[13px] leading-relaxed">
           Commercial &amp; quality operations — where RFQs are answered and
           qualifications are run.
         </p>
       </div>
     </div>
   );
-}
+};
+
+export default SupplyChainGallery;

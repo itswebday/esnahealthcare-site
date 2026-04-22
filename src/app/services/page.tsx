@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/sections/shared/PageHero";
-import { ServicesDetail } from "@/sections/services/ServicesDetail";
-import { ServicesCtaBand } from "@/sections/services/ServicesCtaBand";
+import PageHero from "@/sections/shared/PageHero";
+import ServicesDetail from "@/sections/services/ServicesDetail";
+import ServicesCtaBand from "@/sections/services/ServicesCtaBand";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services" },
 };
 
-export default function ServicesPage() {
+const ServicesPage: React.FC = () => {
   return (
     <>
       <PageHero
@@ -23,4 +23,6 @@ export default function ServicesPage() {
       <ServicesCtaBand />
     </>
   );
-}
+};
+
+export default ServicesPage;

@@ -7,20 +7,18 @@ const badge = cva(
     variants: {
       variant: {
         primary:
-          "bg-[var(--color-primary-subtle)] text-[var(--color-primary-dark)] ring-1 ring-inset ring-[var(--color-primary-subtle-strong)]",
+          "bg-primary-subtle text-primary-dark ring-1 ring-inset ring-primary-subtle-strong",
         accent:
-          "bg-[var(--color-accent-subtle)] text-[var(--color-accent)] ring-1 ring-inset ring-[var(--color-accent-subtle-strong)]",
-        neutral:
-          "bg-[var(--color-surface-1)] text-[var(--color-muted)] ring-1 ring-inset ring-[var(--color-border)]",
+          "bg-accent-subtle text-accent ring-1 ring-inset ring-accent-subtle-strong",
+        neutral: "bg-surface-1 text-muted ring-1 ring-inset ring-border",
         invert:
           "bg-white/10 text-white ring-1 ring-inset ring-white/20 backdrop-blur",
-        solid:
-          "bg-[var(--color-foreground)] text-white",
+        solid: "bg-foreground text-white",
       },
       size: {
-        sm: "h-6 px-2.5 text-xs",
-        md: "h-7 px-3 text-[0.78rem]",
-        lg: "h-8 px-3.5 text-[0.82rem]",
+        sm: "h-6 px-2.5 text-[12px]",
+        md: "h-7 px-3 text-[12.5px]",
+        lg: "h-8 px-3.5 text-[13px]",
       },
       withDot: {
         true: "",
@@ -36,31 +34,31 @@ type BadgeProps = VariantProps<typeof badge> &
     withDot?: boolean;
   };
 
-export function Badge({
+const Badge: React.FC<BadgeProps> = ({
   variant,
   size,
   withDot,
   className,
   children,
   ...rest
-}: BadgeProps) {
+}) => {
   const dotColor =
     variant === "accent"
-      ? "bg-[var(--color-accent)]"
+      ? "bg-accent"
       : variant === "invert"
         ? "bg-white"
         : variant === "solid"
           ? "bg-white"
           : variant === "neutral"
-            ? "bg-[var(--color-subtle)]"
-            : "bg-[var(--color-primary)]";
+            ? "bg-subtle"
+            : "bg-primary";
 
   return (
     <span className={cn(badge({ variant, size }), className)} {...rest}>
       {withDot && (
         <span
           className={cn(
-            "inline-block h-1.5 w-1.5 rounded-full animate-pulse-dot",
+            "animate-pulse-dot inline-block h-1.5 w-1.5 rounded-full",
             dotColor,
           )}
         />
@@ -68,4 +66,6 @@ export function Badge({
       {children}
     </span>
   );
-}
+};
+
+export default Badge;

@@ -36,7 +36,8 @@ export const FAQ: FaqEntry[] = [
     draft: true,
   },
   {
-    question: "Can you supply products without a Marketing Authorisation in the EEA?",
+    question:
+      "Can you supply products without a Marketing Authorisation in the EEA?",
     answer:
       "Our WDA covers medicinal products without a Marketing Authorisation in the EEA where they are intended for export. Supply within the EEA is limited to authorised products; we can advise on compliant routes for specific requests.",
     draft: true,

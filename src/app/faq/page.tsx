@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/sections/shared/PageHero";
-import { FaqSection } from "@/sections/faq/FaqSection";
+import PageHero from "@/sections/shared/PageHero";
+import FaqSection from "@/sections/faq/FaqSection";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/faq" },
 };
 
-export default function FaqPage() {
+const FaqPage: React.FC = () => {
   return (
     <>
       <PageHero
@@ -22,4 +22,6 @@ export default function FaqPage() {
       <FaqSection />
     </>
   );
-}
+};
+
+export default FaqPage;

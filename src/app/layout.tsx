@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Nav } from "@/components/chrome/Nav";
-import { Footer } from "@/components/chrome/Footer";
-import { LicenceStrip } from "@/components/ui/LicenceStrip";
-import { CookieBanner } from "@/components/chrome/CookieBanner";
+import CookieBanner from "@/components/chrome/CookieBanner";
+import Footer from "@/components/chrome/Footer";
+import Navigation from "@/components/chrome/Navigation";
+import LicenceStrip from "@/components/ui/LicenceStrip";
+import { cn } from "@/lib/cn";
 import { SITE } from "@/lib/site";
 
 const geistSans = Geist({
@@ -51,24 +52,28 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
+type RootLayoutProps = {
   children: React.ReactNode;
-}) {
+};
+
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html
+      className={cn(
+        "h-full antialiased",
+        geistSans.variable,
+        geistMono.variable,
+      )}
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[var(--color-background)] text-[var(--color-foreground)]">
+      <body className="bg-background text-foreground min-h-full">
         <a
+          className="focus:z-toast focus:bg-foreground sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:rounded-full focus:px-4 focus:py-2 focus:text-white"
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[var(--z-toast)] focus:rounded-full focus:bg-[var(--color-foreground)] focus:px-4 focus:py-2 focus:text-white"
         >
           Skip to main content
         </a>
-        <Nav />
+        <Navigation />
         <main id="main" className="min-h-[40vh]">
           {children}
         </main>
@@ -78,4 +83,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

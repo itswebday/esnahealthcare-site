@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { ArrowRight, MessageQuestion } from "iconsax-react";
-import { Container } from "@/components/ui/Container";
-import { Accordion } from "@/components/ui/Accordion";
-import { Reveal } from "@/components/ui/Reveal";
+import Accordion from "@/components/ui/Accordion";
+import Container from "@/components/ui/Container";
+import Reveal from "@/components/ui/Reveal";
 import { FAQ } from "@/lib/faq";
 
-export function FaqSection() {
+const FaqSection: React.FC = () => {
   const items = FAQ.map((f, i) => ({
     key: `faq-${i}`,
     question: f.question,
     answer: (
       <>
         {f.draft && (
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-[var(--color-surface-2)] px-3 py-1 text-[0.7rem] font-mono uppercase tracking-[0.12em] text-[var(--color-subtle)]">
+          <div className="bg-surface-2 text-subtle mb-3 inline-flex items-center gap-2 rounded-lg px-3 py-1 font-mono text-[11px] tracking-[0.12em] uppercase">
             Draft · pending client review
           </div>
         )}
@@ -22,42 +22,57 @@ export function FaqSection() {
   }));
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24">
-      <Container size="lg">
+    <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
+      <FaqBackdrop />
+
+      <Container className="relative" size="lg">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <Reveal direction="up" className="lg:col-span-4">
+          <Reveal className="lg:col-span-4" direction="up">
             <div className="sticky top-28">
-              <span className="inline-flex items-center gap-2 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">
-                <span className="h-px w-6 bg-[var(--color-primary)]" />
+              <span className="border-primary/40 bg-primary-subtle text-primary-dark inline-flex items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
+                <span className="bg-primary h-1.5 w-1.5 rounded-full" />
                 Frequently asked
               </span>
-              <h2 className="mt-5 text-[2rem] font-semibold leading-[1.08] tracking-[var(--tracking-display)] text-[var(--color-foreground)] sm:text-[2.4rem]">
+              <h2 className="tracking-display text-foreground mt-5 text-[32px] leading-[1.08] font-semibold sm:text-[38px]">
                 Quick answers.
               </h2>
-              <p className="mt-4 max-w-xs text-[0.98rem] leading-relaxed text-[var(--color-muted)]">
-                Can&rsquo;t find what you&rsquo;re looking for? Our commercial team
-                is happy to help.
+              <p className="text-muted mt-4 max-w-xs text-[15px] leading-relaxed">
+                Can&rsquo;t find what you&rsquo;re looking for? Our commercial
+                team is happy to help.
               </p>
               <Link
+                className="group text-foreground hover:text-primary-dark mt-6 inline-flex items-center gap-2 text-[15px] font-medium transition-colors"
                 href="/contact"
-                className="group mt-6 inline-flex items-center gap-2 text-[0.95rem] font-medium text-[var(--color-foreground)] transition-colors hover:text-[var(--color-primary-dark)]"
               >
                 <MessageQuestion size={18} variant="Linear" />
                 Ask a question
                 <ArrowRight
+                  className="duration-normal transition-transform group-hover:translate-x-0.5"
                   size={16}
                   variant="Linear"
-                  className="transition-transform group-hover:translate-x-0.5"
                 />
               </Link>
             </div>
           </Reveal>
 
-          <Reveal direction="up" delay={0.08} className="lg:col-span-8">
+          <Reveal className="lg:col-span-8" delay={0.08} direction="up">
             <Accordion items={items} />
           </Reveal>
         </div>
       </Container>
     </section>
   );
-}
+};
+
+const FaqBackdrop: React.FC = () => {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
+      <div className="bg-primary/10 absolute top-[20%] right-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
+    </div>
+  );
+};
+
+export default FaqSection;

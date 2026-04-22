@@ -1,119 +1,151 @@
-import Image from "next/image";
-import { Location, Box, ShieldTick } from "iconsax-react";
-import { Container } from "@/components/ui/Container";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Reveal } from "@/components/ui/Reveal";
+import { Box, Location, ShieldTick } from "iconsax-react";
+import Container from "@/components/ui/Container";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { cn } from "@/lib/cn";
 import { SITE } from "@/lib/site";
-import { IMAGES } from "@/lib/images";
 
-export function Headquarters() {
-  const hero = IMAGES.about.headquartersHero;
+const Headquarters: React.FC = () => {
   return (
-    <section className="py-20 sm:py-24 lg:py-28">
-      <Container size="xl">
+    <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
+      <HeadquartersBackdrop />
+
+      <Container className="relative" size="xl">
         <Reveal direction="up">
           <SectionHeader
-            eyebrow="Headquarters"
-            title="Based in Utrecht, operating across Europe."
             description="Commercial and quality operations from our Utrecht office, with qualified warehousing handled through a dedicated logistics partner."
+            eyebrow="Headquarters"
             size="md"
+            title="Based in Utrecht, operating across Europe."
           />
         </Reveal>
 
-        <Reveal direction="up" delay={0.06}>
-          <figure className="relative mt-12 overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--color-border)] bg-[var(--color-surface-1)]">
-            <div className="relative aspect-[21/9] w-full">
-              <Image
-                src={hero.src}
-                alt={hero.alt}
-                fill
-                sizes="(max-width: 1280px) 100vw, 1280px"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-2 text-[0.72rem] font-medium leading-none text-[var(--color-foreground)] shadow-[var(--shadow-card)] backdrop-blur">
-              <Location size={12} variant="Bold" className="text-[var(--color-accent)]" />
-              Utrecht · The Netherlands
-              <span className="font-mono uppercase tracking-[0.12em] text-[var(--color-subtle)]">
-                {"{placeholder}"}
-              </span>
-            </figcaption>
-          </figure>
-        </Reveal>
-
-        <div className="mt-8 grid gap-4 lg:grid-cols-3">
-          <Reveal direction="up" delay={0.12}>
-            <div className="flex h-full flex-col gap-4 rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-white p-7">
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary-subtle)] text-[var(--color-primary-dark)]">
-                <Location size={20} variant="Linear" />
-              </div>
-              <div>
-                <div className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-subtle)]">
-                  Office
-                </div>
-                <h3 className="mt-2 text-[1.2rem] font-semibold tracking-[-0.014em] text-[var(--color-foreground)]">
-                  {SITE.contact.officeAddress.line1}
-                </h3>
-                <p className="mt-2 text-[0.95rem] leading-relaxed text-[var(--color-muted)]">
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          <Reveal delay={0.12} direction="up">
+            <InfoCard
+              body={
+                <>
                   {SITE.contact.officeAddress.line2}
                   <br />
                   {SITE.contact.officeAddress.country}
-                </p>
-              </div>
-              <span className="mt-auto text-[0.82rem] text-[var(--color-subtle)]">
-                Public-facing address · open by appointment
-              </span>
-            </div>
+                </>
+              }
+              caption="Public-facing address · open by appointment"
+              icon={<Location size={20} variant="Bold" />}
+              label="Office"
+              title={SITE.contact.officeAddress.line1}
+              tone="primary"
+            />
           </Reveal>
 
-          <Reveal direction="up" delay={0.18}>
-            <div className="flex h-full flex-col gap-4 rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-surface-1)] p-7">
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-white text-[var(--color-foreground)]">
-                <Box size={20} variant="Linear" />
-              </div>
-              <div>
-                <div className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-subtle)]">
-                  Warehousing
-                </div>
-                <h3 className="mt-2 text-[1.2rem] font-semibold tracking-[-0.014em] text-[var(--color-foreground)]">
-                  Qualified logistics partner
-                </h3>
-                <p className="mt-2 text-[0.95rem] leading-relaxed text-[var(--color-muted)]">
-                  Nieuw-Vennep, The Netherlands — GDP-compliant warehousing with
-                  validated cold-chain and controlled-ambient zones.
-                </p>
-              </div>
-              <span className="mt-auto text-[0.82rem] text-[var(--color-subtle)]">
-                Warehouse address withheld from public pages
-              </span>
-            </div>
+          <Reveal delay={0.18} direction="up">
+            <InfoCard
+              body="Nieuw-Vennep, The Netherlands — GDP-compliant warehousing with validated cold-chain and controlled-ambient zones."
+              caption="Warehouse address withheld from public pages"
+              icon={<Box size={20} variant="Bold" />}
+              label="Warehousing"
+              title="Qualified logistics partner"
+              tone="accent"
+            />
           </Reveal>
 
-          <Reveal direction="up" delay={0.24}>
-            <div className="flex h-full flex-col gap-4 rounded-[var(--radius-xl)] border border-[var(--color-accent-subtle-strong)] bg-[var(--color-accent-subtle)] p-7">
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-white text-[var(--color-accent)]">
-                <ShieldTick size={20} variant="Linear" />
-              </div>
-              <div>
-                <div className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">
-                  Inspections &amp; audits
-                </div>
-                <h3 className="mt-2 text-[1.2rem] font-semibold tracking-[-0.014em] text-[var(--color-foreground)]">
-                  IGJ-inspected operation
-                </h3>
-                <p className="mt-2 text-[0.95rem] leading-relaxed text-[var(--color-muted)]">
-                  Regular inspections by the Dutch Health and Youth Care Inspectorate
-                  (IGJ). Internal audits, CAPA tracking, and SOP reviews run
-                  continuously.
-                </p>
-              </div>
-              <span className="mt-auto text-[0.82rem] text-[var(--color-subtle)]">
-                Continuous compliance · not an annual event
-              </span>
-            </div>
+          <Reveal delay={0.24} direction="up">
+            <InfoCard
+              body="Regular inspections by the Dutch Health and Youth Care Inspectorate (IGJ). Internal audits, CAPA tracking, and SOP reviews run continuously."
+              caption="Continuous compliance · not an annual event"
+              icon={<ShieldTick size={20} variant="Bold" />}
+              label="Inspections & audits"
+              title="IGJ-inspected operation"
+              tone="primary"
+            />
           </Reveal>
         </div>
       </Container>
     </section>
   );
-}
+};
+
+type InfoCardProps = {
+  body: React.ReactNode;
+  caption: string;
+  icon: React.ReactNode;
+  label: string;
+  title: string;
+  tone: "primary" | "accent";
+};
+
+const InfoCard: React.FC<InfoCardProps> = ({
+  body,
+  caption,
+  icon,
+  label,
+  title,
+  tone,
+}) => {
+  const cornerClass =
+    tone === "primary"
+      ? "bg-linear-to-br from-primary to-primary-dark"
+      : "bg-linear-to-br from-accent to-accent-dark";
+  const labelColor = tone === "primary" ? "text-primary-dark" : "text-accent";
+  const hoverClass =
+    tone === "primary"
+      ? "hover:border-primary/40 hover:shadow-primary/10"
+      : "hover:border-accent/40 hover:shadow-accent/10";
+
+  return (
+    <div
+      className={cn(
+        "group relative flex h-full flex-col overflow-hidden",
+        "rounded-3xl p-7",
+        "border-border shadow-hint border bg-white",
+        "duration-slow transition-all hover:shadow-lg",
+        hoverClass,
+      )}
+    >
+      <span
+        aria-hidden="true"
+        className={cn(
+          "pointer-events-none absolute top-0 right-0",
+          "h-20 w-20 rounded-bl-3xl",
+          cornerClass,
+        )}
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute top-5 right-5 text-white"
+      >
+        {icon}
+      </span>
+
+      <div className="relative mt-14 flex flex-1 flex-col">
+        <div
+          className={cn(
+            "font-mono text-[10px] font-semibold",
+            "tracking-[0.18em] uppercase",
+            labelColor,
+          )}
+        >
+          {label}
+        </div>
+        <h3 className="text-foreground mt-2 text-[18px] leading-tight font-semibold tracking-tight">
+          {title}
+        </h3>
+        <p className="text-muted mt-2 text-[14px] leading-relaxed">{body}</p>
+        <span className="text-subtle mt-auto pt-4 text-[12px]">{caption}</span>
+      </div>
+    </div>
+  );
+};
+
+const HeadquartersBackdrop: React.FC = () => {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
+      <div className="bg-primary/10 absolute top-[30%] left-[-8%] h-[420px] w-[420px] rounded-full blur-[110px]" />
+    </div>
+  );
+};
+
+export default Headquarters;

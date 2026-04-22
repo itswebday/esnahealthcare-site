@@ -81,13 +81,20 @@
 
   /* — shadows (Apple-premium: soft, layered, restrained) — */
   --shadow-hint: 0 1px 2px rgba(11, 22, 40, 0.04);
-  --shadow-sm: 0 1px 2px rgba(11, 22, 40, 0.05), 0 1px 1px rgba(11, 22, 40, 0.03);
-  --shadow-card: 0 1px 3px rgba(11, 22, 40, 0.06), 0 2px 8px rgba(11, 22, 40, 0.04);
-  --shadow-lift: 0 12px 32px rgba(11, 22, 40, 0.08), 0 2px 8px rgba(11, 22, 40, 0.04);
-  --shadow-float: 0 24px 60px rgba(11, 22, 40, 0.12), 0 6px 20px rgba(11, 22, 40, 0.06);
-  --shadow-cta: 0 10px 28px rgba(46, 139, 53, 0.28), 0 2px 6px rgba(46, 139, 53, 0.18);
-  --shadow-cta-hover: 0 12px 32px rgba(36, 116, 42, 0.34), 0 2px 8px rgba(36, 116, 42, 0.22);
-  --shadow-island: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 10px 30px rgba(11, 22, 40, 0.06);
+  --shadow-sm:
+    0 1px 2px rgba(11, 22, 40, 0.05), 0 1px 1px rgba(11, 22, 40, 0.03);
+  --shadow-card:
+    0 1px 3px rgba(11, 22, 40, 0.06), 0 2px 8px rgba(11, 22, 40, 0.04);
+  --shadow-lift:
+    0 12px 32px rgba(11, 22, 40, 0.08), 0 2px 8px rgba(11, 22, 40, 0.04);
+  --shadow-float:
+    0 24px 60px rgba(11, 22, 40, 0.12), 0 6px 20px rgba(11, 22, 40, 0.06);
+  --shadow-cta:
+    0 10px 28px rgba(46, 139, 53, 0.28), 0 2px 6px rgba(46, 139, 53, 0.18);
+  --shadow-cta-hover:
+    0 12px 32px rgba(36, 116, 42, 0.34), 0 2px 8px rgba(36, 116, 42, 0.22);
+  --shadow-island:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 10px 30px rgba(11, 22, 40, 0.06);
 
   /* — motion — */
   --duration-fast: 140ms;
@@ -116,6 +123,48 @@
   --breakpoint-2xl: 1536px;
 }
 
+/*
+  Custom utilities for tokens Tailwind v4 doesn't auto-generate
+  (z-index and transition-duration aren't recognized theme namespaces)
+*/
+@utility z-below {
+  z-index: var(--z-below);
+}
+@utility z-base {
+  z-index: var(--z-base);
+}
+@utility z-raised {
+  z-index: var(--z-raised);
+}
+@utility z-sticky {
+  z-index: var(--z-sticky);
+}
+@utility z-drawer {
+  z-index: var(--z-drawer);
+}
+@utility z-modal {
+  z-index: var(--z-modal);
+}
+@utility z-toast {
+  z-index: var(--z-toast);
+}
+@utility z-max {
+  z-index: var(--z-max);
+}
+
+@utility duration-fast {
+  transition-duration: var(--duration-fast);
+}
+@utility duration-normal {
+  transition-duration: var(--duration-normal);
+}
+@utility duration-slow {
+  transition-duration: var(--duration-slow);
+}
+@utility duration-slower {
+  transition-duration: var(--duration-slower);
+}
+
 /* — base resets + defaults — */
 *,
 *::before,
@@ -133,12 +182,15 @@ html {
     "cv11" on,
     "kern" on,
     "liga" on;
+  /* Clears the floating sticky nav (~80px) when scrolling to hash anchors. */
+  scroll-padding-top: 5.5rem;
 }
 
 body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
+  font-size: 1rem;
   font-weight: 400;
   line-height: var(--leading-body);
   letter-spacing: var(--tracking-tight);
@@ -184,8 +236,7 @@ body {
 svg[viewBox="0 0 24 24"] path[stroke-width]:not([stroke]) {
   stroke: currentColor;
 }
-svg[viewBox="0 0 24 24"]
-  path:not([stroke-width]):not([stroke]):not([fill]) {
+svg[viewBox="0 0 24 24"] path:not([stroke-width]):not([stroke]):not([fill]) {
   fill: currentColor;
 }
 
@@ -211,7 +262,17 @@ button[aria-disabled="true"] {
 *:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
-  border-radius: var(--radius-xs);
+}
+
+/*
+ * Text inputs, textareas, and selects opt out of the global brand ring —
+ * keyboard focus is indicated by the field's own darker border (handled at
+ * the component level). Keeps the element shape from shifting on focus.
+ */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
 }
 
 /* — animations (entrance) — */
@@ -405,7 +466,8 @@ button[aria-disabled="true"] {
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: rgba(27, 85, 32, 0.35);
-  transition: color var(--duration-normal) var(--ease-out),
+  transition:
+    color var(--duration-normal) var(--ease-out),
     text-decoration-color var(--duration-normal) var(--ease-out);
 }
 

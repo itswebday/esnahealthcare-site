@@ -3,6 +3,13 @@
 import { motion, type Variants } from "motion/react";
 import { cn } from "@/lib/cn";
 
+type StaggerChildProps = {
+  children: React.ReactNode;
+  className?: string;
+  direction?: "up" | "down" | "left" | "right" | "none";
+  as?: "div" | "li" | "span" | "article";
+};
+
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
@@ -29,7 +36,7 @@ const offsetFor = (direction: RevealProps["direction"]) => {
   }
 };
 
-export function Reveal({
+const Reveal: React.FC<RevealProps> = ({
   children,
   className,
   delay = 0,
@@ -37,7 +44,7 @@ export function Reveal({
   as = "div",
   once = true,
   amount = 0.3,
-}: RevealProps) {
+}) => {
   const offset = offsetFor(direction);
   const variants: Variants = {
     hidden: { opacity: 0, ...offset },
@@ -66,7 +73,7 @@ export function Reveal({
       {children}
     </MotionTag>
   );
-}
+};
 
 type StaggerProps = {
   children: React.ReactNode;
@@ -78,7 +85,7 @@ type StaggerProps = {
   as?: "div" | "ul" | "ol" | "section";
 };
 
-export function Stagger({
+export const Stagger: React.FC<StaggerProps> = ({
   children,
   className,
   delayChildren = 0,
@@ -86,7 +93,7 @@ export function Stagger({
   once = true,
   amount = 0.2,
   as = "div",
-}: StaggerProps) {
+}) => {
   const MotionTag = motion[as] as typeof motion.div;
   return (
     <MotionTag
@@ -104,19 +111,14 @@ export function Stagger({
       {children}
     </MotionTag>
   );
-}
+};
 
-export function StaggerChild({
+export const StaggerChild: React.FC<StaggerChildProps> = ({
   children,
   className,
   direction = "up",
   as = "div",
-}: {
-  children: React.ReactNode;
-  className?: string;
-  direction?: "up" | "down" | "left" | "right" | "none";
-  as?: "div" | "li" | "span" | "article";
-}) {
+}) => {
   const offset = offsetFor(direction);
   const MotionTag = motion[as] as typeof motion.div;
   return (
@@ -135,4 +137,6 @@ export function StaggerChild({
       {children}
     </MotionTag>
   );
-}
+};
+
+export default Reveal;

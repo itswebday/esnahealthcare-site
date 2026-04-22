@@ -7,25 +7,21 @@ const card = cva(
     variants: {
       variant: {
         plain:
-          "bg-white border border-[var(--color-border)] hover:border-[var(--color-border-strong)] hover:shadow-[var(--shadow-lift)]",
+          "bg-background border border-border hover:border-border-strong hover:shadow-[var(--shadow-lift)]",
         subtle:
-          "bg-[var(--color-surface-1)] border border-[var(--color-border)] hover:bg-white hover:shadow-[var(--shadow-lift)]",
+          "bg-surface-1 border border-border hover:bg-background hover:shadow-[var(--shadow-lift)]",
         island:
-          "bg-white shadow-[var(--shadow-island)] border border-white/80",
-        tint:
-          "bg-[var(--color-primary-subtle)] border border-[var(--color-primary-subtle-strong)]",
-        accent:
-          "bg-[var(--color-accent-subtle)] border border-[var(--color-accent-subtle-strong)]",
-        invert:
-          "bg-[var(--color-surface-invert)] text-[var(--color-on-invert)] border border-[var(--color-border-invert)]",
-        outline:
-          "bg-transparent border border-[var(--color-border)] hover:border-[var(--color-foreground)]",
+          "bg-background shadow-[var(--shadow-island)] border border-white/80",
+        tint: "bg-primary-subtle border border-primary-subtle-strong",
+        accent: "bg-accent-subtle border border-accent-subtle-strong",
+        invert: "bg-surface-invert text-on-invert border border-border-invert",
+        outline: "bg-transparent border border-border hover:border-foreground",
       },
       radius: {
-        sm: "rounded-[var(--radius-md)]",
-        md: "rounded-[var(--radius-lg)]",
-        lg: "rounded-[var(--radius-xl)]",
-        xl: "rounded-[var(--radius-2xl)]",
+        sm: "rounded-md",
+        md: "rounded-lg",
+        lg: "rounded-xl",
+        xl: "rounded-2xl",
       },
       padding: {
         none: "",
@@ -42,17 +38,22 @@ const card = cva(
 type CardProps = VariantProps<typeof card> &
   React.HTMLAttributes<HTMLDivElement>;
 
-export function Card({
+const Card: React.FC<CardProps> = ({
   variant,
   radius,
   padding,
   className,
   children,
   ...rest
-}: CardProps) {
+}) => {
   return (
-    <div className={cn(card({ variant, radius, padding }), className)} {...rest}>
+    <div
+      className={cn(card({ variant, radius, padding }), className)}
+      {...rest}
+    >
       {children}
     </div>
   );
-}
+};
+
+export default Card;

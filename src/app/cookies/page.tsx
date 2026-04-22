@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LegalLayout } from "@/components/legal/LegalLayout";
+import LegalLayout from "@/components/legal/LegalLayout";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function CookiesPage() {
+const CookiesPage: React.FC = () => {
   return (
     <LegalLayout
       title="Cookie Policy"
       lastUpdated="Launch date placeholder"
-      draftNote="draft — Eissa to review. Update the &quot;Examples&quot; column with actual cookie names once analytics tool is chosen. If no analytics tool deploys at launch, remove the Analytics row."
+      draftNote='draft — Eissa to review. Update the "Examples" column with actual cookie names once analytics tool is chosen. If no analytics tool deploys at launch, remove the Analytics row.'
     >
       <p>
         This Cookie Policy explains how{" "}
@@ -26,87 +26,85 @@ export default function CookiesPage() {
 
       <h2>1. What are cookies?</h2>
       <p>
-        Cookies are small text files placed on your device when you visit a website.
-        They allow the website to remember your actions and preferences over time.
+        Cookies are small text files placed on your device when you visit a
+        website. They allow the website to remember your actions and preferences
+        over time.
       </p>
 
       <h2>2. Cookies we use</h2>
       <p>
-        We use only the minimum cookies necessary to operate the site. We do not use
-        advertising cookies, cross-site tracking, or social-media pixels.
+        We use only the minimum cookies necessary to operate the site. We do not
+        use advertising cookies, cross-site tracking, or social-media pixels.
       </p>
-      <div className="overflow-hidden rounded-[var(--radius-md)] border border-[var(--color-border)]">
+      <div className="border-border overflow-hidden rounded-md border">
         <table className="w-full border-collapse text-left">
-          <thead className="bg-[var(--color-surface-1)]">
+          <thead className="bg-surface-1">
             <tr>
-              <th className="px-5 py-3 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-subtle)]">
+              <th className="text-subtle px-5 py-3 text-[12px] font-medium tracking-[0.14em] uppercase">
                 Category
               </th>
-              <th className="px-5 py-3 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-subtle)]">
+              <th className="text-subtle px-5 py-3 text-[12px] font-medium tracking-[0.14em] uppercase">
                 Purpose
               </th>
-              <th className="px-5 py-3 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-subtle)]">
+              <th className="text-subtle px-5 py-3 text-[12px] font-medium tracking-[0.14em] uppercase">
                 Examples
               </th>
-              <th className="px-5 py-3 text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-subtle)]">
+              <th className="text-subtle px-5 py-3 text-[12px] font-medium tracking-[0.14em] uppercase">
                 Consent
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[var(--color-border)] text-[0.9rem]">
+          <tbody className="divide-border divide-y text-[14px]">
             <tr>
               <td className="px-5 py-3 font-medium">Strictly necessary</td>
               <td className="px-5 py-3">
-                Essential site operation (remembering your cookie consent choice,
-                language preference)
+                Essential site operation (remembering your cookie consent
+                choice, language preference)
               </td>
-              <td className="px-5 py-3 font-mono text-[0.85rem]">
+              <td className="px-5 py-3 font-mono text-[14px]">
                 cookie_consent, lang
               </td>
-              <td className="px-5 py-3 text-[var(--color-subtle)]">
-                No — always on
-              </td>
+              <td className="text-subtle px-5 py-3">No — always on</td>
             </tr>
             <tr>
               <td className="px-5 py-3 font-medium">Analytics (optional)</td>
               <td className="px-5 py-3">
-                Aggregate, privacy-friendly analysis of which pages are visited, so we
-                can improve the site
+                Aggregate, privacy-friendly analysis of which pages are visited,
+                so we can improve the site
               </td>
-              <td className="px-5 py-3 font-mono text-[0.85rem]">
+              <td className="px-5 py-3 font-mono text-[14px]">
                 Varies by provider — see the cookie banner for current details
               </td>
-              <td className="px-5 py-3 text-[var(--color-subtle)]">
-                Yes — off by default
-              </td>
+              <td className="text-subtle px-5 py-3">Yes — off by default</td>
             </tr>
           </tbody>
         </table>
       </div>
       <p>
-        We do not use Google Analytics or similar cross-site tracking services. Any
-        analytics cookies, if enabled, are served by a privacy-friendly provider that
-        does not share data with advertisers.
+        We do not use Google Analytics or similar cross-site tracking services.
+        Any analytics cookies, if enabled, are served by a privacy-friendly
+        provider that does not share data with advertisers.
       </p>
 
       <h2>3. Managing your preferences</h2>
       <p>
-        You can accept or decline analytics cookies via the cookie banner shown on
-        your first visit, or change your choice at any time via the cookie settings
-        link in the footer. You can also delete cookies from your browser settings at
-        any time.
+        You can accept or decline analytics cookies via the cookie banner shown
+        on your first visit, or change your choice at any time via the cookie
+        settings link in the footer. You can also delete cookies from your
+        browser settings at any time.
       </p>
 
       <h2>4. Third-party cookies</h2>
       <p>
-        This site does not embed third-party services (such as video players, social
-        feeds, or chat widgets) that would set their own cookies.
+        This site does not embed third-party services (such as video players,
+        social feeds, or chat widgets) that would set their own cookies.
       </p>
 
       <h2>5. Changes to this policy</h2>
       <p>
-        We may update this Cookie Policy from time to time. Material changes will be
-        reflected in the &ldquo;Last updated&rdquo; date at the top of this page.
+        We may update this Cookie Policy from time to time. Material changes
+        will be reflected in the &ldquo;Last updated&rdquo; date at the top of
+        this page.
       </p>
 
       <h2>6. More information</h2>
@@ -118,4 +116,6 @@ export default function CookiesPage() {
       </p>
     </LegalLayout>
   );
-}
+};
+
+export default CookiesPage;

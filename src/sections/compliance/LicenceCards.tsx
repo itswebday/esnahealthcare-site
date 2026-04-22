@@ -1,85 +1,90 @@
 import {
-  ShieldTick,
-  Verify,
   DocumentDownload,
   Export,
+  ShieldTick,
   TickCircle,
+  Verify,
 } from "iconsax-react";
-import { Container } from "@/components/ui/Container";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Reveal } from "@/components/ui/Reveal";
-import { Button } from "@/components/ui/Button";
+import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { SITE } from "@/lib/site";
 
-export function LicenceCards() {
+const LicenceCards: React.FC = () => {
   return (
-    <section className="py-20 sm:py-24 lg:py-28">
-      <Container size="xl">
+    <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
+      <LicenceBackdrop />
+
+      <Container className="relative" size="xl">
         <Reveal direction="up">
           <SectionHeader
-            eyebrow="Authorisations"
-            title="Two licences, both verifiable."
             description="The Wholesale Distribution Authorisation and GDP Certificate below are the operational backbone of every transaction we run."
+            eyebrow="Authorisations"
             size="md"
+            title="Two licences, both verifiable."
           />
         </Reveal>
 
-        <div className="mt-14 grid gap-4 lg:grid-cols-2 lg:gap-5">
-          <Reveal direction="up" delay={0.08}>
-            <div className="relative flex h-full flex-col overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--color-primary-subtle-strong)] bg-[var(--color-primary-subtle)] p-8 sm:p-10">
-              <div
+        <div className="mt-14 grid gap-5 lg:grid-cols-2">
+          <Reveal delay={0.08} direction="up">
+            <div className="group duration-slow border-border shadow-card hover:border-primary/40 hover:shadow-primary/10 relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-8 transition-all hover:shadow-xl sm:p-10">
+              <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white opacity-70 blur-3xl"
+                className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br sm:h-28 sm:w-28"
               />
-              <div className="relative">
-                <div className="flex items-center gap-3">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-[var(--radius-md)] bg-white text-[var(--color-primary-dark)] shadow-[var(--shadow-card)]">
-                    <ShieldTick size={22} variant="Linear" />
-                  </div>
-                  <span className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-primary-dark)]">
-                    Wholesale Distribution Authorisation
-                  </span>
-                </div>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute top-6 right-6 text-white sm:top-8 sm:right-8"
+              >
+                <ShieldTick size={22} variant="Bold" />
+              </span>
 
-                <h3 className="mt-6 text-[1.75rem] font-semibold tracking-[-0.018em] text-[var(--color-foreground)] sm:text-[2rem]">
+              <div className="relative mt-14 sm:mt-20">
+                <span className="border-primary/40 bg-primary-subtle text-primary-dark inline-flex w-fit items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
+                  <span className="bg-primary h-1.5 w-1.5 rounded-full" />
+                  Wholesale Distribution Authorisation
+                </span>
+
+                <h3 className="tracking-display text-foreground mt-5 text-[28px] leading-tight font-semibold sm:text-[32px]">
                   WDA Licence
                 </h3>
-                <div className="mt-2 font-mono text-[1.05rem] text-[var(--color-foreground)]">
+                <div className="text-foreground mt-2 font-mono text-[16px]">
                   No. {SITE.licences.wda.number}
                 </div>
 
-                <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
+                <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-[14px]">
                   <div>
-                    <dt className="text-[var(--color-subtle)]">Issued on</dt>
-                    <dd className="mt-0.5 font-mono font-medium text-[var(--color-foreground)]">
+                    <dt className="text-subtle">Issued on</dt>
+                    <dd className="text-foreground mt-0.5 font-mono font-medium">
                       {SITE.licences.wda.issuedOn}
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-[var(--color-subtle)]">Renewal</dt>
-                    <dd className="mt-0.5 font-medium text-[var(--color-foreground)]">
+                    <dt className="text-subtle">Renewal</dt>
+                    <dd className="text-foreground mt-0.5 font-medium">
                       {SITE.licences.wda.renewal}
                     </dd>
                   </div>
                 </dl>
 
-                <p className="mt-6 text-[0.95rem] leading-relaxed text-[var(--color-muted)]">
-                  Issued by the {SITE.licences.wda.issuer}. Authorises procurement,
-                  supply, and export operations — including medicinal products
-                  without a Marketing Authorisation in the EEA intended for export,
-                  plus cold-chain handling.
+                <p className="text-muted mt-6 text-[15px] leading-relaxed">
+                  Issued by the {SITE.licences.wda.issuer}. Authorises
+                  procurement, supply, and export operations — including
+                  medicinal products without a Marketing Authorisation in the
+                  EEA intended for export, plus cold-chain handling.
                 </p>
 
                 <ul className="mt-6 space-y-2.5">
                   {SITE.licences.wda.scope.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-2.5 text-[0.92rem] leading-snug text-[var(--color-foreground)]"
+                      className="text-foreground flex items-start gap-2.5 text-[14px] leading-snug"
                     >
                       <TickCircle
+                        className="text-primary mt-0.5 shrink-0"
                         size={18}
                         variant="Bold"
-                        className="mt-0.5 shrink-0 text-[var(--color-primary)]"
                       />
                       {item}
                     </li>
@@ -89,22 +94,26 @@ export function LicenceCards() {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Button
                     href={SITE.licences.wda.pdf}
-                    target="_blank"
                     rel="noopener noreferrer"
-                    variant="secondary"
                     size="md"
+                    target="_blank"
+                    variant="primary"
                   >
-                    <DocumentDownload size={16} variant="Linear" className="mr-1 shrink-0" />
+                    <DocumentDownload
+                      className="shrink-0"
+                      size={16}
+                      variant="Linear"
+                    />
                     Wholesale Licence PDF
                   </Button>
                   <Button
                     href={SITE.licences.wda.eudraGmdpPdf}
-                    target="_blank"
                     rel="noopener noreferrer"
-                    variant="outline"
                     size="md"
+                    target="_blank"
+                    variant="outline"
                   >
-                    <Export size={16} variant="Linear" className="mr-1 shrink-0" />
+                    <Export className="shrink-0" size={16} variant="Linear" />
                     WDA · EudraGMDP
                   </Button>
                 </div>
@@ -112,49 +121,51 @@ export function LicenceCards() {
             </div>
           </Reveal>
 
-          <Reveal direction="up" delay={0.16}>
-            <div className="relative flex h-full flex-col overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--color-accent-subtle-strong)] bg-[var(--color-accent-subtle)] p-8 sm:p-10">
-              <div
+          <Reveal delay={0.16} direction="up">
+            <div className="group duration-slow border-border shadow-card hover:border-accent/40 hover:shadow-accent/10 relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-8 transition-all hover:shadow-xl sm:p-10">
+              <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white opacity-70 blur-3xl"
+                className="from-accent to-accent-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br sm:h-28 sm:w-28"
               />
-              <div className="relative">
-                <div className="flex items-center gap-3">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-[var(--radius-md)] bg-white text-[var(--color-accent)] shadow-[var(--shadow-card)]">
-                    <Verify size={22} variant="Linear" />
-                  </div>
-                  <span className="text-[0.78rem] font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">
-                    Good Distribution Practice
-                  </span>
-                </div>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute top-6 right-6 text-white sm:top-8 sm:right-8"
+              >
+                <Verify size={22} variant="Bold" />
+              </span>
 
-                <h3 className="mt-6 text-[1.75rem] font-semibold tracking-[-0.018em] text-[var(--color-foreground)] sm:text-[2rem]">
+              <div className="relative mt-14 sm:mt-20">
+                <span className="border-accent/40 bg-accent-subtle text-accent inline-flex w-fit items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
+                  <span className="bg-accent h-1.5 w-1.5 rounded-full" />
+                  Good Distribution Practice
+                </span>
+
+                <h3 className="tracking-display text-foreground mt-5 text-[28px] leading-tight font-semibold sm:text-[32px]">
                   GDP Certificate
                 </h3>
-                <div className="mt-2 font-mono text-[1.05rem] text-[var(--color-foreground)]">
+                <div className="text-foreground mt-2 font-mono text-[16px]">
                   {SITE.licences.gdp.number}
                 </div>
 
-                <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
+                <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-[14px]">
                   <div>
-                    <dt className="text-[var(--color-subtle)]">Issued on</dt>
-                    <dd className="mt-0.5 font-mono font-medium text-[var(--color-foreground)]">
+                    <dt className="text-subtle">Issued on</dt>
+                    <dd className="text-foreground mt-0.5 font-mono font-medium">
                       {SITE.licences.gdp.issuedOn}
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-[var(--color-subtle)]">Issued by</dt>
-                    <dd className="mt-0.5 font-medium text-[var(--color-foreground)]">
-                      IGJ
-                    </dd>
+                    <dt className="text-subtle">Issued by</dt>
+                    <dd className="text-foreground mt-0.5 font-medium">IGJ</dd>
                   </div>
                 </dl>
 
-                <p className="mt-6 text-[0.95rem] leading-relaxed text-[var(--color-muted)]">
+                <p className="text-muted mt-6 text-[15px] leading-relaxed">
                   Good Distribution Practice certification issued by the{" "}
-                  {SITE.licences.gdp.issuer} confirms that our distribution operation
-                  meets the EU GDP Guidelines (2013/C 343/01) — the quality framework
-                  for handling medicinal products for human use.
+                  {SITE.licences.gdp.issuer} confirms that our distribution
+                  operation meets the EU GDP Guidelines (2013/C 343/01) — the
+                  quality framework for handling medicinal products for human
+                  use.
                 </p>
 
                 <ul className="mt-6 space-y-2.5">
@@ -166,12 +177,12 @@ export function LicenceCards() {
                   ].map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-2.5 text-[0.92rem] leading-snug text-[var(--color-foreground)]"
+                      className="text-foreground flex items-start gap-2.5 text-[14px] leading-snug"
                     >
                       <TickCircle
+                        className="text-accent mt-0.5 shrink-0"
                         size={18}
                         variant="Bold"
-                        className="mt-0.5 shrink-0 text-[var(--color-accent)]"
                       />
                       {item}
                     </li>
@@ -181,12 +192,16 @@ export function LicenceCards() {
                 <div className="mt-8">
                   <Button
                     href={SITE.licences.gdp.pdf}
-                    target="_blank"
                     rel="noopener noreferrer"
-                    variant="secondary"
                     size="md"
+                    target="_blank"
+                    variant="accent"
                   >
-                    <DocumentDownload size={16} variant="Linear" className="mr-1 shrink-0" />
+                    <DocumentDownload
+                      className="shrink-0"
+                      size={16}
+                      variant="Linear"
+                    />
                     GDP Certificate PDF
                   </Button>
                 </div>
@@ -197,4 +212,18 @@ export function LicenceCards() {
       </Container>
     </section>
   );
-}
+};
+
+const LicenceBackdrop: React.FC = () => {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
+      <div className="bg-primary/10 absolute top-[20%] left-[-8%] h-[420px] w-[420px] rounded-full blur-[110px]" />
+      <div className="bg-accent/10 absolute right-[-8%] bottom-[10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
+    </div>
+  );
+};
+
+export default LicenceCards;

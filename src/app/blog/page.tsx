@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/sections/shared/PageHero";
-import { BlogList } from "@/sections/blog/BlogList";
+import PageHero from "@/sections/shared/PageHero";
+import BlogList from "@/sections/blog/BlogList";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
-export default function BlogIndexPage() {
+const BlogIndexPage: React.FC = () => {
   return (
     <>
       <PageHero
@@ -22,4 +22,6 @@ export default function BlogIndexPage() {
       <BlogList />
     </>
   );
-}
+};
+
+export default BlogIndexPage;

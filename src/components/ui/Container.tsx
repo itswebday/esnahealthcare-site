@@ -13,13 +13,13 @@ const SIZES: Record<NonNullable<ContainerProps["size"]>, string> = {
   full: "max-w-none",
 };
 
-export function Container({
+const Container: React.FC<ContainerProps> = ({
   size = "xl",
   as: Tag = "div",
   className,
   children,
   ...rest
-}: ContainerProps) {
+}) => {
   return (
     <Tag
       className={cn(
@@ -32,4 +32,6 @@ export function Container({
       {children}
     </Tag>
   );
-}
+};
+
+export default Container;

@@ -124,7 +124,8 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   {
     slug: "temperature-sensitive",
     title: "Temperature-Sensitive",
-    summary: "Stored and transported under strict conditions (2–8 °C & 15–25 °C).",
+    summary:
+      "Stored and transported under strict conditions (2–8 °C & 15–25 °C).",
     description:
       "Biologics and thermolabile products handled under validated cold-chain or ambient conditions, end-to-end.",
     icon: "cold-chain",

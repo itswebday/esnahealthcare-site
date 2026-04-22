@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/sections/shared/PageHero";
-import { AboutStory } from "@/sections/about/AboutStory";
-import { GroupStructure } from "@/sections/about/GroupStructure";
-import { Headquarters } from "@/sections/about/Headquarters";
-import { QualityCulture } from "@/sections/about/QualityCulture";
+import PageHero from "@/sections/shared/PageHero";
+import AboutStory from "@/sections/about/AboutStory";
+import GroupStructure from "@/sections/about/GroupStructure";
+import Headquarters from "@/sections/about/Headquarters";
+import QualityCulture from "@/sections/about/QualityCulture";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-export default function AboutPage() {
+const AboutPage: React.FC = () => {
   return (
     <>
       <PageHero
@@ -27,4 +27,6 @@ export default function AboutPage() {
       <QualityCulture />
     </>
   );
-}
+};
+
+export default AboutPage;
