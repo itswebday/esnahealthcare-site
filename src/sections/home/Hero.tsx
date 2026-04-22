@@ -39,6 +39,15 @@ const Hero: React.FC = () => {
             className="bg-accent/12 pointer-events-none absolute top-[30%] right-[-12%] -z-10 h-[380px] w-[380px] rounded-full blur-[120px]"
           />
 
+          {/* Accent blue fade — top-left corner */}
+          <div
+            aria-hidden="true"
+            className="bg-accent/18 pointer-events-none absolute -top-40 -left-32 -z-10 h-[520px] w-[520px] rounded-full blur-[150px]"
+          />
+
+          {/* Network node constellation — subtle institutional overlay */}
+          <HeroNetworkPattern />
+
           <div className="relative mb-12 flex items-center gap-3 lg:mb-16">
             <span className="bg-primary h-1.5 w-1.5 rounded-full" />
             <span className="text-subtle font-mono text-[11px] font-semibold tracking-[0.28em] uppercase">
@@ -234,6 +243,64 @@ const HeroStats: React.FC = () => {
         })}
       </div>
     </Reveal>
+  );
+};
+
+const NETWORK_NODES: readonly [number, number, number, number][] = [
+  [100, 140, 4, 0.55],
+  [180, 100, 6, 0.9],
+  [220, 170, 3, 0.45],
+  [260, 130, 5, 0.7],
+  [300, 180, 4, 0.55],
+  [340, 110, 4, 0.6],
+  [380, 160, 6, 0.9],
+  [420, 200, 3, 0.45],
+  [460, 140, 4, 0.6],
+  [500, 170, 4, 0.55],
+  [150, 220, 3, 0.4],
+  [250, 250, 4, 0.55],
+  [320, 230, 3, 0.45],
+  [400, 250, 3, 0.4],
+  [480, 220, 4, 0.55],
+  [200, 280, 3, 0.4],
+  [280, 300, 4, 0.55],
+  [360, 290, 3, 0.45],
+  [440, 300, 3, 0.4],
+];
+
+const NETWORK_PATHS = [
+  "M 180 100 L 260 130 L 340 110 L 420 200 L 500 170",
+  "M 100 140 L 220 170 L 300 180 L 380 160 L 460 140",
+  "M 180 100 L 200 280 L 360 290 L 440 300",
+  "M 220 170 L 280 300 L 400 250",
+];
+
+const HeroNetworkPattern: React.FC = () => {
+  return (
+    <svg
+      aria-hidden="true"
+      className="pointer-events-none absolute top-[-40px] right-[-60px] -z-10 h-[720px] w-[1100px] opacity-[0.32]"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 600 420"
+    >
+      <defs>
+        <radialGradient cx="50%" cy="50%" id="hero-node-halo" r="50%">
+          <stop offset="0%" stopColor="#2e8b35" stopOpacity="0.65" />
+          <stop offset="100%" stopColor="#2e8b35" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      {NETWORK_NODES.map(([x, y, r, dim], i) => (
+        <g key={i}>
+          <circle cx={x} cy={y} fill="#2e8b35" fillOpacity={dim} r={r} />
+          <circle cx={x} cy={y} fill="url(#hero-node-halo)" r={r + 6} />
+        </g>
+      ))}
+      <g fill="none" stroke="#2e8b35" strokeOpacity="0.22" strokeWidth="0.75">
+        {NETWORK_PATHS.map((d) => (
+          <path key={d} d={d} />
+        ))}
+      </g>
+    </svg>
   );
 };
 
