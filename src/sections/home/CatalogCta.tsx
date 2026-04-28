@@ -11,7 +11,7 @@ const CatalogCta: React.FC = () => {
 
           <Reveal direction="up">
             <div className="relative flex flex-col items-start gap-6">
-              <span className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-3 py-1 text-[12px] font-medium tracking-[0.14em] text-white uppercase ring-1 ring-white/20 backdrop-blur">
+              <span className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-3 py-1 text-[12px] font-medium tracking-[0.14em] text-white uppercase ring-1 ring-white/20 sm:backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-white" />
                 For qualified buyers
               </span>
@@ -51,8 +51,8 @@ const CatalogBackdrop: React.FC = () => {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 -z-0"
     >
-      <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full border-[40px] border-white/10" />
-      <div className="absolute -bottom-32 -left-20 h-[360px] w-[360px] rounded-full border-[32px] border-white/10" />
+      <div className="absolute -top-40 -right-40 hidden h-[500px] w-[500px] rounded-full border-[40px] border-white/10 sm:block" />
+      <div className="absolute -bottom-32 -left-20 hidden h-[360px] w-[360px] rounded-full border-[32px] border-white/10 sm:block" />
     </div>
   );
 };

@@ -131,7 +131,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
             />
           )}
           {/* Category pill */}
-          <span className="border-primary/40 text-primary-dark absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-lg border bg-white/90 px-2.5 py-1 font-mono text-[10px] font-semibold tracking-[0.16em] uppercase backdrop-blur">
+          <span className="border-primary/40 text-primary-dark absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-lg border bg-white/90 px-2.5 py-1 font-mono text-[10px] font-semibold tracking-[0.16em] uppercase sm:backdrop-blur">
             <span className="bg-primary h-1 w-1 rounded-full" />
             {post.category}
           </span>

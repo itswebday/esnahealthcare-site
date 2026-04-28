@@ -38,7 +38,7 @@ const WhatWeDo: React.FC = () => {
         <div className="bg-surface-invert-2 relative overflow-hidden rounded-3xl px-6 py-16 text-white sm:rounded-[40px] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
           <Reveal direction="up">
             <div className="relative flex max-w-3xl flex-col gap-5">
-              <span className="inline-flex w-fit items-center gap-2 rounded-xl bg-white/10 px-3 py-1 text-[12px] font-medium tracking-[0.14em] text-white uppercase ring-1 ring-white/20 backdrop-blur">
+              <span className="inline-flex w-fit items-center gap-2 rounded-xl bg-white/10 px-3 py-1 text-[12px] font-medium tracking-[0.14em] text-white uppercase ring-1 ring-white/20 sm:backdrop-blur">
                 <span className="bg-primary h-1.5 w-1.5 rounded-full" />
                 What we do
               </span>
@@ -70,7 +70,7 @@ const WhatWeDo: React.FC = () => {
                 >
                   <Link
                     className={cn(
-                      "group duration-slow focus-visible:ring-offset-surface-invert-2 relative flex h-full flex-col gap-5 overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-white/5 to-white/[0.02] p-9 backdrop-blur transition-all focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+                      "group duration-slow focus-visible:ring-offset-surface-invert-2 relative flex h-full flex-col gap-5 overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-9 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:bg-linear-to-br sm:from-white/5 sm:to-white/[0.02] sm:backdrop-blur sm:transition-all",
                       isPrimary
                         ? "hover:border-primary/50 hover:shadow-primary/20 focus-visible:ring-primary hover:shadow-xl"
                         : "hover:border-accent/50 hover:shadow-accent/20 focus-visible:ring-accent hover:shadow-xl",
@@ -81,7 +81,7 @@ const WhatWeDo: React.FC = () => {
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "duration-slow pointer-events-none absolute -top-10 -right-10 h-40 w-40 rounded-bl-full bg-linear-to-br to-transparent opacity-60 transition-opacity group-hover:opacity-100",
+                        "duration-slow pointer-events-none absolute -top-10 -right-10 hidden h-40 w-40 rounded-bl-full bg-linear-to-br to-transparent opacity-60 transition-opacity group-hover:opacity-100 sm:block",
                         isPrimary ? "from-primary/30" : "from-accent/30",
                       )}
                     />
