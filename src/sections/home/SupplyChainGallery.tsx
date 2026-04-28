@@ -34,9 +34,7 @@ const SupplyChainGallery: React.FC = () => {
               behind every shipment — from intake to dispatch to export.
             </p>
           </div>
-        </Reveal>
 
-        <Reveal delay={0.1} direction="up">
           <div className="mt-14 grid gap-4 lg:grid-cols-6 lg:grid-rows-2">
             <WarehouseTile />
             <ColdChainTile />
@@ -52,7 +50,7 @@ const SupplyChainGallery: React.FC = () => {
 
 const WarehouseTile: React.FC = () => {
   return (
-    <div className="group bg-surface-invert text-on-invert relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-3xl p-8 lg:col-span-6 lg:row-span-2 lg:p-10">
+    <div className="group bg-surface-invert text-on-invert relative flex flex-col justify-between gap-6 overflow-hidden rounded-3xl p-8 sm:gap-0 sm:min-h-[320px] lg:col-span-6 lg:row-span-2 lg:p-10">
       <div
         aria-hidden="true"
         className="bg-primary/30 pointer-events-none absolute -top-24 -left-20 hidden h-[360px] w-[360px] rounded-full blur-3xl sm:block"
@@ -112,7 +110,7 @@ const WarehouseTile: React.FC = () => {
         <div className="bg-primary shadow-primary/30 inline-flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-lg">
           <Box size={26} variant="Bold" />
         </div>
-        <span className="inline-flex h-7 items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-3 font-mono text-[11px] leading-none tracking-[0.14em] text-white/80 uppercase backdrop-blur">
+        <span className="inline-flex h-7 items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-3 font-mono text-[11px] leading-none tracking-[0.14em] text-white/80 uppercase sm:backdrop-blur">
           <span className="relative flex h-1.5 w-1.5 shrink-0">
             <span className="bg-primary absolute inline-flex h-full w-full rounded-full opacity-70 sm:animate-ping" />
             <span className="bg-primary relative inline-flex h-1.5 w-1.5 rounded-full" />
@@ -153,7 +151,7 @@ const WarehouseTile: React.FC = () => {
 
 const ColdChainTile: React.FC = () => {
   return (
-    <div className="group duration-slow border-border shadow-hint hover:border-primary/40 hover:shadow-primary/10 relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 transition-all hover:shadow-lg lg:col-span-3">
+    <div className="group duration-slow border-border shadow-hint hover:border-primary/40 hover:shadow-primary/10 relative flex sm:min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 transition-all hover:shadow-lg lg:col-span-3">
       <span
         aria-hidden="true"
         className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
@@ -191,7 +189,7 @@ const ColdChainTile: React.FC = () => {
 
 const ExportTile: React.FC = () => {
   return (
-    <div className="group duration-slow border-border shadow-hint hover:border-accent/40 hover:shadow-accent/10 relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 transition-all hover:shadow-lg lg:col-span-3">
+    <div className="group duration-slow border-border shadow-hint hover:border-accent/40 hover:shadow-accent/10 relative flex sm:min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 transition-all hover:shadow-lg lg:col-span-3">
       <span
         aria-hidden="true"
         className="from-accent to-accent-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
@@ -240,7 +238,7 @@ const ExportTile: React.FC = () => {
 
 const AmbientTile: React.FC = () => {
   return (
-    <div className="group duration-slow border-border shadow-hint hover:border-primary/40 hover:shadow-primary/10 relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 transition-all hover:shadow-lg lg:col-span-3">
+    <div className="group duration-slow border-border shadow-hint hover:border-primary/40 hover:shadow-primary/10 relative flex sm:min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 transition-all hover:shadow-lg lg:col-span-3">
       <span
         aria-hidden="true"
         className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
@@ -279,7 +277,7 @@ const AmbientTile: React.FC = () => {
 
 const OfficeTile: React.FC = () => {
   return (
-    <div className="group duration-slow border-border bg-surface-1 shadow-hint hover:border-accent/40 hover:shadow-accent/10 relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border p-6 transition-all hover:shadow-lg lg:col-span-3">
+    <div className="group duration-slow border-border bg-surface-1 shadow-hint hover:border-accent/40 hover:shadow-accent/10 relative flex sm:min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border p-6 transition-all hover:shadow-lg lg:col-span-3">
       <span
         aria-hidden="true"
         className="from-accent to-accent-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
