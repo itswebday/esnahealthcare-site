@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { ShieldTick } from "iconsax-react";
-import PageHero from "@/sections/shared/PageHero";
-import LicenceCards from "@/sections/compliance/LicenceCards";
 import CorporateRegistration from "@/sections/compliance/CorporateRegistration";
-import RegulatoryFramework from "@/sections/compliance/RegulatoryFramework";
+import LicenceCards from "@/sections/compliance/LicenceCards";
 import QualificationForms from "@/sections/compliance/QualificationForms";
 import QualityCommitment from "@/sections/compliance/QualityCommitment";
+import RegulatoryFramework from "@/sections/compliance/RegulatoryFramework";
+import PageHero from "@/sections/shared/PageHero";
 
 export const metadata: Metadata = {
   title: "Compliance",
   description:
-    "Esna Care operates under a Dutch Wholesale Distribution Authorisation (WDA) No. 16615 G and a GDP Certificate No. NL/G24/2053458. Downloadable licences, SOPs, and regulatory framework.",
+    "EU Wholesale Distribution Authorisation No. 16615 G · GDP Certificate No. NL/G24/2053458 — issued by Dutch authorities and supervised by the IGJ (Dutch Health & Youth Care Inspectorate).",
   alternates: { canonical: "/compliance" },
 };
 
@@ -18,20 +17,17 @@ const CompliancePage: React.FC = () => {
   return (
     <>
       <PageHero
-        badge={{
-          label: "EU Licensed · GDP Certified",
-          icon: <ShieldTick size={14} variant="Linear" className="mr-0.5" />,
-        }}
+        eyebrow="EU Licensed · GDP Certified"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Compliance" }]}
-        description="Every licence, certification, and qualification SOP is listed — with downloadable PDFs. What you'd check in any due diligence, already on the page."
+        description="EU GDP compliant · IGJ supervised · EU regulatory aligned · Formally audited and annually reviewed. Licence numbers shown as plain text — verification documents shared privately with qualified partners."
         size="sm"
-        title="Verifiable compliance, by the document."
+        title="Verifiable compliance, by the licence number."
       />
       <LicenceCards />
-      <CorporateRegistration />
       <RegulatoryFramework />
       <QualificationForms />
       <QualityCommitment />
+      <CorporateRegistration />
     </>
   );
 };

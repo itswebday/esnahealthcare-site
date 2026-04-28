@@ -10,7 +10,6 @@ import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { cn } from "@/lib/cn";
-import { SITE } from "@/lib/site";
 
 const CRITERIA = [
   "EU-sourced stock with traceable provenance",
@@ -30,10 +29,8 @@ const WELCOME = [
 
 const WhatWereLookingFor: React.FC = () => {
   return (
-    <section className="bg-surface-1 relative overflow-hidden rounded-[48px] py-20 sm:py-24 lg:py-28">
+    <section className="bg-surface-1 relative overflow-hidden py-16 sm:py-20 lg:py-24">
       <Container size="xl">
-        <WhatWereLookingForBackdrop />
-
         <Reveal direction="up">
           <SectionHeader
             description="A clear picture of what typically passes our qualification bar — so suppliers know whether it's worth submitting before doing the paperwork."
@@ -76,16 +73,9 @@ const WhatWereLookingFor: React.FC = () => {
                     variant="Bold"
                   />
                   <p>
-                    All suppliers are qualified against our{" "}
-                    <Link
-                      className="text-accent hover:text-accent-hover font-medium underline underline-offset-2 transition-colors"
-                      href={SITE.qualificationSops[0].href}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      Supplier Qualification SOP
-                    </Link>{" "}
-                    before the first transaction.
+                    All suppliers are qualified against our Supplier
+                    Qualification SOP before the first transaction. The full SOP
+                    is shared privately with qualified partners on request.
                   </p>
                 </div>
               </div>
@@ -128,6 +118,7 @@ const WhatWereLookingFor: React.FC = () => {
               <Link
                 className="group text-primary-dark hover:text-primary-hover mt-auto inline-flex items-center gap-2 text-[15px] font-medium transition-colors"
                 href="#offer-form"
+                prefetch
               >
                 Submit your offer
                 <ArrowRight
@@ -143,17 +134,4 @@ const WhatWereLookingFor: React.FC = () => {
     </section>
   );
 };
-
-const WhatWereLookingForBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[20%] right-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-      <div className="bg-accent/10 absolute bottom-[10%] left-[-10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default WhatWereLookingFor;

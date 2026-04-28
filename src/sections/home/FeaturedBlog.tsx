@@ -39,7 +39,7 @@ const FeaturedBlog: React.FC = () => {
   };
 
   return (
-    <section className="relative py-20 sm:py-24 lg:py-28">
+    <section className="relative py-16 sm:py-20 lg:py-24">
       <Container size="xl">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <Reveal direction="up">
@@ -56,6 +56,7 @@ const FeaturedBlog: React.FC = () => {
               <Link
                 className="group text-primary-dark hover:text-primary inline-flex items-center gap-1.5 text-[14px] font-medium transition-colors"
                 href="/blog"
+                prefetch
               >
                 View all articles
                 <ArrowRight
@@ -89,7 +90,7 @@ const FeaturedBlog: React.FC = () => {
           ref={scrollerRef}
           aria-label="Featured blog posts"
           aria-roledescription="carousel"
-          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-6 pb-4 [scrollbar-width:none] sm:px-8 lg:px-10 [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory scroll-pl-[max(1.5rem,calc(50vw-38.5rem))] gap-5 overflow-x-auto scroll-smooth pt-2 pr-[max(1.5rem,calc(50vw-38.5rem))] pb-8 pl-[max(1.5rem,calc(50vw-38.5rem))] [scrollbar-width:none] sm:scroll-pl-[max(2rem,calc(50vw-38rem))] sm:pr-[max(2rem,calc(50vw-38rem))] sm:pl-[max(2rem,calc(50vw-38rem))] lg:scroll-pl-[max(2.5rem,calc(50vw-37.5rem))] lg:pr-[max(2.5rem,calc(50vw-37.5rem))] lg:pl-[max(2.5rem,calc(50vw-37.5rem))] [&::-webkit-scrollbar]:hidden"
         >
           {BLOG_POSTS.map((post) => (
             <BlogCard key={post.slug} post={post} />
@@ -113,7 +114,11 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
       data-blog-card
       className="group border-border shadow-hint duration-slow hover:border-primary/40 hover:shadow-lift relative flex w-[320px] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border bg-white transition-all sm:w-[360px] lg:w-[400px]"
     >
-      <Link className="flex h-full flex-col" href={`/blog/${post.slug}`}>
+      <Link
+        className="flex h-full flex-col"
+        href={`/blog/${post.slug}`}
+        prefetch
+      >
         {/* Image */}
         <div className="border-border bg-surface-1 relative aspect-[16/10] w-full overflow-hidden border-b">
           {image && (

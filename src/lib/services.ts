@@ -18,11 +18,11 @@ export const SERVICES: Service[] = [
     summary:
       "Supply of branded and generic medicines through a trusted global supplier network.",
     description:
-      "We operate as an EU-licensed wholesaler for a broad catalogue of branded and generic medicinal products — sourced from authorised manufacturers and distributors across Europe and delivered to wholesalers, hospitals, and pharmacies internationally.",
+      "Supply of branded and generic medicines through a trusted global supplier network — serving wholesalers, distributors, hospitals, and pharmacies worldwide.",
     bullets: [
       "EU-sourced branded & generic medicines",
-      "Serving wholesalers, distributors, hospitals & pharmacies",
-      "Full documentation & batch traceability on every shipment",
+      "Wholesalers, distributors, hospitals & pharmacies",
+      "Full documentation & batch traceability",
       "Supply-disruption and hard-to-source support",
     ],
     icon: "pharma-wholesale",
@@ -31,14 +31,14 @@ export const SERVICES: Service[] = [
     slug: "global-sourcing",
     title: "Global Sourcing",
     summary:
-      "Access to a wide range of pharmaceutical products through established international partners.",
+      "Specialty, orphan, and hard-to-source treatments — including shortage medicines across EU markets.",
     description:
-      "Our sourcing network spans licensed wholesalers across the EU and qualified international partners, giving our customers access to a broad portfolio of products — including specialty, orphan, and hard-to-source treatments that are otherwise difficult to procure.",
+      "Specialty, orphan, and hard-to-source treatments — including shortage medicines across EU markets — sourced through a pre-qualified EU and international supplier network.",
     bullets: [
-      "Established network across EU member states",
-      "Qualified international supplier partners",
-      "Specialty, oncology, and orphan treatments on request",
-      "Dedicated handling for urgent and short-shelf-life requests",
+      "Pre-qualified EU supplier network",
+      "Qualified international partners",
+      "Specialty, oncology & orphan treatments on request",
+      "Shortage medicines across EU markets",
     ],
     icon: "global-sourcing",
   },
@@ -46,29 +46,29 @@ export const SERVICES: Service[] = [
     slug: "international-distribution",
     title: "International Distribution",
     summary:
-      "Reliable and efficient delivery of pharmaceutical products across international markets.",
+      "WDA-authorised procurement, supply, and export — including shipments outside the EEA.",
     description:
-      "Operating under a Wholesale Distribution Authorisation (WDA) for procurement, supply, and export, we coordinate shipments to qualified customers worldwide — including medicinal products intended for export outside the EEA, as permitted under the WDA.",
+      "Operating under a Wholesale Distribution Authorisation (WDA), we coordinate procurement, supply, and export to qualified customers — including medicinal products intended for shipment outside the EEA, where permitted.",
     bullets: [
-      "WDA authorisation for procurement, supply & export",
+      "WDA authorisation: procurement, supply & export",
       "Export of medicines outside the EEA where permitted",
-      "Qualified customer vetting under GDP SOPs",
+      "Qualified customer vetting under our SOPs",
       "Full export documentation & customs support",
     ],
     icon: "international-distribution",
   },
   {
-    slug: "temperature-controlled-logistics",
-    title: "Temperature-Controlled Logistics",
+    slug: "temperature-controlled",
+    title: "Temperature-Controlled Storage and Handling",
     summary:
-      "Handling and distribution of medicines requiring controlled storage conditions (2–8 °C & 15–25 °C).",
+      "Validated 2–8 °C and 15–25 °C operations — continuously monitored and fully documented.",
     description:
-      "Through our qualified warehousing partner, we handle cold-chain products (2–8 °C) and controlled-ambient products (15–25 °C) with continuous temperature monitoring — from intake through outbound shipment, in line with EU GDP Guidelines.",
+      "Validated 2–8 °C and 15–25 °C operations — continuously monitored and fully documented from intake to delivery, in line with EU GDP Guidelines.",
     bullets: [
       "Cold-chain 2–8 °C and controlled-ambient 15–25 °C",
       "Continuous monitoring & validated excursions",
       "GDP-compliant qualified warehousing",
-      "Biologics, injectables, and specialty therapies handled",
+      "Biologics, injectables & specialty therapies",
     ],
     icon: "temperature-controlled",
   },
@@ -94,20 +94,20 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     title: "Branded Medicines",
     summary: "Trusted brands across multiple therapeutic areas.",
     description:
-      "Access to a broad catalogue of branded medicinal products sourced from authorised channels across the European Economic Area.",
+      "Branded medicinal products sourced from authorised channels across the European Economic Area.",
     icon: "branded",
   },
   {
     slug: "generic-medicines",
     title: "Generic Medicines",
-    summary: "High-quality alternatives for common and specialized treatments.",
+    summary: "High-quality alternatives for common and specialised treatments.",
     description:
-      "A wide range of generics — including specialized treatments — supplied with full regulatory and batch documentation.",
+      "A broad range of generics, supplied with full regulatory and batch documentation.",
     icon: "generic",
   },
   {
-    slug: "hospital-medicines",
-    title: "Hospital Medicines",
+    slug: "hospital-injectables",
+    title: "Hospital & Injectables",
     summary: "Injectable therapies and critical care products.",
     description:
       "Injectables, emergency and ICU medicines for hospital and institutional healthcare customers.",
@@ -116,14 +116,14 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   {
     slug: "specialty-hard-to-source",
     title: "Specialty & Hard-to-Source",
-    summary: "Oncology, orphan (rare disease), and complex therapies.",
+    summary: "Oncology, orphan and complex therapies.",
     description:
-      "Rare, specialty, and orphan treatments sourced through qualified international partners — including during supply disruptions.",
+      "Specialty and orphan treatments sourced through qualified international partners — including during supply disruptions.",
     icon: "specialty",
   },
   {
     slug: "temperature-sensitive",
-    title: "Temperature-Sensitive",
+    title: "Temperature-Sensitive Medicines",
     summary:
       "Stored and transported under strict conditions (2–8 °C & 15–25 °C).",
     description:
@@ -135,7 +135,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     title: "Prescription Medicines",
     summary: "For healthcare providers and distributors worldwide.",
     description:
-      "Prescription-only medicines supplied to qualified customers under our Customer Qualification SOP.",
+      "Prescription-only medicines supplied exclusively to qualified customers.",
     icon: "prescription",
   },
 ];
@@ -144,7 +144,6 @@ export type TherapeuticArea = {
   slug: string;
   title: string;
   description: string;
-  examples: string[];
   icon:
     | "oncology"
     | "rare"
@@ -160,94 +159,57 @@ export const THERAPEUTIC_AREAS: TherapeuticArea[] = [
   {
     slug: "oncology",
     title: "Oncology",
-    description: "Targeted therapies, immunotherapies & supportive care.",
-    examples: ["Vitrakvi", "Pemazyre", "Lysodren", "Lenalidomide"],
+    description: "Targeted therapies, immunotherapies and supportive care.",
     icon: "oncology",
   },
   {
     slug: "rare-orphan-diseases",
     title: "Rare & Orphan Diseases",
     description: "Hard-to-source treatments for rare conditions.",
-    examples: ["Filspari", "Voxzogo", "Koselugo", "Radicut"],
     icon: "rare",
   },
   {
     slug: "cardiovascular",
     title: "Cardiovascular",
-    description: "Antihypertensives, statins & cardiac therapies.",
-    examples: ["Exforge", "Tahor", "Beloc", "Vafseo"],
+    description: "Antihypertensives, statins and cardiac therapies.",
     icon: "cardio",
   },
   {
     slug: "immunology-biologics",
     title: "Immunology & Biologics",
-    description: "Monoclonal antibodies & immune modulators.",
-    examples: ["Dupixent", "Benlysta", "Evenity", "Emgality"],
+    description: "Monoclonal antibodies and immune modulators.",
     icon: "immunology",
   },
   {
     slug: "neurology-pain",
     title: "Neurology & Pain",
-    description: "CNS therapies, migraine prevention & neuropathic care.",
-    examples: ["Dantrium", "Cinnarizine", "Galcanezumab"],
+    description: "CNS therapies, migraine prevention and neuropathic care.",
     icon: "neurology",
   },
   {
     slug: "critical-hospital-care",
     title: "Critical & Hospital Care",
-    description: "Injectable solutions, emergency & ICU medicines.",
-    examples: ["Bactrim IV", "Cyanokit", "Tamiflu", "Reblozyl"],
+    description: "Injectable solutions, emergency and ICU medicines.",
     icon: "critical",
   },
   {
-    slug: "temperature-sensitive",
-    title: "Temperature-Sensitive",
+    slug: "temperature-sensitive-biologics",
+    title: "Temperature-Sensitive Biologics",
     description: "Cold-chain managed biologics (2–8 °C).",
-    examples: ["Voxzogo", "Reblozyl", "Evenity", "Benlysta"],
     icon: "cold-chain",
   },
   {
     slug: "vitamins-supplements",
     title: "Vitamins & Supplements",
     description: "Essential vitamins and nutritional support.",
-    examples: ["Vitamin B12", "Centrum", "Nephrotrans"],
     icon: "vitamins",
   },
 ];
 
 export const MEDICAL_DEVICE_CATEGORIES = [
-  "Medical Devices",
-  "Clinical Nutrition",
-  "Self-Diagnostics",
+  "Diagnostics",
   "Wound Care",
   "Diabetes Care",
+  "Clinical Nutrition",
+  "Self-Diagnostics",
 ] as const;
-
-export const MEDICAL_DEVICE_BRANDS = [
-  "Roche",
-  "Abbott",
-  "LifeScan",
-  "Ascensia Diabetes Care",
-  "A. Menarini",
-  "Siemens Healthineers",
-  "Ypsomed",
-  "BD",
-  "Novo Nordisk",
-  "B. Braun",
-  "Coloplast",
-  "Convatec",
-  "Smith & Nephew",
-  "Mölnlycke Health Care",
-  "3M",
-] as const;
-
-export const MEDICAL_DEVICE_DISCLAIMER =
-  "Esna Care is an independent wholesaler and is not an authorized distributor of the listed brands. Product availability depends on market conditions and regulatory requirements.";
-
-export const WHY_CHOOSE_US = [
-  "Trusted pharmaceutical wholesale partner",
-  "Reliable global supply network",
-  "Commitment to product quality and compliance",
-  "Responsive and customer-focused service",
-  "Secure and efficient pharmaceutical supply chain",
-];

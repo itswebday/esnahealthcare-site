@@ -14,9 +14,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/faq",
     "/blog",
-    "/privacy",
-    "/cookies",
-    "/terms",
+    "/privacy-policy",
+    "/cookie-policy",
+    "/terms-and-conditions",
   ];
   return [
     ...staticRoutes.map((path) => ({

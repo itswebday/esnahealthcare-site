@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Cookie Policy",
   description:
     "Esna Care B.V. cookie policy. We use only strictly necessary cookies by default. Optional analytics cookies are off until consent.",
-  alternates: { canonical: "/cookies" },
+  alternates: { canonical: "/cookie-policy" },
   robots: { index: true, follow: true },
 };
 
@@ -15,8 +15,8 @@ const CookiesPage: React.FC = () => {
   return (
     <LegalLayout
       title="Cookie Policy"
-      lastUpdated="Launch date placeholder"
-      draftNote='draft — Eissa to review. Update the "Examples" column with actual cookie names once analytics tool is chosen. If no analytics tool deploys at launch, remove the Analytics row.'
+      lastUpdated="April 2026"
+      draftNote='Draft — to be reviewed by Esna Care’s legal advisor before launch. Update the "Examples" column with actual cookie names once an analytics tool is chosen; if no analytics tool deploys at launch, remove the Analytics row.'
     >
       <p>
         This Cookie Policy explains how{" "}
@@ -112,7 +112,10 @@ const CookiesPage: React.FC = () => {
         Questions about cookies? Email us at{" "}
         <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>. For
         broader information on your rights, see our{" "}
-        <Link href="/privacy">Privacy Policy</Link>.
+        <Link href="/privacy-policy" prefetch>
+          Privacy Policy
+        </Link>
+        .
       </p>
     </LegalLayout>
   );

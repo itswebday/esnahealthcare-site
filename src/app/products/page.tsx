@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import PageHero from "@/sections/shared/PageHero";
-import ProductCategoriesDetail from "@/sections/products/ProductCategoriesDetail";
 import TherapeuticAreasGrid from "@/sections/home/TherapeuticAreasGrid";
 import MedicalDevices from "@/sections/products/MedicalDevices";
-import CatalogCta from "@/sections/home/CatalogCta";
+import PharmaBrands from "@/sections/products/PharmaBrands";
+import ProductCategoriesDetail from "@/sections/products/ProductCategoriesDetail";
+import ProductsEnquiryCta from "@/sections/products/ProductsEnquiryCta";
+import PageHero from "@/sections/shared/PageHero";
 
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "200+ products across oncology, rare & orphan, cardiovascular, immunology & biologics, neurology, critical & hospital care, temperature-sensitive, and vitamins. Medical devices sourced through registered partners.",
+    "Branded, generic, OTC, specialty, hospital, and temperature-sensitive medicines across eight therapeutic areas — plus medical devices and diagnostics. Sourced through qualified channels.",
   alternates: { canonical: "/products" },
 };
 
@@ -17,14 +18,15 @@ const ProductsPage: React.FC = () => {
     <>
       <PageHero
         eyebrow="Products"
-        title="A broad portfolio, documented end-to-end."
-        description="From branded and generic medicines to injectables and specialty biologics — sourced through qualified channels, supplied under our WDA and GDP."
+        title="A broad portfolio, sourced under qualification."
+        description="From branded and generic medicines to injectables, specialty biologics, and medical devices — supplied under our WDA and GDP."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
       />
       <ProductCategoriesDetail />
       <TherapeuticAreasGrid />
+      <PharmaBrands />
       <MedicalDevices />
-      <CatalogCta />
+      <ProductsEnquiryCta />
     </>
   );
 };

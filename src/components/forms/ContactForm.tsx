@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ArrowDown2,
   ArrowRight,
   CloseCircle,
   DocumentUpload,
@@ -10,10 +11,14 @@ import {
 import Link from "next/link";
 import { useId, useMemo, useState } from "react";
 import { cn } from "@/lib/cn";
+import { ENQUIRY_TYPES, type EnquiryType } from "@/lib/enquiry-types";
+
+export type { EnquiryType };
 
 type Variant = "contact" | "supplier" | "catalog";
 
 type ContactFormProps = {
+  enquiryType?: EnquiryType;
   prefilledMessage?: string;
   source: "contact" | "we-buy-medicines" | "catalog-request";
   variant?: Variant;
@@ -35,7 +40,7 @@ const COPY: Record<
     attachmentHint:
       "Accepts spreadsheet or PDF. Max ~10 MB — used for RFQs or stock lists.",
     attachmentLabel: "Attachment",
-    messageLabel: "How can we help?",
+    messageLabel: "Message",
     messagePlaceholder:
       "Describe your request — product, quantity, target country, any time constraints.",
     submitLabel: "Send enquiry",
@@ -62,14 +67,15 @@ const COPY: Record<
     messageLabel: "Anything specific you need?",
     messagePlaceholder:
       "Therapeutic areas of interest, countries of supply, any urgent requests.",
-    submitLabel: "Request catalog",
+    submitLabel: "Request portfolio",
     successBody:
-      "After a brief qualification check, our team will share the current catalog and availability.",
-    successTitle: "Thank you — your catalog request is in.",
+      "After a brief qualification check, our team will share the relevant portfolio details.",
+    successTitle: "Thank you — your request is in.",
   },
 };
 
 const ContactForm: React.FC<ContactFormProps> = ({
+  enquiryType,
   prefilledMessage,
   source,
   variant = "contact",
@@ -166,11 +172,20 @@ const ContactForm: React.FC<ContactFormProps> = ({
         <Field
           autoComplete="tel"
           id={`${formId}-phone`}
-          label="Telephone"
+          label="Phone"
           name="phone"
           type="tel"
         />
       </div>
+
+      <SelectField
+        defaultValue={enquiryType ?? ""}
+        id={`${formId}-enquiry-type`}
+        label="Enquiry type"
+        name="enquiryType"
+        options={ENQUIRY_TYPES}
+        placeholder="Select an enquiry type…"
+      />
 
       <Field
         as="textarea"
@@ -286,6 +301,60 @@ const Field: React.FC<FieldProps> = ({
           type={type}
         />
       )}
+    </div>
+  );
+};
+
+type SelectFieldProps = {
+  defaultValue?: string;
+  id: string;
+  label: string;
+  name: string;
+  options: readonly { value: string; label: string }[];
+  placeholder?: string;
+};
+
+const SelectField: React.FC<SelectFieldProps> = ({
+  defaultValue,
+  id,
+  label,
+  name,
+  options,
+  placeholder,
+}) => {
+  return (
+    <div className="flex flex-col gap-2">
+      <label
+        className="text-foreground inline-flex items-center gap-1.5 text-[13px] font-medium"
+        htmlFor={id}
+      >
+        {label}
+      </label>
+      <div className="relative">
+        <select
+          className="border-border text-foreground hover:border-border-strong focus:border-foreground duration-normal h-12 w-full appearance-none rounded-xl border bg-white px-4 pr-12 text-[15px] transition-colors focus:outline-none"
+          defaultValue={defaultValue}
+          id={id}
+          name={name}
+        >
+          {placeholder && (
+            <option disabled value="">
+              {placeholder}
+            </option>
+          )}
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <ArrowDown2
+          aria-hidden="true"
+          className="text-subtle pointer-events-none absolute top-1/2 right-4 -translate-y-1/2"
+          size={16}
+          variant="Linear"
+        />
+      </div>
     </div>
   );
 };
@@ -421,7 +490,8 @@ const ConsentCheckbox: React.FC<ConsentCheckboxProps> = ({
         our{" "}
         <Link
           className="decoration-primary/40 hover:decoration-primary text-foreground font-medium underline underline-offset-[3px] transition-[text-decoration-color]"
-          href="/privacy"
+          href="/privacy-policy"
+          prefetch
         >
           Privacy Policy
         </Link>

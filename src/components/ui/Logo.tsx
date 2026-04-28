@@ -45,6 +45,7 @@ const Logo: React.FC<LogoProps> = ({
       className="focus-visible:ring-primary inline-flex items-center rounded-md focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
       href={href}
       aria-label="Esna Care — home"
+      prefetch
     >
       {img}
     </Link>

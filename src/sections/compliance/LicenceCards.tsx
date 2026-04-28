@@ -1,11 +1,4 @@
-import {
-  DocumentDownload,
-  Export,
-  ShieldTick,
-  TickCircle,
-  Verify,
-} from "iconsax-react";
-import Button from "@/components/ui/Button";
+import { ShieldTick, TickCircle, Verify } from "iconsax-react";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -13,9 +6,7 @@ import { SITE } from "@/lib/site";
 
 const LicenceCards: React.FC = () => {
   return (
-    <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
-      <LicenceBackdrop />
-
+    <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
       <Container className="relative" size="xl">
         <Reveal direction="up">
           <SectionHeader
@@ -91,32 +82,11 @@ const LicenceCards: React.FC = () => {
                   ))}
                 </ul>
 
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Button
-                    href={SITE.licences.wda.pdf}
-                    rel="noopener noreferrer"
-                    size="md"
-                    target="_blank"
-                    variant="primary"
-                  >
-                    <DocumentDownload
-                      className="shrink-0"
-                      size={16}
-                      variant="Linear"
-                    />
-                    Wholesale Licence PDF
-                  </Button>
-                  <Button
-                    href={SITE.licences.wda.eudraGmdpPdf}
-                    rel="noopener noreferrer"
-                    size="md"
-                    target="_blank"
-                    variant="outline"
-                  >
-                    <Export className="shrink-0" size={16} variant="Linear" />
-                    WDA · EudraGMDP
-                  </Button>
-                </div>
+                <p className="border-border bg-surface-1 text-muted mt-8 rounded-2xl border p-4 text-[13px] leading-relaxed">
+                  Licence verification, qualification documents, and the full
+                  compliance package are available privately to qualified
+                  partners on request.
+                </p>
               </div>
             </div>
           </Reveal>
@@ -188,23 +158,6 @@ const LicenceCards: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-
-                <div className="mt-8">
-                  <Button
-                    href={SITE.licences.gdp.pdf}
-                    rel="noopener noreferrer"
-                    size="md"
-                    target="_blank"
-                    variant="accent"
-                  >
-                    <DocumentDownload
-                      className="shrink-0"
-                      size={16}
-                      variant="Linear"
-                    />
-                    GDP Certificate PDF
-                  </Button>
-                </div>
               </div>
             </div>
           </Reveal>
@@ -213,17 +166,4 @@ const LicenceCards: React.FC = () => {
     </section>
   );
 };
-
-const LicenceBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[20%] left-[-8%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-      <div className="bg-accent/10 absolute right-[-8%] bottom-[10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default LicenceCards;

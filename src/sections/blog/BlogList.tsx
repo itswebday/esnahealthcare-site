@@ -20,14 +20,13 @@ const BlogList: React.FC = () => {
 
   return (
     <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
-      <BlogListBackdrop />
-
       <Container className="relative" size="xl">
         {featured && (
           <Reveal direction="up">
             <Link
               className="group bg-surface-invert text-on-invert focus-visible:ring-primary focus-visible:ring-offset-background relative flex flex-col gap-10 overflow-hidden rounded-3xl p-8 transition-colors hover:border-white/40 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:p-12 lg:flex-row lg:items-end lg:gap-16 lg:p-16"
               href={`/blog/${featured.slug}`}
+              prefetch
             >
               <span
                 aria-hidden="true"
@@ -104,6 +103,7 @@ const BlogList: React.FC = () => {
                     "focus-visible:ring-offset-2 focus-visible:outline-none",
                   )}
                   href={`/blog/${post.slug}`}
+                  prefetch
                 >
                   <span
                     aria-hidden="true"
@@ -165,17 +165,4 @@ const BlogList: React.FC = () => {
     </section>
   );
 };
-
-const BlogListBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[30%] left-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-      <div className="bg-accent/10 absolute right-[-10%] bottom-[10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default BlogList;

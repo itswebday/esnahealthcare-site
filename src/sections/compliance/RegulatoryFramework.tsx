@@ -9,13 +9,11 @@ const ICONS = [Book, ShieldTick, Hospital, Verify];
 
 const RegulatoryFramework: React.FC = () => {
   return (
-    <section className="bg-surface-1 relative overflow-hidden rounded-[48px] py-20 sm:py-24 lg:py-28">
+    <section className="bg-surface-1 relative overflow-hidden py-16 sm:py-20 lg:py-24">
       <Container size="xl">
-        <RegulatoryBackdrop />
-
         <Reveal direction="up">
           <SectionHeader
-            description="Four instruments shape how we procure, store, and distribute medicinal products. We refer to them directly rather than summarising them."
+            description="Compliant by default — supervised by the IGJ (Dutch Health & Youth Care Inspectorate) and aligned with EU regulatory requirements."
             eyebrow="Regulatory framework"
             size="md"
             title="The rulebook we operate under."
@@ -70,17 +68,4 @@ const RegulatoryFramework: React.FC = () => {
     </section>
   );
 };
-
-const RegulatoryBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/5 absolute top-[30%] left-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-      <div className="bg-accent/5 absolute right-[-8%] bottom-[10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default RegulatoryFramework;

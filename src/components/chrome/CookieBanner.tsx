@@ -15,6 +15,7 @@ const CookieBanner: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional one-shot post-hydration sync from localStorage
     setIsMounted(true);
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
@@ -113,7 +114,8 @@ const CookieBanner: React.FC = () => {
                       Optional analytics cookies are off by default —{" "}
                       <Link
                         className="text-primary-dark hover:text-primary font-medium underline-offset-2 transition-colors hover:underline"
-                        href="/cookies"
+                        href="/cookie-policy"
+                        prefetch
                       >
                         see cookie policy
                       </Link>

@@ -18,10 +18,8 @@ import Reveal from "@/components/ui/Reveal";
 
 const SupplyChainGallery: React.FC = () => {
   return (
-    <section className="relative overflow-hidden pt-24 pb-14 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20">
-      <GalleryBackdrop />
-
-      <Container className="relative" size="xl">
+    <section className="relative py-16 sm:py-20 lg:py-24">
+      <Container size="xl">
         <Reveal direction="up">
           <div className="flex max-w-3xl flex-col gap-5">
             <span className="border-primary/40 bg-primary-subtle text-primary-dark inline-flex w-fit items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
@@ -49,18 +47,6 @@ const SupplyChainGallery: React.FC = () => {
         </Reveal>
       </Container>
     </section>
-  );
-};
-
-const GalleryBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[10%] left-[-8%] h-[480px] w-[480px] rounded-full blur-[120px]" />
-      <div className="bg-accent/10 absolute right-[-8%] bottom-[10%] h-[420px] w-[420px] rounded-full blur-[120px]" />
-    </div>
   );
 };
 

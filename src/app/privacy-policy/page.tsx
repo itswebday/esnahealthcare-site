@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Esna Care B.V. privacy policy — what we collect, how we use it, and your rights under GDPR. Data controller: ESNA Care B.V., Utrecht, The Netherlands.",
-  alternates: { canonical: "/privacy" },
+  alternates: { canonical: "/privacy-policy" },
   robots: { index: true, follow: true },
 };
 
@@ -15,8 +15,8 @@ const PrivacyPage: React.FC = () => {
   return (
     <LegalLayout
       title="Privacy Policy"
-      lastUpdated="Launch date placeholder"
-      draftNote="draft — Eissa and/or his legal advisor to review before launch, in particular: retention periods, hosting/email providers named below, and any additional processors."
+      lastUpdated="April 2026"
+      draftNote="Draft — to be reviewed by Esna Care’s legal advisor before launch. In particular: retention periods, the hosting and email providers named below, and any additional processors should be confirmed."
     >
       <p>
         <strong>{SITE.legalNameOperational}</strong> respects your privacy and
@@ -183,7 +183,10 @@ const PrivacyPage: React.FC = () => {
       <h2>7. Cookies</h2>
       <p>
         This website uses a minimal set of cookies. See our{" "}
-        <Link href="/cookies">Cookie Policy</Link> for full details.
+        <Link href="/cookie-policy" prefetch>
+          Cookie Policy
+        </Link>{" "}
+        for full details.
       </p>
 
       <h2>8. Security</h2>

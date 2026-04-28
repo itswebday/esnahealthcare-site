@@ -25,18 +25,16 @@ const ICON_MAP: Record<ProductCategory["icon"], typeof Award> = {
 const ProductCategoriesDetail: React.FC = () => {
   return (
     <section
-      className="relative overflow-hidden py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden py-16 sm:py-20 lg:py-24"
       id="medicines"
     >
-      <ProductCategoriesBackdrop />
-
       <Container className="relative" size="xl">
         <Reveal direction="up">
           <SectionHeader
-            description="A deeper look at the product families in our catalog, and what's typical in each."
-            eyebrow="Product categories"
+            description="Six categories that cover most supply conversations — branded, generic, hospital injectables, specialty, temperature-sensitive, and prescription medicines."
+            eyebrow="Pharmaceuticals"
             size="md"
-            title="Six categories that cover most supply conversations."
+            title="Six product categories, one quality standard."
           />
         </Reveal>
 
@@ -102,17 +100,4 @@ const ProductCategoriesDetail: React.FC = () => {
     </section>
   );
 };
-
-const ProductCategoriesBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[20%] left-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-      <div className="bg-accent/10 absolute right-[-10%] bottom-[10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default ProductCategoriesDetail;

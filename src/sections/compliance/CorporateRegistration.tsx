@@ -15,19 +15,14 @@ const ROWS = [
   { label: "VAT number", value: SITE.registrations.vat },
   { label: "EORI number", value: SITE.registrations.eori },
   { label: "REX number", value: SITE.registrations.rex },
-  {
-    label: "Registered address",
-    value: SITE.contact.registeredAddress.full,
-  },
-  { label: "Office address", value: SITE.contact.officeAddress.full },
+  { label: "Head Office", value: SITE.contact.officeAddress.full },
+  { label: "Warehouse", value: SITE.contact.warehouseAddress.full },
 ];
 
 const CorporateRegistration: React.FC = () => {
   return (
-    <section className="bg-surface-1 relative overflow-hidden rounded-[48px] py-20 sm:py-24 lg:py-28">
+    <section className="bg-surface-1 relative overflow-hidden py-16 sm:py-20 lg:py-24">
       <Container size="xl">
-        <CorporateBackdrop />
-
         <Reveal direction="up">
           <SectionHeader
             description="Every identifier that a partner, bank, or customs authority may request is listed in one place."
@@ -60,16 +55,4 @@ const CorporateRegistration: React.FC = () => {
     </section>
   );
 };
-
-const CorporateBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[20%] right-[-8%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default CorporateRegistration;

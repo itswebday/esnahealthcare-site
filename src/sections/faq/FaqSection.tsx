@@ -23,8 +23,6 @@ const FaqSection: React.FC = () => {
 
   return (
     <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
-      <FaqBackdrop />
-
       <Container className="relative" size="lg">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4" direction="up">
@@ -43,6 +41,7 @@ const FaqSection: React.FC = () => {
               <Link
                 className="group text-foreground hover:text-primary-dark mt-6 inline-flex items-center gap-2 text-[15px] font-medium transition-colors"
                 href="/contact"
+                prefetch
               >
                 <MessageQuestion size={18} variant="Linear" />
                 Ask a question
@@ -63,16 +62,4 @@ const FaqSection: React.FC = () => {
     </section>
   );
 };
-
-const FaqBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[20%] right-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default FaqSection;

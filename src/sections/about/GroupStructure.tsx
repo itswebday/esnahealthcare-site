@@ -7,13 +7,11 @@ import { SITE } from "@/lib/site";
 
 const GroupStructure: React.FC = () => {
   return (
-    <section className="bg-surface-1 relative overflow-hidden rounded-[48px] py-20 sm:py-24 lg:py-28">
+    <section className="bg-surface-1 relative overflow-hidden py-16 sm:py-20 lg:py-24">
       <Container size="xl">
-        <GroupStructureBackdrop />
-
         <Reveal direction="up">
           <SectionHeader
-            description="A clean separation between the holding company and the operational entity — designed so regulatory responsibility and commercial relationships are always unambiguous."
+            description="ESNA Care B.V. holds all licences, signs all contracts, and manages all trading activity. ESNA Healthcare B.V. is the holding entity."
             eyebrow="Group structure"
             size="md"
             title="Two entities, one operation."
@@ -126,17 +124,4 @@ const EntityCard: React.FC<EntityCardProps> = ({
     </div>
   );
 };
-
-const GroupStructureBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[20%] left-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-      <div className="bg-accent/10 absolute right-[-8%] bottom-[10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default GroupStructure;

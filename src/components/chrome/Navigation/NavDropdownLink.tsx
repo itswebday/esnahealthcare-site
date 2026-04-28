@@ -53,6 +53,7 @@ const NavDropdownLink: React.FC<NavDropdownLinkProps> = ({
         )}
         href={href}
         onClick={handleLabelClick}
+        prefetch
       >
         <span className="relative">
           {label}
@@ -143,6 +144,7 @@ const NavDropdownSubLinkItem: React.FC<NavDropdownSubLinkItemProps> = ({
       className="group text-muted duration-normal hover:bg-surface-1 hover:text-foreground flex items-center justify-between rounded-lg px-3.5 py-2.5 text-[14px] font-medium transition-colors ease-out"
       href={href}
       onClick={handleClick}
+      prefetch
     >
       <span>{label}</span>
 

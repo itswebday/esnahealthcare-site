@@ -4,19 +4,19 @@ import LegalLayout from "@/components/legal/LegalLayout";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Terms of Use & Legal Notice",
+  title: "Terms & Conditions",
   description:
-    "Terms of Use, mandatory disclosures, and legal notice for Esna Care B.V. — governed by the laws of the Netherlands.",
-  alternates: { canonical: "/terms" },
+    "Terms & Conditions, mandatory disclosures, and legal notice for Esna Care B.V. — governed by the laws of the Netherlands.",
+  alternates: { canonical: "/terms-and-conditions" },
   robots: { index: true, follow: true },
 };
 
 const TermsPage: React.FC = () => {
   return (
     <LegalLayout
-      title="Terms of Use & Legal Notice"
-      lastUpdated="Launch date placeholder"
-      draftNote="draft — Eissa and/or his legal advisor to review. Written to reflect Dutch law and the specific B2B pharmaceutical wholesale context, but not a substitute for legal review."
+      title="Terms & Conditions"
+      lastUpdated="April 2026"
+      draftNote="Draft — to be reviewed by Esna Care’s legal advisor before launch. Written to reflect Dutch law and the specific B2B pharmaceutical wholesale context, but not a substitute for formal legal review."
     >
       <h2>1. Legal Information (Mandatory Disclosure)</h2>
       <p>This website is operated by:</p>
@@ -29,8 +29,8 @@ const TermsPage: React.FC = () => {
           <strong>{SITE.legalNameHolding}</strong> — Chamber of Commerce (KVK)
           No. {SITE.registrations.kvkHealthcare}
         </li>
-        <li>Registered address: {SITE.contact.registeredAddress.full}</li>
-        <li>Office address: {SITE.contact.officeAddress.full}</li>
+        <li>Head office: {SITE.contact.officeAddress.full}</li>
+        <li>Warehouse: {SITE.contact.warehouseAddress.full}</li>
         <li>VAT Number: {SITE.registrations.vat}</li>
         <li>
           Email:{" "}
@@ -125,8 +125,7 @@ const TermsPage: React.FC = () => {
 
       <h2>7. Links to third-party websites</h2>
       <p>
-        This website may contain links to external websites (for example, to the
-        Dutch medicines regulator or the EudraGMDP register). Esna Care is not
+        This website may contain links to external websites. Esna Care is not
         responsible for the content, accuracy, or privacy practices of external
         sites.
       </p>
@@ -144,8 +143,14 @@ const TermsPage: React.FC = () => {
       <h2>9. Privacy and cookies</h2>
       <p>
         Your use of this website is also governed by our{" "}
-        <Link href="/privacy">Privacy Policy</Link> and{" "}
-        <Link href="/cookies">Cookie Policy</Link>.
+        <Link href="/privacy-policy" prefetch>
+          Privacy Policy
+        </Link>{" "}
+        and{" "}
+        <Link href="/cookie-policy" prefetch>
+          Cookie Policy
+        </Link>
+        .
       </p>
 
       <h2>10. Governing law and jurisdiction</h2>
@@ -158,9 +163,9 @@ const TermsPage: React.FC = () => {
 
       <h2>11. Changes to these terms</h2>
       <p>
-        We may update these Terms of Use from time to time. Material changes
-        will be reflected in the &ldquo;Last updated&rdquo; date at the top of
-        this page.
+        We may update these Terms &amp; Conditions from time to time. Material
+        changes will be reflected in the &ldquo;Last updated&rdquo; date at the
+        top of this page.
       </p>
 
       <h2>12. Contact</h2>

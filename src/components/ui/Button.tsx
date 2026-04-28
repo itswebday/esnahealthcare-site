@@ -138,6 +138,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     return (
       <Link
         className={classes}
+        prefetch
         {...(rest as React.ComponentProps<typeof Link>)}
       >
         {content}

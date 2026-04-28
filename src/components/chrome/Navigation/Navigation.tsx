@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/cn";
-import { NAV_LINKS, type NavLink } from "@/lib/site";
+import { FOOTER_UTILITY_LINKS, NAV_LINKS, type NavLink } from "@/lib/site";
 import Button from "../../ui/Button";
 import Container from "../../ui/Container";
 import Logo from "../../ui/Logo";
@@ -35,6 +35,7 @@ const Navigation: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- close mobile drawer on route change (covers back/forward)
     setIsMenuOpen(false);
   }, [pathname]);
 
@@ -55,40 +56,39 @@ const Navigation: React.FC = () => {
       className={cn(
         "duration-slow sticky top-0 w-full pt-4 transition-all ease-out",
         isScrolled && "pt-3",
-        // Keep the header above the full-screen mobile menu so the
-        // hamburger / logo stay visible and interactive while it's open.
         isMenuOpen ? "z-max" : "z-sticky",
       )}
     >
       <Container size="xl">
-        {/* Floating island */}
         <div
           className={cn(
             "border-border duration-slow flex h-16 items-center justify-between gap-4 rounded-2xl border bg-white px-3 transition-all ease-out",
             isScrolled ? "shadow-island" : "shadow-hint",
           )}
         >
-          {/* Logo + primary links (desktop) */}
           <div className="flex items-center gap-10 pl-2">
             <Logo variant="color" width={112} />
 
-            {/* Primary links (desktop) */}
             <nav aria-label="Primary" className="hidden lg:block">
-              <ul className="flex items-center gap-9">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <DesktopNavItem link={link} pathname={pathname} />
-                  </li>
-                ))}
+              <ul className="flex items-center gap-7">
+                {NAV_LINKS.filter((link) => link.href !== "/contact").map(
+                  (link) => (
+                    <li key={link.href}>
+                      <DesktopNavItem link={link} pathname={pathname} />
+                    </li>
+                  ),
+                )}
               </ul>
             </nav>
           </div>
 
-          {/* Actions (locale + CTA + hamburger) */}
           <div className="flex items-center gap-3">
-            <LocaleToggle locale={locale} onChange={setLocale} />
+            <LocaleToggle
+              className="hidden sm:flex"
+              locale={locale}
+              onChange={setLocale}
+            />
 
-            {/* CTA */}
             <Button
               className="hidden sm:inline-flex"
               href="/contact"
@@ -99,7 +99,6 @@ const Navigation: React.FC = () => {
               Get in Touch
             </Button>
 
-            {/* Hamburger (mobile) */}
             <HamburgerButton
               isOpen={isMenuOpen}
               onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -108,7 +107,6 @@ const Navigation: React.FC = () => {
         </div>
       </Container>
 
-      {/* Full-screen mobile menu */}
       <MobileMenu
         isOpen={isMenuOpen}
         locale={locale}
@@ -125,9 +123,21 @@ type DesktopNavItemProps = {
   pathname: string;
 };
 
+const isLinkActive = (link: NavLink, pathname: string): boolean => {
+  if (link.href === "/") {
+    return pathname === "/";
+  }
+  if (pathname.startsWith(link.href)) {
+    return true;
+  }
+  return (link.subLinks ?? []).some((sub) => {
+    const path = sub.href.split("#")[0];
+    return path !== "" && pathname.startsWith(path);
+  });
+};
+
 const DesktopNavItem: React.FC<DesktopNavItemProps> = ({ link, pathname }) => {
-  const isActive =
-    link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+  const isActive = isLinkActive(link, pathname);
 
   if (link.subLinks && link.subLinks.length > 0) {
     return (
@@ -167,10 +177,10 @@ const DesktopNavLink: React.FC<DesktopNavLinkProps> = ({
       )}
       href={href}
       onClick={handleClick}
+      prefetch
     >
       <span className="relative">
         {label}
-        {/* Dot indicator — appears on hover, always visible when active */}
         <span
           aria-hidden="true"
           className={cn(
@@ -322,22 +332,17 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
       {isOpen && (
         <motion.div
           id="mobile-nav"
-          className="z-drawer fixed inset-0 bg-white lg:hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          className="z-drawer fixed inset-x-0 top-[88px] bottom-0 bg-white lg:hidden"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Spacer that matches the floating nav height so content clears it */}
-          <div aria-hidden="true" className="h-20" />
-
-          {/* Scrollable content column */}
-          <div className="mx-auto flex h-[calc(100%-5rem)] w-full max-w-[640px] flex-col px-6">
+          <div className="mx-auto flex h-full w-full max-w-[640px] flex-col px-6">
             <nav
               aria-label="Mobile"
-              className="flex flex-1 flex-col overflow-y-auto pt-2 pb-6"
+              className="flex flex-1 flex-col overflow-y-auto pt-4 pb-6"
             >
-              {/* Primary links */}
               <ul className="flex flex-col gap-1">
                 {NAV_LINKS.map((link) => (
                   <li key={link.href}>
@@ -350,42 +355,23 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                 ))}
               </ul>
 
-              {/* Divider */}
               <div aria-hidden="true" className="bg-border my-5 h-px" />
 
-              {/* Secondary links */}
               <ul className="flex flex-col gap-1">
-                <li>
-                  <MobileNavLink
-                    href="/we-buy-medicines"
-                    isActive={pathname.startsWith("/we-buy-medicines")}
-                    isSecondary
-                    label="We Buy Medicines"
-                    onNavigate={onNavigate}
-                  />
-                </li>
-                <li>
-                  <MobileNavLink
-                    href="/faq"
-                    isActive={pathname.startsWith("/faq")}
-                    isSecondary
-                    label="FAQ"
-                    onNavigate={onNavigate}
-                  />
-                </li>
-                <li>
-                  <MobileNavLink
-                    href="/contact"
-                    isActive={pathname.startsWith("/contact")}
-                    isSecondary
-                    label="Contact"
-                    onNavigate={onNavigate}
-                  />
-                </li>
+                {FOOTER_UTILITY_LINKS.map((link) => (
+                  <li key={link.href}>
+                    <MobileNavLink
+                      href={link.href}
+                      isActive={pathname.startsWith(link.href)}
+                      isSecondary
+                      label={link.label}
+                      onNavigate={onNavigate}
+                    />
+                  </li>
+                ))}
               </ul>
             </nav>
 
-            {/* Footer — locale + CTA sticks at bottom of column */}
             <div className="border-border flex flex-col gap-3 border-t py-6">
               <LocaleToggle
                 className="self-start"
@@ -420,8 +406,7 @@ const MobileNavItem: React.FC<MobileNavItemProps> = ({
   pathname,
   onNavigate,
 }) => {
-  const isActive =
-    link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+  const isActive = isLinkActive(link, pathname);
   const hasSubLinks = (link.subLinks?.length ?? 0) > 0;
 
   return (
@@ -433,7 +418,6 @@ const MobileNavItem: React.FC<MobileNavItemProps> = ({
         onNavigate={onNavigate}
       />
 
-      {/* Sublinks (indented) */}
       {hasSubLinks && (
         <ul className="border-border mt-0.5 mb-1 flex flex-col gap-0.5 border-l pl-4">
           {link.subLinks!.map((sub) => (
@@ -482,6 +466,7 @@ const MobileNavLink: React.FC<MobileNavLinkProps> = ({
       )}
       href={href}
       onClick={handleClick}
+      prefetch
     >
       {label}
     </Link>
@@ -507,6 +492,7 @@ const MobileSubLink: React.FC<MobileSubLinkProps> = ({
       className="text-muted hover:bg-surface-1 hover:text-foreground duration-normal block rounded-lg px-3.5 py-2 text-[15px] font-medium transition-colors"
       href={href}
       onClick={handleClick}
+      prefetch
     >
       {label}
     </Link>

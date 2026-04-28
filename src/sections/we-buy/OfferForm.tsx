@@ -6,10 +6,8 @@ const OfferForm: React.FC = () => {
   return (
     <section
       id="offer-form"
-      className="relative scroll-mt-24 overflow-hidden py-20 sm:py-24 lg:py-28"
+      className="relative scroll-mt-24 overflow-hidden py-16 sm:py-20 lg:py-24"
     >
-      <OfferFormBackdrop />
-
       <Container className="relative" size="lg">
         <Reveal direction="up">
           <div className="border-border shadow-card relative overflow-hidden rounded-3xl border bg-white p-8 sm:p-10 lg:p-14">
@@ -45,16 +43,4 @@ const OfferForm: React.FC = () => {
     </section>
   );
 };
-
-const OfferFormBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[20%] right-[-10%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default OfferForm;

@@ -19,17 +19,7 @@ const LicenceStrip: React.FC<LicenceStripProps> = ({ tone = "light" }) => {
       <Container size="xl">
         <div className="flex flex-col items-start gap-4 py-5 md:flex-row md:items-center md:justify-between md:gap-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 sm:gap-y-3">
-            {/* WDA licence link */}
-            <Link
-              className={
-                isInvert
-                  ? "group inline-flex items-center gap-3 text-[14px] transition-colors hover:text-white"
-                  : "group hover:text-primary-dark inline-flex items-center gap-3 text-[14px] transition-colors"
-              }
-              href={SITE.licences.wda.pdf}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <span className="inline-flex items-center gap-3 text-[14px]">
               <ShieldTick
                 className={isInvert ? "text-on-invert-muted" : "text-primary"}
                 size={20}
@@ -49,12 +39,7 @@ const LicenceStrip: React.FC<LicenceStripProps> = ({ tone = "light" }) => {
                   No. {SITE.licences.wda.number}
                 </span>
               </span>
-              <ArrowRight
-                className="duration-normal opacity-0 transition-all ease-[var(--ease-out)] group-hover:opacity-100"
-                size={14}
-                variant="Linear"
-              />
-            </Link>
+            </span>
             <span
               className={
                 isInvert
@@ -62,18 +47,7 @@ const LicenceStrip: React.FC<LicenceStripProps> = ({ tone = "light" }) => {
                   : "bg-border hidden h-4 w-px sm:inline"
               }
             />
-
-            {/* GDP licence link */}
-            <Link
-              className={
-                isInvert
-                  ? "group inline-flex items-center gap-3 text-[14px] transition-colors hover:text-white"
-                  : "group hover:text-primary-dark inline-flex items-center gap-3 text-[14px] transition-colors"
-              }
-              href={SITE.licences.gdp.pdf}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <span className="inline-flex items-center gap-3 text-[14px]">
               <Verify
                 className={isInvert ? "text-on-invert-muted" : "text-primary"}
                 size={20}
@@ -87,21 +61,15 @@ const LicenceStrip: React.FC<LicenceStripProps> = ({ tone = "light" }) => {
                       : "text-subtle mr-1.5"
                   }
                 >
-                  GDP Licence
+                  GDP Certificate
                 </span>
                 <span className="font-mono tracking-tight">
                   No. {SITE.licences.gdp.number}
                 </span>
               </span>
-              <ArrowRight
-                className="duration-normal opacity-0 transition-all ease-[var(--ease-out)] group-hover:opacity-100"
-                size={14}
-                variant="Linear"
-              />
-            </Link>
+            </span>
           </div>
 
-          {/* View-all link */}
           <Link
             className={
               isInvert
@@ -109,8 +77,9 @@ const LicenceStrip: React.FC<LicenceStripProps> = ({ tone = "light" }) => {
                 : "group text-foreground hover:text-primary-dark inline-flex items-center gap-2 text-[14px] font-medium transition-colors"
             }
             href="/compliance"
+            prefetch
           >
-            View all compliance documents
+            See compliance details
             <ArrowRight
               className="duration-normal transition-transform ease-[var(--ease-out)] group-hover:translate-x-0.5"
               size={14}

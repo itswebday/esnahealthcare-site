@@ -19,12 +19,11 @@ const BlogPostBody: React.FC<BlogPostBodyProps> = ({ post }) => {
   return (
     <article>
       <section className="relative overflow-hidden pt-12 pb-12 sm:pt-16 sm:pb-16 lg:pt-20 lg:pb-20">
-        <BlogHeroBackdrop />
-
         <Container size="md">
           <Link
             className="group text-subtle hover:text-foreground inline-flex items-center gap-1.5 text-[14px] font-medium transition-colors"
             href="/blog"
+            prefetch
           >
             <ArrowLeft2 size={16} variant="Linear" />
             Back to all articles
@@ -135,6 +134,7 @@ const BlogPostBody: React.FC<BlogPostBodyProps> = ({ post }) => {
                 <Link
                   className="group duration-slow border-border shadow-hint hover:border-primary/40 hover:shadow-primary/10 flex flex-col gap-2 rounded-2xl border bg-white p-5 transition-all hover:shadow-lg"
                   href={`/blog/${previous.slug}`}
+                  prefetch
                 >
                   <span className="text-subtle inline-flex items-center gap-1.5 text-[11px] font-medium tracking-[0.14em] uppercase">
                     <ArrowLeft2 size={14} variant="Linear" />
@@ -151,6 +151,7 @@ const BlogPostBody: React.FC<BlogPostBodyProps> = ({ post }) => {
                 <Link
                   className="group duration-slow border-border shadow-hint hover:border-accent/40 hover:shadow-accent/10 flex flex-col gap-2 rounded-2xl border bg-white p-5 text-right transition-all hover:shadow-lg sm:items-end"
                   href={`/blog/${next.slug}`}
+                  prefetch
                 >
                   <span className="text-subtle inline-flex items-center gap-1.5 text-[11px] font-medium tracking-[0.14em] uppercase">
                     Next
@@ -170,17 +171,4 @@ const BlogPostBody: React.FC<BlogPostBodyProps> = ({ post }) => {
     </article>
   );
 };
-
-const BlogHeroBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/12 absolute top-0 -left-24 h-[480px] w-[480px] rounded-full blur-[110px]" />
-      <div className="bg-accent/12 absolute top-0 -right-24 h-[480px] w-[480px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default BlogPostBody;

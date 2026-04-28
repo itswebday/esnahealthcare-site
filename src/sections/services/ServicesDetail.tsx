@@ -14,9 +14,7 @@ const ICON_MAP: Record<Service["icon"], typeof Box> = {
 
 const ServicesDetail: React.FC = () => {
   return (
-    <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
-      <ServicesDetailBackdrop />
-
+    <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
       <Container className="relative" size="xl">
         <div className="flex flex-col gap-20 lg:gap-28">
           {SERVICES.map((service, idx) => {
@@ -102,6 +100,7 @@ const ServicesDetail: React.FC = () => {
                     <Link
                       className="group text-foreground hover:text-primary-dark mt-8 inline-flex items-center gap-2 text-[15px] font-medium transition-colors"
                       href="/contact"
+                      prefetch
                     >
                       Request a quote for {service.title.toLowerCase()}
                       <ArrowRight
@@ -120,17 +119,4 @@ const ServicesDetail: React.FC = () => {
     </section>
   );
 };
-
-const ServicesDetailBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[10%] left-[-8%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-      <div className="bg-accent/10 absolute right-[-8%] bottom-[10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
-    </div>
-  );
-};
-
 export default ServicesDetail;

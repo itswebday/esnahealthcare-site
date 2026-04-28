@@ -1,43 +1,43 @@
-import Link from "next/link";
 import { ArrowRight, ShieldTick, TickCircle, Verify } from "iconsax-react";
+import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
-import { WHY_CHOOSE_US } from "@/lib/services";
 import { SITE } from "@/lib/site";
 
-type LicenceCardProps = {
-  caption: string;
-  href: string;
-  icon: React.ReactNode;
-  number: string;
-  title: string;
-};
+const FEATURES = [
+  "Licensed & compliant operations — EU WDA, GDP, IGJ supervised",
+  "Quality & traceability across every product and shipment",
+  "Global sourcing — branded, generic, OTC, specialty, shortage",
+  "Temperature-controlled handling, validated 2–8 °C and 15–25 °C",
+] as const;
 
-const WhyChoose: React.FC = () => {
+const WhyEsnaCare: React.FC = () => {
   return (
-    <section className="relative overflow-hidden py-24 sm:py-28 lg:py-32">
-      <WhyChooseBackdrop />
-
-      <Container className="relative" size="xl">
+    <section className="relative py-16 sm:py-20 lg:py-24">
+      <Container size="xl">
         <div className="grid items-start gap-14 lg:grid-cols-12 lg:gap-20">
           <Reveal className="lg:col-span-6" direction="up">
+            <LicencePanel />
+          </Reveal>
+
+          <Reveal className="lg:col-span-6" delay={0.12} direction="up">
             <div className="flex flex-col gap-5">
               <span className="border-primary/40 bg-primary-subtle text-primary-dark inline-flex w-fit items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
                 <span className="bg-primary h-1.5 w-1.5 rounded-full" />
                 Why {SITE.name}
               </span>
               <h2 className="tracking-display text-foreground text-[32px] leading-[1.1] font-semibold sm:text-[42px] lg:text-[48px]">
-                A licensed partner that behaves like one.
+                Compliant by default. Quality by design.
               </h2>
               <p className="text-muted max-w-2xl text-[16px] leading-relaxed">
-                Five operating commitments that shape every engagement — from
-                first RFQ to ongoing supply.
+                Four operating commitments that shape every engagement — from
+                first enquiry to a qualified, temperature-controlled delivery.
               </p>
             </div>
 
             <ul className="mt-10 grid gap-3 sm:grid-cols-2">
-              {WHY_CHOOSE_US.map((item, idx) => {
+              {FEATURES.map((item, idx) => {
                 const isPrimary = idx % 2 === 0;
                 return (
                   <li
@@ -74,10 +74,6 @@ const WhyChoose: React.FC = () => {
               })}
             </ul>
           </Reveal>
-
-          <Reveal className="lg:col-span-6" delay={0.12} direction="up">
-            <LicencePanel />
-          </Reveal>
         </div>
       </Container>
     </section>
@@ -105,22 +101,24 @@ const LicencePanel: React.FC = () => {
       />
 
       <div className="border-border shadow-card relative overflow-hidden rounded-3xl border bg-white p-8 sm:p-10">
-        <span className="border-primary/40 bg-primary-subtle text-primary-dark inline-flex items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
+        <div className="inline-flex items-center gap-2">
           <span className="bg-primary h-1.5 w-1.5 rounded-full" />
-          Our licences
-        </span>
+          <span className="text-subtle font-mono text-[11px] font-semibold tracking-[0.28em] uppercase">
+            Our licences
+          </span>
+        </div>
         <h3 className="text-foreground mt-5 text-[26px] leading-tight font-semibold tracking-tight sm:text-[30px]">
-          Verified, renewable, and publicly listed.
+          EU-licensed, GDP-certified, IGJ-supervised.
         </h3>
         <p className="text-muted mt-3 max-w-md text-[15px] leading-relaxed">
-          Both licences are issued by Dutch regulatory authorities and are
-          verifiable through the EudraGMDP public register.
+          Issued by Dutch regulatory authorities and supervised by the IGJ
+          (Dutch Health &amp; Youth Care Inspectorate). Verification documents
+          are shared privately with qualified partners on request.
         </p>
 
         <div className="mt-8 grid gap-3 sm:grid-cols-2">
           <LicenceCard
             caption="Procurement · Supply · Export"
-            href={SITE.licences.wda.pdf}
             icon={
               <ShieldTick className="text-white" size={20} variant="Bold" />
             }
@@ -128,8 +126,7 @@ const LicencePanel: React.FC = () => {
             title="WDA Licence"
           />
           <LicenceCard
-            caption="Issued 04/11/2024"
-            href={SITE.licences.gdp.pdf}
+            caption={`Issued ${SITE.licences.gdp.issuedOn}`}
             icon={<Verify className="text-white" size={20} variant="Bold" />}
             number={SITE.licences.gdp.number}
             title="GDP Certificate"
@@ -139,8 +136,9 @@ const LicencePanel: React.FC = () => {
         <Link
           className="group text-foreground hover:text-primary-dark mt-8 inline-flex items-center gap-2 text-[15px] font-medium transition-colors"
           href="/compliance"
+          prefetch
         >
-          View complete compliance documentation
+          See compliance details
           <ArrowRight
             className="duration-normal transition-transform group-hover:translate-x-0.5"
             size={16}
@@ -152,9 +150,15 @@ const LicencePanel: React.FC = () => {
   );
 };
 
+type LicenceCardProps = {
+  caption: string;
+  icon: React.ReactNode;
+  number: string;
+  title: string;
+};
+
 const LicenceCard: React.FC<LicenceCardProps> = ({
   caption,
-  href,
   icon,
   number,
   title,
@@ -163,24 +167,14 @@ const LicenceCard: React.FC<LicenceCardProps> = ({
   const cornerClass = isWda
     ? "bg-linear-to-br from-primary to-primary-dark"
     : "bg-linear-to-br from-accent to-accent-dark";
-  const hoverClass = isWda
-    ? "hover:border-primary/40 hover:shadow-primary/10"
-    : "hover:border-accent/40 hover:shadow-accent/10";
 
   return (
-    <Link
+    <div
       className={cn(
-        "group relative flex flex-col gap-2 overflow-hidden",
+        "relative flex flex-col gap-2 overflow-hidden",
         "rounded-2xl p-5",
         "border-border shadow-hint border bg-white",
-        "duration-slow transition-all hover:shadow-lg",
-        hoverClass,
-        "focus-visible:ring-primary focus-visible:ring-2",
-        "focus-visible:ring-offset-2 focus-visible:outline-none",
       )}
-      href={href}
-      rel="noopener noreferrer"
-      target="_blank"
     >
       <span
         aria-hidden="true"
@@ -204,20 +198,8 @@ const LicenceCard: React.FC<LicenceCardProps> = ({
         {number}
       </div>
       <div className="text-muted text-[12px]">{caption}</div>
-    </Link>
-  );
-};
-
-const WhyChooseBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/10 absolute top-[20%] left-[-10%] h-[440px] w-[440px] rounded-full blur-[110px]" />
-      <div className="bg-accent/10 absolute right-[-10%] bottom-[10%] h-[380px] w-[380px] rounded-full blur-[110px]" />
     </div>
   );
 };
 
-export default WhyChoose;
+export default WhyEsnaCare;
