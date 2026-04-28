@@ -264,7 +264,7 @@ const Field: React.FC<FieldProps> = ({
   type = "text",
 }) => {
   const fieldClass =
-    "border-border text-foreground placeholder:text-faint hover:border-border-strong focus:border-foreground duration-normal w-full rounded-xl border bg-white px-4 py-3 text-[15px] transition-colors focus:outline-none";
+    "border-border text-foreground placeholder:text-faint hover:border-border-strong focus:border-foreground duration-normal w-full rounded-xl border bg-white px-4 py-3 text-[16px] transition-colors focus:outline-none";
 
   return (
     <div className="flex flex-col gap-2">
@@ -332,7 +332,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
       </label>
       <div className="relative">
         <select
-          className="border-border text-foreground hover:border-border-strong focus:border-foreground duration-normal h-12 w-full appearance-none rounded-xl border bg-white px-4 pr-12 text-[15px] transition-colors focus:outline-none"
+          className="border-border text-foreground hover:border-border-strong focus:border-foreground duration-normal h-12 w-full appearance-none rounded-xl border bg-white px-4 pr-12 text-[16px] transition-colors focus:outline-none"
           defaultValue={defaultValue}
           id={id}
           name={name}

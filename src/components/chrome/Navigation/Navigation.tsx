@@ -62,7 +62,7 @@ const Navigation: React.FC = () => {
       <Container size="xl">
         <div
           className={cn(
-            "border-border duration-slow flex h-16 items-center justify-between gap-4 rounded-2xl border bg-white px-3 transition-all ease-out",
+            "border-border duration-slow z-max relative flex h-16 items-center justify-between gap-4 rounded-2xl border bg-white px-3 transition-all ease-out",
             isScrolled ? "shadow-island" : "shadow-hint",
           )}
         >
@@ -332,13 +332,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
       {isOpen && (
         <motion.div
           id="mobile-nav"
-          className="z-drawer fixed inset-x-0 top-[88px] bottom-0 bg-white lg:hidden"
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          className="z-drawer fixed inset-0 bg-white lg:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="mx-auto flex h-full w-full max-w-[640px] flex-col px-6">
+          <div aria-hidden="true" className="h-20" />
+          <div className="mx-auto flex h-[calc(100dvh-5rem)] w-full max-w-[640px] flex-col px-6">
             <nav
               aria-label="Mobile"
               className="flex flex-1 flex-col overflow-y-auto pt-4 pb-6"
