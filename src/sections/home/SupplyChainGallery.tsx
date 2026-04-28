@@ -55,16 +55,16 @@ const WarehouseTile: React.FC = () => {
     <div className="group bg-surface-invert text-on-invert relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-3xl p-8 lg:col-span-6 lg:row-span-2 lg:p-10">
       <div
         aria-hidden="true"
-        className="bg-primary/30 pointer-events-none absolute -top-24 -left-20 h-[360px] w-[360px] rounded-full blur-3xl"
+        className="bg-primary/30 pointer-events-none absolute -top-24 -left-20 hidden h-[360px] w-[360px] rounded-full blur-3xl sm:block"
       />
       <div
         aria-hidden="true"
-        className="bg-accent/30 pointer-events-none absolute -right-28 -bottom-28 h-[400px] w-[400px] rounded-full blur-3xl"
+        className="bg-accent/30 pointer-events-none absolute -right-28 -bottom-28 hidden h-[400px] w-[400px] rounded-full blur-3xl sm:block"
       />
 
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute top-0 right-0 h-full w-2/3 opacity-[0.35]"
+        className="pointer-events-none absolute top-0 right-0 hidden h-full w-2/3 opacity-[0.35] sm:block"
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 600 420"
       >
@@ -114,7 +114,7 @@ const WarehouseTile: React.FC = () => {
         </div>
         <span className="inline-flex h-7 items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-3 font-mono text-[11px] leading-none tracking-[0.14em] text-white/80 uppercase backdrop-blur">
           <span className="relative flex h-1.5 w-1.5 shrink-0">
-            <span className="bg-primary absolute inline-flex h-full w-full animate-ping rounded-full opacity-70" />
+            <span className="bg-primary absolute inline-flex h-full w-full rounded-full opacity-70 sm:animate-ping" />
             <span className="bg-primary relative inline-flex h-1.5 w-1.5 rounded-full" />
           </span>
           GDP · Qualified
@@ -198,7 +198,7 @@ const ExportTile: React.FC = () => {
       />
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full"
+        className="pointer-events-none absolute inset-0 hidden h-full w-full sm:block"
         preserveAspectRatio="none"
         viewBox="0 0 400 260"
       >
@@ -286,7 +286,7 @@ const OfficeTile: React.FC = () => {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-10 -bottom-10 flex h-48 w-48 items-center justify-center"
+        className="pointer-events-none absolute -right-10 -bottom-10 hidden h-48 w-48 items-center justify-center sm:flex"
       >
         <div className="border-primary absolute h-24 w-24 rounded-full border opacity-20" />
         <div className="border-primary absolute h-36 w-36 rounded-full border opacity-[0.12]" />
