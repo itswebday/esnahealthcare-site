@@ -40,14 +40,10 @@ const WhatWereLookingFor: React.FC = () => {
           />
         </Reveal>
 
-        <div className="relative mt-14 grid gap-5 lg:grid-cols-12">
+        <div className="relative grid gap-5 lg:grid-cols-12">
           <Reveal className="lg:col-span-7" delay={0.08} direction="up">
             <div className="border-border shadow-hint relative overflow-hidden rounded-3xl border bg-white p-8">
-              <span
-                aria-hidden="true"
-                className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
-              />
-              <div className="relative mt-10">
+              <div className="relative">
                 <h3 className="text-foreground text-[18px] font-semibold tracking-tight">
                   Qualification criteria
                 </h3>
@@ -84,10 +80,6 @@ const WhatWereLookingFor: React.FC = () => {
 
           <Reveal className="lg:col-span-5" delay={0.16} direction="up">
             <div className="border-border shadow-hint relative flex h-full flex-col gap-4 overflow-hidden rounded-3xl border bg-white p-8">
-              <span
-                aria-hidden="true"
-                className="from-accent to-accent-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br"
-              />
               <h3 className="text-foreground mt-10 text-[18px] font-semibold tracking-tight">
                 Especially welcome
               </h3>

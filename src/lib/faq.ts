@@ -1,7 +1,7 @@
 export type FaqEntry = {
   question: string;
   answer: string;
-  draft?: boolean;
+  isDraft?: boolean;
 };
 
 export const FAQ: FaqEntry[] = [

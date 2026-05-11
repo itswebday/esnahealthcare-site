@@ -56,7 +56,7 @@ const RegulatoryFramework: React.FC = () => {
                   >
                     <Icon size={22} variant="Bold" />
                   </div>
-                  <p className="text-foreground text-[14px] leading-relaxed">
+                  <p className="text-foreground text-[16px] leading-snug font-semibold tracking-tight">
                     {item}
                   </p>
                 </article>

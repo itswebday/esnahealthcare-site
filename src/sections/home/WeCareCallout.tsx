@@ -53,14 +53,6 @@ const WeCareCallout: React.FC = () => {
 const CommitmentQuote: React.FC = () => {
   return (
     <div className="relative mt-10">
-      <span
-        aria-hidden="true"
-        className="border-primary absolute -top-2 -left-2 h-5 w-5 rounded-tl-xl border-t-2 border-l-2"
-      />
-      <span
-        aria-hidden="true"
-        className="border-accent absolute -right-2 -bottom-2 h-5 w-5 rounded-br-xl border-r-2 border-b-2"
-      />
       <blockquote className="border-border border-l-primary shadow-hint relative overflow-hidden rounded-3xl border border-l-4 bg-white p-7 sm:p-8">
         <p className="text-foreground text-[20px] leading-[1.45] font-medium tracking-tight sm:text-[22px]">
           &ldquo;GDP is not just a regulatory requirement for us. It is how we

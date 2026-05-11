@@ -1,14 +1,9 @@
 import { ArrowRight, Call, Location, Sms } from "iconsax-react";
 import Link from "next/link";
-import {
-  FOOTER_LEGAL_LINKS,
-  FOOTER_UTILITY_LINKS,
-  NAV_LINKS,
-  SITE,
-} from "@/lib/site";
-import Button from "../ui/Button";
-import Container from "../ui/Container";
-import Logo from "../ui/Logo";
+import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
+import Logo from "@/components/ui/Logo";
+import { FOOTER_LEGAL_LINKS, NAV_LINKS, SITE } from "@/lib/site";
 
 const Footer: React.FC = () => {
   const year = new Date().getFullYear();
@@ -17,7 +12,6 @@ const Footer: React.FC = () => {
     <footer className="relative mt-24">
       <Container className="max-w-[1520px] px-0 sm:px-8 lg:px-10" size="xl">
         <div className="bg-surface-invert text-on-invert border-border-invert-strong relative overflow-hidden rounded-t-3xl border-t px-6 sm:rounded-t-[40px] sm:px-12 lg:px-16">
-          {/* CTA band */}
           <div className="border-border-invert flex flex-col gap-8 border-b py-16 lg:flex-row lg:items-end lg:justify-between lg:py-20">
             <div className="max-w-2xl">
               <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-1 text-[12px] font-medium tracking-[0.14em] text-white uppercase ring-1 ring-white/20 backdrop-blur">
@@ -37,25 +31,23 @@ const Footer: React.FC = () => {
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Button href="/contact" size="lg" variant="primary" withArrow>
+              <Button href="/contact" size="lg" variant="primary" hasArrow>
                 Get in Touch
               </Button>
               <Button
                 href="/we-buy-medicines"
                 size="lg"
                 variant="invert-ghost"
-                withArrow
+                hasArrow
               >
                 Procurement
               </Button>
             </div>
           </div>
 
-          {/* Main footer grid */}
           <div className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-10">
-            {/* Brand column */}
             <div className="lg:col-span-5">
-              <Logo variant="white" width={148} withLink={false} />
+              <Logo variant="white" width={148} hasLink={false} />
               <p className="mt-5 max-w-sm text-[16px] leading-relaxed text-white/85">
                 {SITE.tagline}
               </p>
@@ -77,7 +69,6 @@ const Footer: React.FC = () => {
               </Link>
             </div>
 
-            {/* Navigate links */}
             <div className="lg:col-span-3">
               <h3 className="text-on-invert-muted text-[12px] font-medium tracking-[0.14em] uppercase">
                 Navigate
@@ -94,21 +85,9 @@ const Footer: React.FC = () => {
                     </Link>
                   </li>
                 ))}
-                {FOOTER_UTILITY_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      className="text-[15px] text-white/70 transition-colors hover:text-white"
-                      href={link.href}
-                      prefetch
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
               </ul>
             </div>
 
-            {/* Contact and registration */}
             <div className="lg:col-span-4">
               <h3 className="text-on-invert-muted text-[12px] font-medium tracking-[0.14em] uppercase">
                 Contact &amp; Registration
@@ -162,7 +141,6 @@ const Footer: React.FC = () => {
                 </li>
               </ul>
 
-              {/* Registrations callout */}
               <div className="border-border-invert text-on-invert-muted mt-6 rounded-md border bg-white/5 p-4 text-[13px] leading-relaxed backdrop-blur">
                 <div>
                   {SITE.legalNameHolding} (KVK{" "}
@@ -183,7 +161,6 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Bottom bar */}
           <div className="border-border-invert flex flex-col gap-4 border-t py-8 md:flex-row md:items-center md:justify-between">
             <p className="text-on-invert-muted text-[14px]">
               © {year} {SITE.legalNameOperational} — All rights reserved.

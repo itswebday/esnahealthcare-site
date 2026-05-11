@@ -1,5 +1,12 @@
 "use client";
 
+/*
+Form is stubbed in this MVP. Field state and validation work, but
+submission is a no-op that shows a success state. Wire a real
+backend (Resend, Formspree, Slack webhook, or a ByNoon platform
+forms endpoint) before going live with real customer leads.
+*/
+
 import {
   ArrowDown2,
   ArrowRight,
@@ -100,6 +107,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
       return;
     }
 
+    // No-op submit: validation passes, no real backend wired up yet.
     setStatus("submitting");
     setTimeout(() => setStatus("success"), 700);
   };
@@ -208,10 +216,10 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
       <ConsentCheckbox isChecked={hasAgreed} onChange={setHasAgreed} />
 
-      <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
+      <div className="flex flex-col items-stretch gap-4 pt-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
         <button
           className={cn(
-            "group bg-primary hover:bg-primary-hover focus-visible:ring-primary/30 duration-normal inline-flex h-12 items-center justify-center gap-2 rounded-xl px-6 text-[15px] leading-none font-medium text-white transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60",
+            "group bg-primary hover:bg-primary-hover focus-visible:ring-primary/30 duration-normal inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl px-6 text-[15px] leading-none font-medium text-white transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60 sm:w-auto",
           )}
           disabled={!hasAgreed || status === "submitting"}
           type="submit"
@@ -225,14 +233,20 @@ const ContactForm: React.FC<ContactFormProps> = ({
             />
           )}
         </button>
-        <span className="text-subtle inline-flex items-center gap-1.5 text-[13px] leading-snug">
-          <ShieldTick className="text-primary" size={14} variant="Bold" />
-          Replies from{" "}
-          <span className="text-foreground font-mono">
-            info@esnahealthcare.nl
+        <div className="text-subtle flex items-start gap-1.5 text-[13px] leading-snug">
+          <ShieldTick
+            className="text-primary mt-0.5 shrink-0"
+            size={14}
+            variant="Bold"
+          />
+          <span className="min-w-0 break-words">
+            Replies from{" "}
+            <span className="text-foreground font-mono break-all">
+              info@esnahealthcare.nl
+            </span>{" "}
+            · within one business day
           </span>
-          {" · "}within one business day
-        </span>
+        </div>
       </div>
     </form>
   );

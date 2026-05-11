@@ -1,3 +1,10 @@
+/*
+Form is stubbed in this MVP. Field state and validation work, but
+submission is a no-op that shows a success state. Wire a real
+backend (Resend, Formspree, Slack webhook, or a ByNoon platform
+forms endpoint) before going live with real customer leads.
+*/
+
 import ContactForm from "@/components/forms/ContactForm";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
@@ -11,15 +18,6 @@ const OfferForm: React.FC = () => {
       <Container className="relative" size="lg">
         <Reveal direction="up">
           <div className="border-border shadow-card relative overflow-hidden rounded-3xl border bg-white p-8 sm:p-10 lg:p-14">
-            <span
-              aria-hidden="true"
-              className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 h-24 w-24 rounded-bl-3xl bg-linear-to-br"
-            />
-            <span
-              aria-hidden="true"
-              className="from-accent to-accent-dark pointer-events-none absolute bottom-0 left-0 h-16 w-16 rounded-tr-3xl bg-linear-to-tr"
-            />
-
             <div className="relative">
               <span className="border-primary/40 bg-primary-subtle text-primary-dark inline-flex items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
                 <span className="bg-primary h-1.5 w-1.5 rounded-full" />

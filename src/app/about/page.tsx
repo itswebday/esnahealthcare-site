@@ -10,19 +10,17 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-const AboutPage: React.FC = () => {
-  return (
-    <>
-      <PageHero
-        eyebrow="About us"
-        title="A licensed wholesaler, built around compliance."
-        description="Established 2021 · Utrecht, Netherlands · EU-licensed pharmaceutical wholesaler active across EU and international markets."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
-      />
-      <AboutStory />
-      <GroupStructure />
-    </>
-  );
-};
+const AboutPage: React.FC = () => (
+  <>
+    <PageHero
+      eyebrow="About us"
+      title="A licensed wholesaler, built around compliance."
+      description="Established 2021 · Utrecht, Netherlands · EU-licensed pharmaceutical wholesaler active across EU and international markets."
+      breadcrumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
+    />
+    <AboutStory />
+    <GroupStructure />
+  </>
+);
 
 export default AboutPage;

@@ -1,25 +1,21 @@
 "use client";
 
-import { Global } from "iconsax-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
+import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/cn";
-import { FOOTER_UTILITY_LINKS, NAV_LINKS, type NavLink } from "@/lib/site";
-import Button from "../../ui/Button";
-import Container from "../../ui/Container";
-import Logo from "../../ui/Logo";
+import { FOOTER_LEGAL_LINKS, NAV_LINKS, type NavLink } from "@/lib/site";
 import NavDropdownLink from "./NavDropdownLink";
 import { createLinkClickHandler } from "./linkClickHandler";
-
-type Locale = "EN" | "NL";
 
 const Navigation: React.FC = () => {
   const pathname = usePathname() ?? "";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [locale, setLocale] = useState<Locale>("EN");
 
   useEffect(() => {
     const onScroll = () => {
@@ -35,7 +31,6 @@ const Navigation: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- close mobile drawer on route change (covers back/forward)
     setIsMenuOpen(false);
   }, [pathname]);
 
@@ -83,18 +78,12 @@ const Navigation: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <LocaleToggle
-              className="hidden sm:flex"
-              locale={locale}
-              onChange={setLocale}
-            />
-
             <Button
               className="hidden sm:inline-flex"
               href="/contact"
               size="md"
               variant="primary"
-              withArrow
+              hasArrow
             >
               Get in Touch
             </Button>
@@ -109,9 +98,7 @@ const Navigation: React.FC = () => {
 
       <MobileMenu
         isOpen={isMenuOpen}
-        locale={locale}
         pathname={pathname}
-        onLocaleChange={setLocale}
         onNavigate={() => setIsMenuOpen(false)}
       />
     </header>
@@ -193,73 +180,6 @@ const DesktopNavLink: React.FC<DesktopNavLinkProps> = ({
   );
 };
 
-type LocaleToggleProps = {
-  className?: string;
-  locale: Locale;
-  onChange: (next: Locale) => void;
-};
-
-const LocaleToggle: React.FC<LocaleToggleProps> = ({
-  className,
-  locale,
-  onChange,
-}) => {
-  return (
-    <div
-      className={cn(
-        "border-border duration-normal hover:border-border-strong flex h-10 items-center gap-0.5 rounded-xl border bg-white p-1 transition-colors",
-        className,
-      )}
-      role="group"
-      aria-label="Language"
-    >
-      <Global
-        className="text-subtle mx-1.5 shrink-0"
-        size={12}
-        variant="Linear"
-      />
-      <LocaleSegment
-        isActive={locale === "EN"}
-        label="EN"
-        onClick={() => onChange("EN")}
-      />
-      <LocaleSegment
-        isActive={locale === "NL"}
-        label="NL"
-        onClick={() => onChange("NL")}
-      />
-    </div>
-  );
-};
-
-type LocaleSegmentProps = {
-  isActive: boolean;
-  label: string;
-  onClick: () => void;
-};
-
-const LocaleSegment: React.FC<LocaleSegmentProps> = ({
-  isActive,
-  label,
-  onClick,
-}) => {
-  return (
-    <button
-      className={cn(
-        "duration-normal relative flex h-7 items-center justify-center rounded-lg px-2.5 text-[11px] font-semibold tracking-[0.1em] uppercase transition-all",
-        isActive
-          ? "bg-primary text-primary-foreground shadow-hint"
-          : "text-muted hover:text-foreground",
-      )}
-      type="button"
-      aria-pressed={isActive}
-      onClick={onClick}
-    >
-      {label}
-    </button>
-  );
-};
-
 type HamburgerButtonProps = {
   isOpen: boolean;
   onClick: () => void;
@@ -314,17 +234,13 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({
 
 type MobileMenuProps = {
   isOpen: boolean;
-  locale: Locale;
   pathname: string;
-  onLocaleChange: (next: Locale) => void;
   onNavigate: () => void;
 };
 
 const MobileMenu: React.FC<MobileMenuProps> = ({
   isOpen,
-  locale,
   pathname,
-  onLocaleChange,
   onNavigate,
 }) => {
   return (
@@ -355,39 +271,32 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   </li>
                 ))}
               </ul>
-
-              <div aria-hidden="true" className="bg-border my-5 h-px" />
-
-              <ul className="flex flex-col gap-1">
-                {FOOTER_UTILITY_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <MobileNavLink
-                      href={link.href}
-                      isActive={pathname.startsWith(link.href)}
-                      isSecondary
-                      label={link.label}
-                      onNavigate={onNavigate}
-                    />
-                  </li>
-                ))}
-              </ul>
             </nav>
 
-            <div className="border-border flex flex-col gap-3 border-t py-6">
-              <LocaleToggle
-                className="self-start"
-                locale={locale}
-                onChange={onLocaleChange}
-              />
+            <div className="border-border flex flex-col gap-4 border-t py-6">
               <Button
                 className="w-full"
                 href="/contact"
                 size="lg"
                 variant="primary"
-                withArrow
+                hasArrow
               >
                 Get in Touch
               </Button>
+              <ul className="text-subtle flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px]">
+                {FOOTER_LEGAL_LINKS.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      className="hover:text-foreground transition-colors"
+                      href={link.href}
+                      onClick={onNavigate}
+                      prefetch
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </motion.div>
@@ -439,7 +348,6 @@ const MobileNavItem: React.FC<MobileNavItemProps> = ({
 type MobileNavLinkProps = {
   href: string;
   isActive: boolean;
-  isSecondary?: boolean;
   label: string;
   onNavigate: () => void;
 };
@@ -447,7 +355,6 @@ type MobileNavLinkProps = {
 const MobileNavLink: React.FC<MobileNavLinkProps> = ({
   href,
   isActive,
-  isSecondary = false,
   label,
   onNavigate,
 }) => {
@@ -457,13 +364,10 @@ const MobileNavLink: React.FC<MobileNavLinkProps> = ({
   return (
     <Link
       className={cn(
-        "duration-normal block rounded-xl px-4 py-3 font-medium transition-colors",
-        isSecondary ? "text-[16px]" : "text-[18px]",
+        "duration-normal block rounded-xl px-4 py-3 text-[18px] font-medium transition-colors",
         isActive
           ? "bg-primary-subtle text-primary-dark"
-          : isSecondary
-            ? "text-muted hover:bg-surface-1 hover:text-foreground"
-            : "text-foreground hover:bg-surface-1",
+          : "text-foreground hover:bg-surface-1",
       )}
       href={href}
       onClick={handleClick}

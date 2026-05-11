@@ -5,10 +5,10 @@ type MarqueeProps = {
   /** seconds per full cycle */
   speed?: number;
   direction?: "left" | "right";
-  pauseOnHover?: boolean;
+  shouldPauseOnHover?: boolean;
   className?: string;
   itemClassName?: string;
-  fade?: boolean;
+  hasFade?: boolean;
   separator?: React.ReactNode;
 };
 
@@ -16,19 +16,19 @@ const Marquee: React.FC<MarqueeProps> = ({
   items,
   speed = 40,
   direction = "left",
-  pauseOnHover = true,
+  shouldPauseOnHover = true,
   className,
   itemClassName,
-  fade = true,
+  hasFade = true,
   separator,
 }) => {
-  // Render each item twice so the loop tiles seamlessly.
   const doubled = [...items, ...items];
+
   return (
     <div
       className={cn(
         "group/marquee relative w-full overflow-hidden",
-        fade &&
+        hasFade &&
           "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]",
         className,
       )}
@@ -36,7 +36,8 @@ const Marquee: React.FC<MarqueeProps> = ({
       <div
         className={cn(
           "flex w-max items-center gap-12 will-change-transform",
-          pauseOnHover && "group-hover/marquee:[animation-play-state:paused]",
+          shouldPauseOnHover &&
+            "group-hover/marquee:[animation-play-state:paused]",
         )}
         style={{
           animation: `esna-marquee-${direction} ${speed}s linear infinite`,

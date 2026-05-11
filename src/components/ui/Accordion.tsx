@@ -5,17 +5,17 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { cn } from "@/lib/cn";
 
-type AccordionProps = {
-  items: AccordionItem[];
-  className?: string;
-  defaultOpen?: string;
-};
-
 export type AccordionItem = {
   key: string;
   question: React.ReactNode;
   answer: React.ReactNode;
   badge?: string;
+};
+
+type AccordionProps = {
+  items: AccordionItem[];
+  className?: string;
+  defaultOpen?: string;
 };
 
 const Accordion: React.FC<AccordionProps> = ({
@@ -81,10 +81,7 @@ const Accordion: React.FC<AccordionProps> = ({
                   className="overflow-hidden"
                   exit={{ height: 0, opacity: 0 }}
                   initial={{ height: 0, opacity: 0 }}
-                  transition={{
-                    duration: 0.32,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
+                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="text-muted pr-12 pb-6 text-[16px] leading-relaxed">
                     {item.answer}

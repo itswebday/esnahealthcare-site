@@ -22,16 +22,12 @@ const LicenceCards: React.FC = () => {
             <div className="group duration-slow border-border shadow-card hover:border-primary/40 hover:shadow-primary/10 relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-8 transition-all hover:shadow-xl sm:p-10">
               <span
                 aria-hidden="true"
-                className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br sm:h-28 sm:w-28"
-              />
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute top-6 right-6 text-white sm:top-8 sm:right-8"
+                className="from-primary to-primary-dark pointer-events-none absolute top-0 right-0 flex h-16 w-16 items-center justify-center rounded-bl-2xl bg-linear-to-br text-white"
               >
                 <ShieldTick size={22} variant="Bold" />
               </span>
 
-              <div className="relative mt-14 sm:mt-20">
+              <div className="relative mt-12">
                 <span className="border-primary/40 bg-primary-subtle text-primary-dark inline-flex w-fit items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
                   <span className="bg-primary h-1.5 w-1.5 rounded-full" />
                   Wholesale Distribution Authorisation
@@ -95,16 +91,12 @@ const LicenceCards: React.FC = () => {
             <div className="group duration-slow border-border shadow-card hover:border-accent/40 hover:shadow-accent/10 relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-8 transition-all hover:shadow-xl sm:p-10">
               <span
                 aria-hidden="true"
-                className="from-accent to-accent-dark pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-bl-3xl bg-linear-to-br sm:h-28 sm:w-28"
-              />
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute top-6 right-6 text-white sm:top-8 sm:right-8"
+                className="from-accent to-accent-dark pointer-events-none absolute top-0 right-0 flex h-16 w-16 items-center justify-center rounded-bl-2xl bg-linear-to-br text-white"
               >
                 <Verify size={22} variant="Bold" />
               </span>
 
-              <div className="relative mt-14 sm:mt-20">
+              <div className="relative mt-12">
                 <span className="border-accent/40 bg-accent-subtle text-accent inline-flex w-fit items-center gap-2 rounded-xl border px-3 py-1 text-[12px] font-medium tracking-[0.14em] uppercase">
                   <span className="bg-accent h-1.5 w-1.5 rounded-full" />
                   Good Distribution Practice

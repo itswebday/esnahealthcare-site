@@ -70,18 +70,14 @@ const ProductCategoriesDetail: React.FC = () => {
                     aria-hidden="true"
                     className={cn(
                       "pointer-events-none absolute top-0 right-0",
-                      "h-20 w-20 rounded-bl-3xl",
+                      "flex h-16 w-16 items-center justify-center rounded-bl-2xl text-white",
                       cornerClass,
                     )}
-                  />
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute top-5 right-5 text-white"
                   >
                     <Icon size={22} variant="Bold" />
                   </span>
 
-                  <h3 className="text-foreground mt-14 text-[18px] font-semibold tracking-tight">
+                  <h3 className="text-foreground mt-12 text-[18px] font-semibold tracking-tight">
                     {cat.title}
                   </h3>
                   <p className="text-muted text-[14px] leading-relaxed">

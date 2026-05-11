@@ -15,7 +15,6 @@ const CookieBanner: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional one-shot post-hydration sync from localStorage
     setIsMounted(true);
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
@@ -57,7 +56,6 @@ const CookieBanner: React.FC = () => {
           aria-label="Cookie preferences"
         >
           <div className="relative">
-            {/* Soft corner brackets (only two, diagonal) */}
             <span
               aria-hidden="true"
               className="border-primary absolute -top-0.5 -left-0.5 h-4 w-4 rounded-tl-2xl border-t-2 border-l-2"
@@ -67,17 +65,13 @@ const CookieBanner: React.FC = () => {
               className="border-accent absolute -right-0.5 -bottom-0.5 h-4 w-4 rounded-br-2xl border-r-2 border-b-2"
             />
 
-            {/* Card */}
             <div className="border-border shadow-float relative overflow-hidden rounded-2xl border bg-white">
-              {/* Thin gradient accent line at top */}
               <div
                 aria-hidden="true"
                 className="from-primary via-primary to-accent h-[2px] w-full bg-linear-to-r"
               />
 
-              {/* Content */}
               <div className="relative flex flex-col gap-5 p-6 sm:p-7">
-                {/* Dismiss (absolute top-right) */}
                 <button
                   className="text-subtle hover:bg-surface-1 hover:text-foreground absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
                   type="button"
@@ -87,9 +81,7 @@ const CookieBanner: React.FC = () => {
                   <CloseCircle size={16} variant="Linear" />
                 </button>
 
-                {/* Header */}
                 <div className="flex items-start gap-4 pr-8">
-                  {/* Icon chip with subtle ring */}
                   <div
                     aria-hidden="true"
                     className="relative hidden h-12 w-12 shrink-0 sm:block"
@@ -124,7 +116,6 @@ const CookieBanner: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Actions */}
                 <div className="flex flex-col-reverse items-stretch gap-2 sm:flex-row sm:items-center sm:justify-end">
                   <Button
                     className="sm:flex-none"

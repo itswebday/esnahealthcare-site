@@ -21,11 +21,6 @@ export type NavDropdownLinkProps = {
   subLinks: readonly NavDropdownSubLink[];
 };
 
-/*
-  Desktop nav dropdown trigger — no background, dot indicator below
-  the label that appears on hover and stays visible when active or the
-  dropdown is open. Panel reveals on hover with soft corner brackets.
-*/
 const NavDropdownLink: React.FC<NavDropdownLinkProps> = ({
   className,
   href,
@@ -45,7 +40,6 @@ const NavDropdownLink: React.FC<NavDropdownLinkProps> = ({
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      {/* Trigger */}
       <Link
         className={cn(
           "group duration-normal relative flex h-10 items-center gap-1.5 text-[14px] font-medium tracking-tight transition-colors ease-out",
@@ -57,7 +51,6 @@ const NavDropdownLink: React.FC<NavDropdownLinkProps> = ({
       >
         <span className="relative">
           {label}
-          {/* Dot indicator */}
           <span
             aria-hidden="true"
             className={cn(
@@ -76,7 +69,6 @@ const NavDropdownLink: React.FC<NavDropdownLinkProps> = ({
         />
       </Link>
 
-      {/* Panel */}
       <AnimatePresence>
         {isOpen && subLinks.length > 0 && (
           <motion.div
@@ -135,9 +127,7 @@ const NavDropdownSubLinkItem: React.FC<NavDropdownSubLinkItemProps> = ({
   onNavigate,
 }) => {
   const pathname = usePathname() ?? "";
-  const handleClick = createLinkClickHandler(href, pathname, {
-    onNavigate,
-  });
+  const handleClick = createLinkClickHandler(href, pathname, { onNavigate });
 
   return (
     <Link
@@ -147,7 +137,6 @@ const NavDropdownSubLinkItem: React.FC<NavDropdownSubLinkItemProps> = ({
       prefetch
     >
       <span>{label}</span>
-
       <span
         aria-hidden="true"
         className="bg-border duration-normal group-hover:bg-primary inline-block h-1 w-1 rounded-full transition-colors"

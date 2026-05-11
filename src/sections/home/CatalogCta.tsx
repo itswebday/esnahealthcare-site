@@ -7,8 +7,6 @@ const CatalogCta: React.FC = () => {
     <section className="relative bg-white py-4 sm:py-7 lg:py-8">
       <Container className="max-w-[1520px] px-0 sm:px-8 lg:px-10" size="xl">
         <div className="bg-primary relative overflow-hidden rounded-3xl px-6 py-16 sm:rounded-[40px] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
-          <CatalogBackdrop />
-
           <Reveal direction="up">
             <div className="relative flex flex-col items-start gap-6">
               <span className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-3 py-1 text-[12px] font-medium tracking-[0.14em] text-white uppercase ring-1 ring-white/20 sm:backdrop-blur">
@@ -29,12 +27,9 @@ const CatalogCta: React.FC = () => {
                   href="/contact?request=catalog"
                   size="lg"
                   variant="invert"
-                  withArrow
+                  hasArrow
                 >
                   Request portfolio
-                </Button>
-                <Button href="/compliance" size="lg" variant="invert-outline">
-                  Verify our licences
                 </Button>
               </div>
             </div>
@@ -42,18 +37,6 @@ const CatalogCta: React.FC = () => {
         </div>
       </Container>
     </section>
-  );
-};
-
-const CatalogBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-0"
-    >
-      <div className="absolute -top-40 -right-40 hidden h-[500px] w-[500px] rounded-full border-[40px] border-white/10 sm:block" />
-      <div className="absolute -bottom-32 -left-20 hidden h-[360px] w-[360px] rounded-full border-[32px] border-white/10 sm:block" />
-    </div>
   );
 };
 

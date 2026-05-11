@@ -1,16 +1,11 @@
 import type { MouseEvent } from "react";
 
 /*
-  Click handler factory shared between the flat NavLink and the dropdown
-  sublinks. Handles:
-
-    - Pure hash links (`#footer`): smooth-scroll on the current page
-    - Cross-page hash links (`/about#contact`): scroll if already on the
-      target page, otherwise let the browser navigate normally
-    - Plain links: scroll-to-top if clicking the current page
-
-  Optional callbacks let callers run side-effects (e.g. close the mobile
-  menu) at the right point in the click pipeline.
+Click handler factory shared between the flat NavLink and the dropdown
+sublinks. Handles pure hash links, cross-page hash links, and plain
+links (scroll-to-top when clicking the current page). Optional callbacks
+let callers run side-effects (e.g. close the mobile menu) at the right
+point in the click pipeline.
 */
 export type LinkClickHandlerOptions = {
   onClick?: () => void;
@@ -30,7 +25,6 @@ export const createLinkClickHandler = (
   ) => {
     if (!href) {
       options?.onClick?.();
-
       return;
     }
 
@@ -70,7 +64,6 @@ export const createLinkClickHandler = (
 
       options?.onNavigate?.();
       options?.onClick?.();
-
       return;
     }
 

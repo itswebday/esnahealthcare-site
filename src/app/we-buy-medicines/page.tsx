@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import PageHero from "@/sections/shared/PageHero";
 import HowItWorks from "@/sections/we-buy/HowItWorks";
-import WhatWereLookingFor from "@/sections/we-buy/WhatWereLookingFor";
 import OfferForm from "@/sections/we-buy/OfferForm";
+import WhatWereLookingFor from "@/sections/we-buy/WhatWereLookingFor";
+import PageHero from "@/sections/shared/PageHero";
 
 export const metadata: Metadata = {
   title: "Procurement",
@@ -11,20 +11,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/we-buy-medicines" },
 };
 
-const WeBuyMedicinesPage: React.FC = () => {
-  return (
-    <>
-      <PageHero
-        eyebrow="Procurement"
-        title="Offer your stock to Esna Care."
-        description="Suppliers with EU-sourced stock, full documentation, and appropriate shelf life are invited to submit an offer — cold-chain and ambient products welcome."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Procurement" }]}
-      />
-      <HowItWorks />
-      <WhatWereLookingFor />
-      <OfferForm />
-    </>
-  );
-};
+const WeBuyMedicinesPage: React.FC = () => (
+  <>
+    <PageHero
+      eyebrow="Procurement"
+      title="Offer your stock to Esna Care."
+      description="Suppliers with EU-sourced stock, full documentation, and appropriate shelf life are invited to submit an offer — cold-chain and ambient products welcome."
+      breadcrumbs={[{ label: "Home", href: "/" }, { label: "Procurement" }]}
+    />
+    <HowItWorks />
+    <WhatWereLookingFor />
+    <OfferForm />
+  </>
+);
 
 export default WeBuyMedicinesPage;

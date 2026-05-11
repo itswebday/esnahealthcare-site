@@ -71,18 +71,14 @@ const HowItWorks: React.FC = () => {
                     aria-hidden="true"
                     className={cn(
                       "pointer-events-none absolute top-0 right-0",
-                      "h-20 w-20 rounded-bl-3xl",
+                      "flex h-16 w-16 items-center justify-center rounded-bl-2xl text-white",
                       cornerClass,
                     )}
-                  />
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute top-5 right-5 text-white"
                   >
                     <Icon size={22} variant="Bold" />
                   </span>
 
-                  <div className="mt-14">
+                  <div className="mt-12">
                     <span className="text-subtle font-mono text-[13px]">
                       {step.step}
                     </span>

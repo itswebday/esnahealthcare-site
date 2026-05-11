@@ -1,7 +1,7 @@
 import { ArrowRight, ShieldTick, Verify } from "iconsax-react";
 import Link from "next/link";
+import Container from "@/components/ui/Container";
 import { SITE } from "@/lib/site";
-import Container from "./Container";
 
 type LicenceStripProps = { tone?: "light" | "invert" };
 

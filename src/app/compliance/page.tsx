@@ -13,23 +13,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "/compliance" },
 };
 
-const CompliancePage: React.FC = () => {
-  return (
-    <>
-      <PageHero
-        eyebrow="EU Licensed · GDP Certified"
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Compliance" }]}
-        description="EU GDP compliant · IGJ supervised · EU regulatory aligned · Formally audited and annually reviewed. Licence numbers shown as plain text — verification documents shared privately with qualified partners."
-        size="sm"
-        title="Verifiable compliance, by the licence number."
-      />
-      <LicenceCards />
-      <RegulatoryFramework />
-      <QualificationForms />
-      <QualityCommitment />
-      <CorporateRegistration />
-    </>
-  );
-};
+const CompliancePage: React.FC = () => (
+  <>
+    <PageHero
+      eyebrow="EU Licensed · GDP Certified"
+      breadcrumbs={[{ label: "Home", href: "/" }, { label: "Compliance" }]}
+      description="EU GDP compliant · IGJ supervised · EU regulatory aligned · Formally audited and annually reviewed. Licence numbers shown as plain text — verification documents shared privately with qualified partners."
+      size="sm"
+      title="Verifiable compliance, by the licence number."
+    />
+    <LicenceCards />
+    <RegulatoryFramework />
+    <QualificationForms />
+    <QualityCommitment />
+    <CorporateRegistration />
+  </>
+);
 
 export default CompliancePage;

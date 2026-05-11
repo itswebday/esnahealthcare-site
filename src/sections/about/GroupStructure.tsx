@@ -85,18 +85,14 @@ const EntityCard: React.FC<EntityCardProps> = ({
         aria-hidden="true"
         className={cn(
           "pointer-events-none absolute top-0 right-0",
-          "h-24 w-24 rounded-bl-3xl",
+          "flex h-16 w-16 items-center justify-center rounded-bl-2xl text-white",
           cornerClass,
         )}
-      />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute top-6 right-6 text-white"
       >
         {icon}
       </span>
 
-      <div className="relative mt-16">
+      <div className="relative mt-12">
         <div
           className={cn(
             "font-mono text-[10px] font-semibold",

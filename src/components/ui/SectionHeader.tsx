@@ -44,12 +44,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
               : "border-primary/40 bg-primary-subtle text-primary-dark border",
           )}
         >
-          <span
-            className={cn(
-              "h-1.5 w-1.5 rounded-full",
-              isInvert ? "bg-primary" : "bg-primary",
-            )}
-          />
+          <span className="bg-primary h-1.5 w-1.5 rounded-full" />
           {eyebrow}
         </span>
       )}

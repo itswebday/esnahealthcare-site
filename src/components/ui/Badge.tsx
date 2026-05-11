@@ -20,24 +20,24 @@ const badge = cva(
         md: "h-7 px-3 text-[12.5px]",
         lg: "h-8 px-3.5 text-[13px]",
       },
-      withDot: {
+      hasDot: {
         true: "",
         false: "",
       },
     },
-    defaultVariants: { variant: "primary", size: "md", withDot: false },
+    defaultVariants: { variant: "primary", size: "md", hasDot: false },
   },
 );
 
 type BadgeProps = VariantProps<typeof badge> &
   React.HTMLAttributes<HTMLSpanElement> & {
-    withDot?: boolean;
+    hasDot?: boolean;
   };
 
 const Badge: React.FC<BadgeProps> = ({
   variant,
   size,
-  withDot,
+  hasDot,
   className,
   children,
   ...rest
@@ -55,7 +55,7 @@ const Badge: React.FC<BadgeProps> = ({
 
   return (
     <span className={cn(badge({ variant, size }), className)} {...rest}>
-      {withDot && (
+      {hasDot && (
         <span
           className={cn(
             "animate-pulse-dot inline-block h-1.5 w-1.5 rounded-full",

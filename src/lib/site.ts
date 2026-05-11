@@ -109,18 +109,11 @@ export type NavLink = {
 export const NAV_LINKS: readonly NavLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "FAQ", href: "/faq" },
   { label: "Compliance", href: "/compliance" },
-  {
-    label: "Services & Products",
-    href: "/services",
-    subLinks: [
-      { label: "Services", href: "/services" },
-      { label: "Products", href: "/products" },
-      { label: "Medical Devices", href: "/products#medical-devices" },
-      { label: "Procurement", href: "/we-buy-medicines" },
-    ],
-  },
+  { label: "Services", href: "/services" },
+  { label: "Products", href: "/products" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Procurement", href: "/we-buy-medicines" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -128,8 +121,4 @@ export const FOOTER_LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Cookie Policy", href: "/cookie-policy" },
   { label: "Terms & Conditions", href: "/terms-and-conditions" },
-] as const;
-
-export const FOOTER_UTILITY_LINKS = [
-  { label: "Procurement", href: "/we-buy-medicines" },
 ] as const;

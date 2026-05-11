@@ -24,7 +24,7 @@ const ProductsEnquiryCta: React.FC = () => {
                 To discuss your specific requirements, contact our team
                 directly.
               </p>
-              <Button href="/contact" size="lg" variant="primary" withArrow>
+              <Button href="/contact" size="lg" variant="primary" hasArrow>
                 Send an Enquiry
               </Button>
             </div>

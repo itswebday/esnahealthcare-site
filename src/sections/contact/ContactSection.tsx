@@ -166,7 +166,7 @@ const PhoneCard: React.FC = () => {
         aria-hidden="true"
         className="bg-primary absolute inset-y-6 left-0 w-[3px] rounded-r-full"
       />
-      <div className="flex items-start gap-4">
+      <div className="flex items-center gap-4">
         <div className="bg-primary-subtle text-primary-dark ring-primary/25 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ring-1">
           <Call size={22} variant="Bold" />
         </div>
@@ -221,7 +221,7 @@ const ContactInfoCard: React.FC<ContactInfoCardProps> = ({
         aria-hidden="true"
         className="bg-primary absolute inset-y-6 left-0 w-[3px] rounded-r-full"
       />
-      <div className="flex items-start gap-4">
+      <div className="flex items-center gap-4">
         <div className="bg-primary-subtle text-primary-dark ring-primary/25 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ring-1">
           {icon}
         </div>

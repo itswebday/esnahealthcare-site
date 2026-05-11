@@ -41,22 +41,18 @@ const ServicesDetail: React.FC = () => {
                         aria-hidden="true"
                         className={cn(
                           "pointer-events-none absolute top-0 right-0",
-                          "h-28 w-28 rounded-bl-3xl",
+                          "flex h-16 w-16 items-center justify-center rounded-bl-2xl text-white",
                           cornerClass,
                         )}
-                      />
-                      <span
-                        aria-hidden="true"
-                        className="pointer-events-none absolute top-8 right-8 text-white"
                       >
-                        <Icon size={28} variant="Bold" />
+                        <Icon size={22} variant="Bold" />
                       </span>
                       <div
                         aria-hidden="true"
                         className="bg-primary/10 pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full blur-3xl"
                       />
 
-                      <div className="relative mt-28">
+                      <div className="relative mt-20">
                         <div className="text-subtle font-mono text-[13px]">
                           0{idx + 1} / 0{SERVICES.length}
                         </div>

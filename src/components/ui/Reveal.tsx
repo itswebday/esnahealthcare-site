@@ -9,18 +9,13 @@ import {
 import { createElement } from "react";
 
 /*
- * Scroll-reveal primitives.
- *
- * Each component renders a `motion.<tag>` that fades + slides in once it
- * enters the viewport. Triggering uses motion's `whileInView` (Intersection
- * Observer under the hood). To keep mobile reliable:
- *  - `amount: "some"` so the animation fires as soon as ANY part of the
- *    element is visible (avoids the old bug where a tall mobile section
- *    never reached the threshold and stayed invisible).
- *  - `once: true` so we don't replay on backwards scroll.
- *  - `prefers-reduced-motion` short-circuits to a plain element.
- *  - Initial styles are inlined by motion at SSR, so no FOUC during hydration.
- */
+Scroll-reveal primitives. `whileInView` (Intersection Observer) with
+`amount: "some"` so the animation fires as soon as ANY part of the
+element is visible — avoids the bug where tall mobile sections never
+hit the threshold and stayed invisible. `once: true` so backwards
+scroll doesn't replay. `prefers-reduced-motion` short-circuits to a
+plain element.
+*/
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -34,7 +29,7 @@ type RevealProps = {
   delay?: number;
   direction?: Direction;
   as?: AsTag;
-  once?: boolean;
+  isOnce?: boolean;
   amount?: number | "some" | "all";
 };
 
@@ -57,7 +52,7 @@ const Reveal: React.FC<RevealProps> = ({
   delay = 0,
   direction = "up",
   as = "div",
-  once = true,
+  isOnce = true,
   amount = "some",
 }) => {
   const prefersReducedMotion = useReducedMotion();
@@ -74,7 +69,7 @@ const Reveal: React.FC<RevealProps> = ({
       className={className}
       initial={{ opacity: 0, ...offset }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once, amount }}
+      viewport={{ once: isOnce, amount }}
       transition={{ ...TRANSITION, delay }}
     >
       {children}
@@ -87,7 +82,7 @@ type StaggerProps = {
   className?: string;
   delayChildren?: number;
   staggerChildren?: number;
-  once?: boolean;
+  isOnce?: boolean;
   amount?: number | "some" | "all";
   as?: StaggerTag;
 };
@@ -98,10 +93,7 @@ const buildContainerVariants = (
 ): Variants => ({
   hidden: {},
   visible: {
-    transition: {
-      delayChildren,
-      staggerChildren,
-    },
+    transition: { delayChildren, staggerChildren },
   },
 });
 
@@ -110,7 +102,7 @@ export const Stagger: React.FC<StaggerProps> = ({
   className,
   delayChildren = 0,
   staggerChildren = 0.08,
-  once = true,
+  isOnce = true,
   amount = "some",
   as = "div",
 }) => {
@@ -127,7 +119,7 @@ export const Stagger: React.FC<StaggerProps> = ({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, amount }}
+      viewport={{ once: isOnce, amount }}
       variants={buildContainerVariants(delayChildren, staggerChildren)}
     >
       {children}
@@ -144,14 +136,10 @@ type StaggerChildProps = {
 
 const buildChildVariants = (direction: Direction): Variants => {
   const offset = OFFSETS[direction];
+
   return {
     hidden: { opacity: 0, ...offset },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: TRANSITION,
-    },
+    visible: { opacity: 1, x: 0, y: 0, transition: TRANSITION },
   };
 };
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import PageHero from "@/sections/shared/PageHero";
 import FaqSection from "@/sections/faq/FaqSection";
+import PageHero from "@/sections/shared/PageHero";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -9,19 +9,17 @@ export const metadata: Metadata = {
   alternates: { canonical: "/faq" },
 };
 
-const FaqPage: React.FC = () => {
-  return (
-    <>
-      <PageHero
-        eyebrow="Frequently asked questions"
-        title="Answers, not sales pitches."
-        description="The questions buyers and suppliers ask us most often — answered honestly. If your question isn't here, send it to info@esnahealthcare.nl."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
-        size="sm"
-      />
-      <FaqSection />
-    </>
-  );
-};
+const FaqPage: React.FC = () => (
+  <>
+    <PageHero
+      eyebrow="Frequently asked questions"
+      title="Answers, not sales pitches."
+      description="The questions buyers and suppliers ask us most often — answered honestly. If your question isn't here, send it to info@esnahealthcare.nl."
+      breadcrumbs={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
+      size="sm"
+    />
+    <FaqSection />
+  </>
+);
 
 export default FaqPage;

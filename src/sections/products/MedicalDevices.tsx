@@ -2,6 +2,7 @@ import { Box } from "iconsax-react";
 import Container from "@/components/ui/Container";
 import Reveal, { Stagger, StaggerChild } from "@/components/ui/Reveal";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { cn } from "@/lib/cn";
 import { SITE } from "@/lib/site";
 import { MEDICAL_DEVICE_CATEGORIES } from "@/lib/services";
 
@@ -38,18 +39,40 @@ const MedicalDevices: React.FC = () => {
               className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5"
               staggerChildren={0.05}
             >
-              {MEDICAL_DEVICE_CATEGORIES.map((category) => (
-                <StaggerChild key={category} as="li">
-                  <article className="border-border shadow-hint hover:border-primary/40 hover:shadow-card duration-slow flex h-full flex-col gap-3 rounded-2xl border bg-white p-5 transition-all">
-                    <span className="bg-primary-subtle text-primary ring-primary/25 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1">
-                      <Box size={20} variant="Bold" />
-                    </span>
-                    <span className="text-foreground text-[15px] font-medium tracking-tight">
-                      {category}
-                    </span>
-                  </article>
-                </StaggerChild>
-              ))}
+              {MEDICAL_DEVICE_CATEGORIES.map((category, idx) => {
+                const isAccent = idx % 2 === 1;
+                const hoverClass = isAccent
+                  ? "hover:border-accent/40"
+                  : "hover:border-primary/40";
+                const chipClass = isAccent
+                  ? "bg-accent-subtle text-accent ring-accent/25"
+                  : "bg-primary-subtle text-primary ring-primary/25";
+                return (
+                  <StaggerChild key={category} as="li">
+                    <article
+                      className={cn(
+                        "border-border shadow-hint hover:shadow-card",
+                        "duration-slow flex h-full flex-col gap-3",
+                        "rounded-2xl border bg-white p-5 transition-all",
+                        hoverClass,
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          "flex h-10 w-10 shrink-0 items-center",
+                          "justify-center rounded-xl ring-1",
+                          chipClass,
+                        )}
+                      >
+                        <Box size={20} variant="Bold" />
+                      </span>
+                      <span className="text-foreground text-[15px] font-medium tracking-tight">
+                        {category}
+                      </span>
+                    </article>
+                  </StaggerChild>
+                );
+              })}
             </Stagger>
           </div>
         </Reveal>

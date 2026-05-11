@@ -7,9 +7,8 @@ type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export const generateStaticParams = async () => {
-  return BLOG_POSTS.map((p) => ({ slug: p.slug }));
-};
+export const generateStaticParams = async () =>
+  BLOG_POSTS.map((p) => ({ slug: p.slug }));
 
 export const generateMetadata = async ({
   params,

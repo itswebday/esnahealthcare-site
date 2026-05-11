@@ -2,6 +2,7 @@ import { TickCircle } from "iconsax-react";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { cn } from "@/lib/cn";
 
 const STANDARDS = [
   {
@@ -40,23 +41,45 @@ const QualityCommitment: React.FC = () => {
         </Reveal>
 
         <ul className="mt-14 grid gap-4 sm:grid-cols-2">
-          {STANDARDS.map((standard, idx) => (
-            <Reveal key={standard.title} delay={0.06 * idx} direction="up">
-              <li className="border-border shadow-hint hover:border-primary/40 hover:shadow-card duration-slow flex h-full gap-4 rounded-2xl border bg-white p-6 transition-all">
-                <span className="bg-primary-subtle text-primary ring-primary/25 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ring-1">
-                  <TickCircle size={22} variant="Bold" />
-                </span>
-                <div>
-                  <h3 className="text-foreground text-[17px] leading-tight font-semibold">
-                    {standard.title}
-                  </h3>
-                  <p className="text-muted mt-2 text-[14px] leading-relaxed">
-                    {standard.description}
-                  </p>
-                </div>
-              </li>
-            </Reveal>
-          ))}
+          {STANDARDS.map((standard, idx) => {
+            const isAccent = idx % 2 === 1;
+            const hoverClass = isAccent
+              ? "hover:border-accent/40"
+              : "hover:border-primary/40";
+            const chipClass = isAccent
+              ? "bg-accent-subtle text-accent ring-accent/25"
+              : "bg-primary-subtle text-primary ring-primary/25";
+            return (
+              <Reveal key={standard.title} delay={0.06 * idx} direction="up">
+                <li
+                  className={cn(
+                    "border-border shadow-hint hover:shadow-card",
+                    "duration-slow flex h-full gap-4 rounded-2xl border",
+                    "bg-white p-6 transition-all",
+                    hoverClass,
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "flex h-12 w-12 shrink-0 items-center justify-center",
+                      "rounded-xl ring-1",
+                      chipClass,
+                    )}
+                  >
+                    <TickCircle size={22} variant="Bold" />
+                  </span>
+                  <div>
+                    <h3 className="text-foreground text-[17px] leading-tight font-semibold">
+                      {standard.title}
+                    </h3>
+                    <p className="text-muted mt-2 text-[14px] leading-relaxed">
+                      {standard.description}
+                    </p>
+                  </div>
+                </li>
+              </Reveal>
+            );
+          })}
         </ul>
       </Container>
     </section>

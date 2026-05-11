@@ -2,15 +2,13 @@ import Container from "@/components/ui/Container";
 
 type LegalLayoutProps = {
   title: string;
-  lastUpdated: string;
-  draftNote?: string;
+  lastUpdated?: string;
   children: React.ReactNode;
 };
 
 const LegalLayout: React.FC<LegalLayoutProps> = ({
   title,
   lastUpdated,
-  draftNote,
   children,
 }) => {
   return (
@@ -21,18 +19,15 @@ const LegalLayout: React.FC<LegalLayoutProps> = ({
             <span className="bg-primary h-px w-6" />
             Legal
           </span>
-          <h1 className="text-foreground mt-4 text-[40px] leading-[1.08] font-semibold tracking-[var(--tracking-display)] sm:text-[48px]">
+          <h1 className="tracking-display text-foreground mt-4 text-[40px] leading-[1.08] font-semibold sm:text-[48px]">
             {title}
           </h1>
-          <p className="text-subtle mt-3 text-[14px]">
-            Last updated: <span className="font-mono">{lastUpdated}</span>
-          </p>
+          {lastUpdated && (
+            <p className="text-subtle mt-3 text-[14px]">
+              Last updated: <span className="font-mono">{lastUpdated}</span>
+            </p>
+          )}
         </header>
-        {draftNote && (
-          <div className="border-border-strong bg-surface-2/60 text-subtle mt-8 rounded-md border border-dashed p-4 font-mono text-[13px] leading-relaxed">
-            {"{"} {draftNote} {"}"}
-          </div>
-        )}
         <div className="prose-legal mt-10 max-w-none">{children}</div>
       </Container>
     </section>

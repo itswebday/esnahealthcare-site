@@ -13,22 +13,20 @@ export const metadata: Metadata = {
   alternates: { canonical: "/products" },
 };
 
-const ProductsPage: React.FC = () => {
-  return (
-    <>
-      <PageHero
-        eyebrow="Products"
-        title="A broad portfolio, sourced under qualification."
-        description="From branded and generic medicines to injectables, specialty biologics, and medical devices — supplied under our WDA and GDP."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
-      />
-      <ProductCategoriesDetail />
-      <TherapeuticAreasGrid />
-      <PharmaBrands />
-      <MedicalDevices />
-      <ProductsEnquiryCta />
-    </>
-  );
-};
+const ProductsPage: React.FC = () => (
+  <>
+    <PageHero
+      eyebrow="Products"
+      title="A broad portfolio, sourced under qualification."
+      description="From branded and generic medicines to injectables, specialty biologics, and medical devices — supplied under our WDA and GDP."
+      breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
+    />
+    <ProductCategoriesDetail />
+    <TherapeuticAreasGrid />
+    <PharmaBrands />
+    <MedicalDevices />
+    <ProductsEnquiryCta />
+  </>
+);
 
 export default ProductsPage;

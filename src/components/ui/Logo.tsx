@@ -7,7 +7,7 @@ type LogoProps = {
   width?: number;
   className?: string;
   href?: string;
-  withLink?: boolean;
+  hasLink?: boolean;
 };
 
 const SRC = {
@@ -21,7 +21,7 @@ const Logo: React.FC<LogoProps> = ({
   width = 132,
   className,
   href = "/",
-  withLink = true,
+  hasLink = true,
 }) => {
   const height = Math.round(width * (876.99 / 3172.08));
   const img = (
@@ -36,7 +36,7 @@ const Logo: React.FC<LogoProps> = ({
     />
   );
 
-  if (!withLink) {
+  if (!hasLink) {
     return img;
   }
 

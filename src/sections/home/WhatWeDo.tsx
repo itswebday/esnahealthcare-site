@@ -7,26 +7,18 @@ import { cn } from "@/lib/cn";
 const TILES = [
   {
     icon: Health,
-    eyebrow: "Pharmaceuticals",
-    title: "Branded, generic, OTC, specialty.",
+    title: "Pharmaceuticals",
     summary:
-      "Access to branded, generic, OTC, specialty, and hard-to-source medicines — including shortage products across EU markets.",
-    bullets: [
-      "EU-sourced branded & generic medicines",
-      "Specialty, orphan, and shortage support",
-    ],
+      "Branded, generic, OTC, specialty, and hard-to-source medicines — including shortage products across EU markets.",
+    bullets: ["EU-sourced supplier network", "Shortage & specialty support"],
     href: "/products",
   },
   {
     icon: Hospital,
-    eyebrow: "Medical Devices & Diagnostics",
-    title: "Devices, diagnostics, clinical care.",
+    title: "Medical Devices",
     summary:
       "Diagnostics, wound care, diabetes care, clinical nutrition, and self-diagnostics — sourced under the same qualification standards.",
-    bullets: [
-      "Sourced through global partner networks",
-      "Same GDP-aligned qualification process",
-    ],
+    bullets: ["Global partner network", "GDP-aligned qualification"],
     href: "/products#medical-devices",
   },
 ] as const;
@@ -38,17 +30,15 @@ const WhatWeDo: React.FC = () => {
         <div className="bg-surface-invert-2 relative overflow-hidden rounded-3xl px-6 py-16 text-white sm:rounded-[40px] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
           <Reveal direction="up">
             <div className="relative flex max-w-3xl flex-col gap-5">
-              <span className="inline-flex w-fit items-center gap-2 rounded-xl bg-white/10 px-3 py-1 text-[12px] font-medium tracking-[0.14em] text-white uppercase ring-1 ring-white/20 sm:backdrop-blur">
+              <div className="inline-flex w-fit items-center gap-2">
                 <span className="bg-primary h-1.5 w-1.5 rounded-full" />
-                What we do
-              </span>
+                <span className="font-mono text-[11px] font-semibold tracking-[0.28em] text-white/70 uppercase">
+                  What we do
+                </span>
+              </div>
               <h2 className="tracking-display text-[32px] leading-[1.1] font-semibold text-white sm:text-[42px] lg:text-[48px]">
                 Medicines and medical devices, supplied to qualified buyers.
               </h2>
-              <p className="text-on-invert-muted max-w-2xl text-[16px] leading-relaxed">
-                Two product families, one quality standard — sourced through
-                qualified channels and distributed under EU GDP.
-              </p>
             </div>
           </Reveal>
 
@@ -58,73 +48,40 @@ const WhatWeDo: React.FC = () => {
             delayChildren={0.1}
             staggerChildren={0.08}
           >
-            {TILES.map((tile, idx) => {
+            {TILES.map((tile) => {
               const Icon = tile.icon;
-              const isPrimary = idx === 0;
               return (
                 <StaggerChild
-                  key={tile.eyebrow}
+                  key={tile.title}
                   as="li"
                   className="h-full"
                   direction="up"
                 >
                   <Link
-                    className={cn(
-                      "group duration-slow focus-visible:ring-offset-surface-invert-2 relative flex h-full flex-col gap-5 overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-9 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:bg-linear-to-br sm:from-white/5 sm:to-white/[0.02] sm:backdrop-blur sm:transition-all",
-                      isPrimary
-                        ? "hover:border-primary/50 hover:shadow-primary/20 focus-visible:ring-primary hover:shadow-xl"
-                        : "hover:border-accent/50 hover:shadow-accent/20 focus-visible:ring-accent hover:shadow-xl",
-                    )}
+                    className="group duration-slow focus-visible:ring-offset-surface-invert-2 hover:border-primary/50 hover:shadow-primary/20 focus-visible:ring-primary relative flex h-full flex-col gap-5 overflow-hidden rounded-3xl border border-white/20 bg-white/[0.12] p-9 transition-colors hover:shadow-xl focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:transition-all"
                     href={tile.href}
                     prefetch
                   >
-                    <span
-                      aria-hidden="true"
-                      className={cn(
-                        "duration-slow pointer-events-none absolute -top-10 -right-10 hidden h-40 w-40 rounded-bl-full bg-linear-to-br to-transparent opacity-60 transition-opacity group-hover:opacity-100 sm:block",
-                        isPrimary ? "from-primary/30" : "from-accent/30",
-                      )}
-                    />
-
-                    <div
-                      className={cn(
-                        "relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl ring-1",
-                        isPrimary
-                          ? "bg-primary/15 text-primary ring-primary/30"
-                          : "bg-accent/20 text-accent ring-accent/40",
-                      )}
-                    >
-                      <Icon size={26} variant="Bold" />
+                    <div className="bg-primary shadow-primary/30 relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white shadow-lg">
+                      <Icon size={22} variant="Bold" />
                     </div>
 
-                    <div className="relative flex flex-1 flex-col gap-3">
-                      <div
-                        className={cn(
-                          "font-mono text-[10px] font-semibold tracking-[0.22em] uppercase",
-                          isPrimary ? "text-primary" : "text-accent",
-                        )}
-                      >
-                        {tile.eyebrow}
-                      </div>
-                      <h3 className="tracking-display text-[24px] leading-[1.15] font-semibold text-white sm:text-[26px]">
-                        {tile.title}
-                      </h3>
-                      <p className="text-on-invert-muted text-[15px] leading-relaxed">
-                        {tile.summary}
-                      </p>
-                    </div>
+                    <h3 className="text-[22px] leading-[1.15] font-semibold tracking-tight text-white sm:text-[26px] lg:text-[28px]">
+                      {tile.title}
+                    </h3>
 
-                    <ul className="relative mt-auto flex flex-col gap-2">
+                    <p className="text-[15px] leading-relaxed text-white/95">
+                      {tile.summary}
+                    </p>
+
+                    <ul className="relative mt-auto flex flex-col gap-2 border-t border-white/15 pt-5">
                       {tile.bullets.map((bullet) => (
                         <li
                           key={bullet}
-                          className="flex items-start gap-2 text-[13px] leading-snug text-white/80"
+                          className="flex items-start gap-2 text-[14px] leading-snug text-white"
                         >
                           <TickCircle
-                            className={cn(
-                              "mt-0.5 shrink-0",
-                              isPrimary ? "text-primary" : "text-accent",
-                            )}
+                            className="text-primary mt-0.5 shrink-0"
                             size={14}
                             variant="Bold"
                           />
@@ -133,12 +90,7 @@ const WhatWeDo: React.FC = () => {
                       ))}
                     </ul>
 
-                    <span
-                      className={cn(
-                        "relative inline-flex items-center gap-1.5 text-[13px] font-medium",
-                        isPrimary ? "text-primary" : "text-accent",
-                      )}
-                    >
+                    <span className="relative inline-flex items-center gap-1.5 text-[13px] font-medium text-white">
                       Learn more
                       <ArrowRight
                         className="duration-normal transition-transform group-hover:translate-x-0.5"

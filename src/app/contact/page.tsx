@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ENQUIRY_TYPES, type EnquiryType } from "@/lib/enquiry-types";
-import PageHero from "@/sections/shared/PageHero";
 import ContactSection from "@/sections/contact/ContactSection";
+import PageHero from "@/sections/shared/PageHero";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 type ContactPageProps = {
-  searchParams: Promise<{
+  searchParams?: Promise<{
     enquiry?: string;
     request?: string;
   }>;
@@ -20,8 +20,8 @@ type ContactPageProps = {
 const isValidEnquiryType = (value: string | undefined): value is EnquiryType =>
   ENQUIRY_TYPES.some((option) => option.value === value);
 
-const ContactPage = async ({ searchParams }: ContactPageProps) => {
-  const params = await searchParams;
+const ContactPage = async ({ searchParams }: ContactPageProps = {}) => {
+  const params = searchParams ? await searchParams : {};
   const enquiryType = isValidEnquiryType(params.enquiry)
     ? params.enquiry
     : undefined;
@@ -36,7 +36,7 @@ const ContactPage = async ({ searchParams }: ContactPageProps) => {
       <PageHero
         eyebrow={isCatalog ? "Portfolio request" : "Contact"}
         title="Discuss your requirements with our team."
-        description="Whether you’re sourcing medicines, evaluating a distribution partner, or submitting stock for procurement, our team will reply from info@esnahealthcare.nl within one business day."
+        description="Whether you're sourcing medicines, evaluating a distribution partner, or submitting stock for procurement, our team will reply from info@esnahealthcare.nl within one business day."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
         size="sm"
       />

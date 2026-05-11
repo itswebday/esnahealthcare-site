@@ -46,11 +46,31 @@ const TherapeuticAreasGrid: React.FC = () => {
         >
           {THERAPEUTIC_AREAS.map((area, idx) => {
             const Icon = ICON_MAP[area.icon] ?? Health;
+            const isAccent = idx % 2 === 1;
+            const hoverClass = isAccent
+              ? "hover:border-accent/40"
+              : "hover:border-primary/40";
+            const chipClass = isAccent
+              ? "bg-accent-subtle text-accent ring-accent/25"
+              : "bg-primary-subtle text-primary ring-primary/25";
             return (
               <StaggerChild key={area.slug} as="li" direction="up">
-                <article className="border-border shadow-hint hover:border-primary/40 hover:shadow-card duration-slow flex h-full flex-col gap-4 rounded-2xl border bg-white p-6 transition-all">
+                <article
+                  className={cn(
+                    "border-border shadow-hint hover:shadow-card",
+                    "duration-slow flex h-full flex-col gap-4",
+                    "rounded-2xl border bg-white p-6 transition-all",
+                    hoverClass,
+                  )}
+                >
                   <div className="flex items-start justify-between">
-                    <div className="bg-primary-subtle text-primary ring-primary/25 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ring-1">
+                    <div
+                      className={cn(
+                        "flex h-12 w-12 shrink-0 items-center justify-center",
+                        "rounded-xl ring-1",
+                        chipClass,
+                      )}
+                    >
                       <Icon size={22} variant="Bold" />
                     </div>
                     <span className="border-border text-subtle inline-flex h-7 min-w-7 items-center justify-center rounded-lg border bg-white px-2 font-mono text-[10px] font-semibold">

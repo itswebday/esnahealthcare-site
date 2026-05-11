@@ -10,22 +10,20 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services" },
 };
 
-const ServicesPage: React.FC = () => {
-  return (
-    <>
-      <PageHero
-        eyebrow="Services & products"
-        title="End-to-end pharmaceutical supply, under EU GDP."
-        description="Four disciplines that shape every partner relationship — from first enquiry to a qualified, temperature-controlled delivery."
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Services & Products" },
-        ]}
-      />
-      <ServicesDetail />
-      <ServicesCtaBand />
-    </>
-  );
-};
+const ServicesPage: React.FC = () => (
+  <>
+    <PageHero
+      eyebrow="Services & products"
+      title="End-to-end pharmaceutical supply, under EU GDP."
+      description="Four disciplines that shape every partner relationship — from first enquiry to a qualified, temperature-controlled delivery."
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Services & Products" },
+      ]}
+    />
+    <ServicesDetail />
+    <ServicesCtaBand />
+  </>
+);
 
 export default ServicesPage;
