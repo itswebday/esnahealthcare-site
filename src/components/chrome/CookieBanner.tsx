@@ -56,15 +56,6 @@ const CookieBanner: React.FC = () => {
           aria-label="Cookie preferences"
         >
           <div className="relative">
-            <span
-              aria-hidden="true"
-              className="border-primary absolute -top-0.5 -left-0.5 h-4 w-4 rounded-tl-2xl border-t-2 border-l-2"
-            />
-            <span
-              aria-hidden="true"
-              className="border-accent absolute -right-0.5 -bottom-0.5 h-4 w-4 rounded-br-2xl border-r-2 border-b-2"
-            />
-
             <div className="border-border shadow-float relative overflow-hidden rounded-2xl border bg-white">
               <div
                 aria-hidden="true"

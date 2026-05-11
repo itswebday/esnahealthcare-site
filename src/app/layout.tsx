@@ -57,7 +57,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     className={cn("h-full antialiased", geistSans.variable, geistMono.variable)}
     lang="en"
   >
-    <body className="bg-background text-foreground min-h-full">
+    <body className="bg-background text-foreground min-h-full overflow-x-clip">
       <a
         className="focus:z-toast focus:bg-foreground sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:rounded-full focus:px-4 focus:py-2 focus:text-white"
         href="#main"
