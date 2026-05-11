@@ -30,8 +30,6 @@ const TwoClearPaths: React.FC = () => {
   return (
     <section className="bg-surface-1 relative overflow-hidden py-16 sm:py-20 lg:py-24">
       <Container size="xl">
-        <TwoClearPathsBackdrop />
-
         <Reveal direction="up">
           <SectionHeader
             description="Whether you are sourcing medicines or evaluating a distribution partner, we make the next step clear."
@@ -120,18 +118,6 @@ const TwoClearPaths: React.FC = () => {
         </Stagger>
       </Container>
     </section>
-  );
-};
-
-const TwoClearPathsBackdrop: React.FC = () => {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="bg-primary/5 absolute top-[20%] right-[-5%] h-[420px] w-[420px] rounded-full blur-[110px]" />
-      <div className="bg-accent/5 absolute bottom-[10%] left-[-8%] h-[380px] w-[380px] rounded-full blur-[110px]" />
-    </div>
   );
 };
 
