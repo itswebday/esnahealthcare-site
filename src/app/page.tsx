@@ -1,4 +1,4 @@
-import CatalogCta from "@/sections/home/CatalogCta";
+// import CatalogCta from "@/sections/home/CatalogCta";
 // import FeaturedBlog from "@/sections/home/FeaturedBlog";
 import Hero from "@/sections/home/Hero";
 import TwoClearPaths from "@/sections/home/TwoClearPaths";
@@ -13,7 +13,7 @@ const HomePage: React.FC = () => (
     <WhatWeDo />
     <WhyEsnaCare />
     <TwoClearPaths />
-    <CatalogCta />
+    {/* <CatalogCta /> */}
     {/* <FeaturedBlog /> */}
   </>
 );
