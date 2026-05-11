@@ -5,8 +5,8 @@ import Reveal from "@/components/ui/Reveal";
 const CatalogCta: React.FC = () => {
   return (
     <section className="relative bg-white py-4 sm:py-7 lg:py-8">
-      <Container className="max-w-[1520px] px-0 sm:px-8 lg:px-10" size="xl">
-        <div className="bg-primary relative overflow-hidden rounded-3xl px-6 py-16 sm:rounded-[40px] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
+      <Container className="max-w-[1520px] px-4 sm:px-8 lg:px-10" size="xl">
+        <div className="bg-primary relative rounded-3xl px-6 py-16 sm:rounded-[40px] sm:px-12 sm:py-20 lg:px-16 lg:py-24">
           <Reveal direction="up">
             <div className="relative flex flex-col items-start gap-6">
               <span className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-3 py-1 text-[12px] font-medium tracking-[0.14em] text-white uppercase ring-1 ring-white/20 sm:backdrop-blur">
